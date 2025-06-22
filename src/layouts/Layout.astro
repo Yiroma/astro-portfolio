@@ -5,18 +5,18 @@ import Footer from "../components/Footer.astro";
 
 <!doctype html>
 <html lang="fr">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Yiroma - Portfolio</title>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<slot />
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Yiroma - Portfolio</title>
+  </head>
+  <body class="flex h-screen flex-col">
+    <Header />
+    <main class="flex-1 overflow-auto">
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>
