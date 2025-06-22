@@ -38,6 +38,12 @@ Ce projet utilise **Astro** avec **TailwindCSS** et **TypeScript**. La configura
 - **Types autorisés** : `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`
 - **Format** : `<type>(scope?): <description>`
 
+### ♿ Accessibilité (A11y)
+
+- **Couverture complète** : Fichiers React (`.jsx`, `.tsx`) ET Astro (`.astro`)
+- **Règles vérifiées** : Alt-text, ARIA, navigation clavier, sémantique HTML
+- **Détection automatique** : Images sans alt, liens invalides, éléments interactifs non accessibles
+
 ## Workflow de développement
 
 1. **Développement** : `npm run dev`
