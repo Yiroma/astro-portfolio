@@ -8,5 +8,25 @@ export default defineConfig({
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        "@": "/src",
+        "@components": "/src/components",
+        "@layouts": "/src/layouts",
+        "@pages": "/src/pages",
+        "@utils": "/src/utils",
+        "@assets": "/src/assets",
+        "@styles": "/src/styles",
+        "@types": "/src/types",
+      },
+    },
+  },
+  output: "static",
+  build: {
+    inlineStylesheets: "auto",
+  },
+  server: {
+    host: true,
+    port: 4321,
   },
 });
