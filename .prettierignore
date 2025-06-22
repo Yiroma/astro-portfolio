@@ -1,3 +1,23 @@
 # Ignore artifacts:
-build
-coverage
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+.astro/
+
+# Logs
+*.log
+
+# Package manager lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Generated files
+public/assets/
