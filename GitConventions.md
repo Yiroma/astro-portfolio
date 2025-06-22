@@ -38,3 +38,57 @@ Utiliser l’impératif présent (ex : "ajoute", "corrige", "modifie")
 `docs(readme): ajoute les instructions d’installation`
 `style(button): uniformise les marges des boutons`
 `refactor(form): simplifie la logique de validation`
+
+---
+
+# 🌿 Convention de nommage des Branches
+
+modèle: `<type>/<description-courte>`
+
+## 🔹 Types de branches
+
+| Type       | Description                         | Exemple                         |
+| ---------- | ----------------------------------- | ------------------------------- |
+| `feature`  | ✨ Nouvelle fonctionnalité          | `feature/carrousel-temoignages` |
+| `bugfix`   | 🐛 Correction de bug                | `bugfix/erreur-login`           |
+| `hotfix`   | 🚨 Correction urgente en production | `hotfix/securite-auth`          |
+| `chore`    | 🔩 Tâches de maintenance            | `chore/mise-a-jour-deps`        |
+| `docs`     | 📚 Documentation                    | `docs/guide-installation`       |
+| `refactor` | 🔧 Refactorisation                  | `refactor/composant-header`     |
+| `test`     | 🧪 Ajout/modification de tests      | `test/validation-formulaire`    |
+| `style`    | 💄 Changements cosmétiques          | `style/responsive-header`       |
+
+## 🔹 Règles de nommage
+
+- **Tout en minuscules**
+- **Utiliser des tirets** pour séparer les mots (kebab-case)
+- **Description courte et explicite** (2-4 mots maximum)
+- **Pas d'accents** ni de caractères spéciaux
+- **Éviter les abréviations** obscures
+
+## 🔹 Workflow recommandé
+
+```bash
+# Créer une nouvelle branche feature
+git checkout dev
+git pull origin dev
+git checkout -b feature/nom-de-la-feature
+
+# Après développement, merger dans dev
+git checkout dev
+git merge feature/nom-de-la-feature
+git push origin dev
+
+# Supprimer la branche feature locale
+git branch -d feature/nom-de-la-feature
+```
+
+## 🔹 Exemples de bonnes branches
+
+- `feature/page-contact`
+- `feature/systeme-notation`
+- `bugfix/menu-mobile`
+- `hotfix/faille-xss`
+- `chore/config-eslint`
+- `docs/readme-installation`
+- `refactor/hooks-personnalises`
