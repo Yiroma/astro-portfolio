@@ -1,0 +1,43 @@
+# Dépendances
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build
+dist
+.astro
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Logs
+logs
+*.log
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+
+# Autres
+.DS_Store
+Thumbs.db
+
+# Documentation
+README.md
+DEVELOPMENT.md
+GitConventions.md
+
+# Tests
+coverage
+
+# Fichiers de développement
+.eslintrc*
+.prettierrc*
+commitlint.config.js 
