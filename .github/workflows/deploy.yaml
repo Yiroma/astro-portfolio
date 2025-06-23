@@ -98,3 +98,6 @@ jobs:
 
             # Nettoyer les anciennes images
             docker image prune -f
+
+            # Nettoyer les credentials Docker (supprimer le warning)
+            docker logout ${{ env.REGISTRY }} || true
