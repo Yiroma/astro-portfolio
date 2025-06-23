@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: yiroma/astro-portfolio
 
 jobs:
   build-and-deploy:
@@ -63,6 +63,16 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+      - name: Copy docker-compose.prod.yml to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          port: ${{ secrets.SERVER_PORT }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          source: "docker-compose.prod.yml"
+          target: "/home/yiroma/web-projects/portfolio/"
+
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -79,9 +89,6 @@ jobs:
 
             # Arrêter et supprimer l'ancien conteneur
             docker-compose -f docker-compose.prod.yml down || true
-
-            # Mettre à jour l'image dans docker-compose.prod.yml
-            sed -i 's|image:.*|image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest|' docker-compose.prod.yml
 
             # Tirer la nouvelle image
             docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
