@@ -72,7 +72,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             # Aller dans le répertoire du projet
-            cd /home/yiroma/web-projects/astro-portfolio
+            cd /home/yiroma/web-projects/portfolio
 
             # Se connecter au registry GitHub
             echo ${{ secrets.GITHUB_TOKEN }} | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin
