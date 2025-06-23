@@ -1,0 +1,31 @@
+services:
+  portfolio:
+    image: ghcr.io/yiroma/astro-portfolio:latest # Sera mis à jour par le workflow
+    container_name: portfolio-yiroma
+    restart: unless-stopped
+    ports:
+      - "3001:80" # Port interne pour éviter conflit avec nginx principal
+    networks:
+      - web-projects
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    labels:
+      - "project=portfolio"
+      - "category=web-projects"
+      - "deploy-mode=automated"
+    volumes:
+      - portfolio-logs:/var/log/nginx
+
+networks:
+  web-projects:
+    name: web-projects
+    external: true
+    driver: bridge
+
+volumes:
+  portfolio-logs:
+    driver: local
