@@ -13,8 +13,8 @@ import Footer from "../components/Footer.astro";
     <title>Yiroma - Portfolio</title>
   </head>
   <body class="flex h-screen flex-col">
-    <Header />
-    <main class="flex-1 overflow-auto">
+    <Header class="pointer-events-none" />
+    <main class="flex-1 overflow-auto bg-base-100 pt-20 pb-24 md:pt-24 md:pb-6">
       <slot />
     </main>
     <Footer />
