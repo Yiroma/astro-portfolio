@@ -1,6 +1,6 @@
 services:
   portfolio:
-    image: ghcr.io/yiroma/astro-portfolio:latest # Sera mis à jour par le workflow
+    image: ghcr.io/yiroma/astro-portfolio:latest
     container_name: portfolio-yiroma
     restart: unless-stopped
     ports:
