@@ -3,7 +3,7 @@
 
 @plugin "daisyui/theme" {
   name: "winter";
-  default: true;
+  default: false;
   prefersdark: false;
   color-scheme: "light";
   --color-base-100: oklch(100% 0 0);
@@ -38,7 +38,7 @@
 
 @plugin "daisyui/theme" {
   name: "night";
-  default: false;
+  default: true;
   prefersdark: true;
   color-scheme: "dark";
   --color-base-100: oklch(20.768% 0.039 265.754);
