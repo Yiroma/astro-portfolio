@@ -1,11 +1,17 @@
-import MoonIcon from "./icons/MoonIcon";
-import SunIcon from "./icons/SunIcon";
+import MoonIcon from "../../assets/icons/MoonIcon";
+import SunIcon from "../../assets/icons/SunIcon";
 
 export default function ThemeSwap() {
   return (
-    <label className="swap swap-rotate">
+    <label className="swap swap-rotate border-l border-base-content/10 pl-4">
       {/* this hidden checkbox controls the state */}
-      <input type="checkbox" className="theme-controller" value="winter" />
+      <input
+        type="checkbox"
+        className="theme-controller"
+        value="winter"
+        data-toggle-theme="winter,night"
+        data-act-class="ACTIVECLASS"
+      />
       <SunIcon class="swap-off h-6 w-6 fill-current" />
       <MoonIcon class="swap-on h-6 w-6 fill-current" />
     </label>
