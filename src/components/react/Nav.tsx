@@ -46,8 +46,8 @@ export default function Nav() {
 
     if (!sections.length) return;
 
-    const observerCallback = (entries: any[]) => {
-      entries.forEach((entry: any) => {
+    const observerCallback = (entries: { isIntersecting: boolean; target: { id: string } }[]) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
         }
@@ -60,12 +60,12 @@ export default function Nav() {
       threshold: 0.1,
     };
 
-    const observer = new (window as any).IntersectionObserver(observerCallback, observerOptions);
+    const observer = new window.IntersectionObserver(observerCallback, observerOptions);
 
     Array.from(sections).forEach((section) => observer.observe(section));
 
     if (sections.length > 0) {
-      setActiveSection((sections[0] as any).id);
+      setActiveSection(sections[0].id);
     }
 
     return () => {
