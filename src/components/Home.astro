@@ -16,31 +16,33 @@ const links = [
   },
   {
     name: "mail",
-    url: "mailto:yiromaric@gmail.com",
+    url: "https://mail.google.com/mail/u/0/?fs=1&to=yiromaric@gmail.com&su=Bonjour+Romaric+!&tf=cm",
     icon: MailIcon,
   },
 ];
 ---
 
-<section id="home" class="hero p-8">
-  <div class="hero-content flex-col items-start gap-4">
-    <p class="text-base text-base-content/80 md:text-lg">
-      Bonjour, je suis <span class="text-primary">Yi Romaric</span>
+<section id="home" class="hero">
+  <div class="hero-content flex-col items-start md:px-16">
+    <p class="text-base text-base-content/80 italic md:text-lg">
+      Bonjour, je suis <span class="text-primary">Romaric Yi</span>
     </p>
-    <div class="flex flex-col gap-4 md:flex-row md:gap-12">
-      <h1 class="max-w-md text-5xl font-semibold lg:w-1/3">
+    <div class="flex flex-col gap-4 lg:flex-row lg:gap-12">
+      <h1 class="max-w-sm text-5xl font-semibold lg:w-1/3">
         Concepteur Développeur d'Applications
       </h1>
-      <p class="max-w-lg py-6 text-base text-base-content/80 md:text-xl lg:w-2/3 lg:text-2xl">
+      <p
+        class="max-w-xl py-6 text-base text-base-content/80 italic md:text-xl lg:w-2/3 lg:text-2xl"
+      >
         Avec un profil polyvalent pour le développement web moderne, je contribue à la réussite des
         projets digitaux, de la <span class="text-primary">conception</span> à la
         <span class="text-primary">mise en production</span>.
       </p>
     </div>
-    <div class="mt-8 flex gap-4">
+    <div class="md-0 flex gap-4 md:mt-8">
       {
         links.map((link) => (
-          <a href={link.url} target="_blank" class="btn btn-square size-16 btn-neutral">
+          <a href={link.url} target="_blank" class="btn btn-square size-12 btn-neutral md:size-16">
             <link.icon class="size-10" />
           </a>
         ))
