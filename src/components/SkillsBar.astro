@@ -1,0 +1,22 @@
+---
+const technologies = [
+  {
+    name: "astro",
+    icon: "",
+  },
+];
+---
+
+<div class="flex flex-col gap-4">
+  <h2 class="text-2xl font-bold">Technologies</h2>
+  <div class="flex flex-wrap gap-4">
+    {
+      technologies.map((technology) => (
+        <div class="flex items-center gap-2">
+          <img src={technology.icon} alt={technology.name} class="h-10 w-10" />
+          <span class="text-lg">{technology.name}</span>
+        </div>
+      ))
+    }
+  </div>
+</div>
