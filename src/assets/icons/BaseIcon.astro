@@ -1,19 +1,10 @@
 ---
-import type { IconProps } from "@/types/icon.type";
-
-interface BaseIconProps extends IconProps {
-  viewBox?: string;
-  width?: string;
-  height?: string;
-  children: string;
-}
-
 const {
   class: className = "h-6 w-6",
   viewBox = "0 0 24 24",
   width = "24",
   height = "24",
-  children,
+  fill = "currentColor",
 } = Astro.props;
 ---
 
@@ -22,7 +13,7 @@ const {
   viewBox={viewBox}
   width={width}
   height={height}
-  fill="currentColor"
+  fill={fill}
   class:list={` ${className}`}
 >
   <slot />
