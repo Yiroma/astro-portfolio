@@ -5,7 +5,7 @@ interface BaseIconProps extends IconProps {
   viewBox?: string;
   width?: string;
   height?: string;
-  children: string;
+  fill?: string;
 }
 
 const {
@@ -13,7 +13,7 @@ const {
   viewBox = "0 0 24 24",
   width = "24",
   height = "24",
-  children,
+  fill = "currentColor",
 } = Astro.props;
 ---
 
@@ -22,7 +22,7 @@ const {
   viewBox={viewBox}
   width={width}
   height={height}
-  fill="currentColor"
+  fill={fill}
   class:list={` ${className}`}
 >
   <slot />
