@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Onest:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap");
+
 @import "tailwindcss";
 @plugin "daisyui";
 
@@ -69,4 +71,23 @@
   --border: 1px;
   --depth: 0;
   --noise: 0;
+}
+
+:root {
+  --font-sans: "Onest", system-ui, sans-serif;
+  --font-title: "Space Grotesk", system-ui, sans-serif;
+}
+
+html {
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-title {
+  font-family: var(--font-title);
 }

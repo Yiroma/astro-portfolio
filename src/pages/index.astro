@@ -2,10 +2,12 @@
 import Layout from "../layouts/Layout.astro";
 // Components
 import Home from "../components/Home.astro";
+import SkillsBar from "../components/react/SkillsBar.tsx";
 // Styles
 import "../styles/global.css";
 ---
 
 <Layout>
   <Home />
+  <SkillsBar client:load />
 </Layout>
