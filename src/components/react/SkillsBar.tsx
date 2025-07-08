@@ -1,4 +1,4 @@
-import AnimatedSkillsRow from "@/components/react/AnimatedSkillsRow";
+// import AnimatedSkillsRow from "@/components/react/AnimatedSkillsRow";
 // icons
 import Api from "@/assets/icons/api.svg?url";
 import Apollo from "@/assets/icons/apollo.svg?url";
@@ -56,12 +56,39 @@ const skills = {
   ],
 };
 
+// Composant simple pour tester
+function SimpleSkillsRow({
+  skills,
+  title,
+}: {
+  skills: Array<{ name: string; icon: string }>;
+  title: string;
+}) {
+  return (
+    <div className="mb-4">
+      <h3 className="mb-2 text-lg font-bold text-primary">{title}</h3>
+      <div className="flex flex-wrap gap-4">
+        {skills.map((skill) => (
+          <div
+            key={skill.name}
+            className="flex items-center gap-2 rounded-lg bg-base-200 px-3 py-2"
+          >
+            <img src={skill.icon} alt={skill.name} className="h-6 w-6 rounded-sm" />
+            <span className="font-title text-sm">{skill.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function SkillsBar() {
   return (
-    <div className="hero-content mx-auto flex w-full flex-col gap-1 md:px-16">
-      <AnimatedSkillsRow skills={skills.frontend} direction="left" />
-      <AnimatedSkillsRow skills={skills.backend} direction="right" />
-      <AnimatedSkillsRow skills={skills.toolsAndDevOps} direction="left" />
+    <div className="hero-content mx-auto flex w-full flex-col gap-4 md:px-16">
+      <h2 className="mb-4 text-center text-2xl font-bold">Mes Compétences</h2>
+      <SimpleSkillsRow skills={skills.frontend} title="Frontend" />
+      <SimpleSkillsRow skills={skills.backend} title="Backend" />
+      <SimpleSkillsRow skills={skills.toolsAndDevOps} title="DevOps & Outils" />
     </div>
   );
 }
