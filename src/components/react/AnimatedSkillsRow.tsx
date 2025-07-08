@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 //types
 import type { AnimatedSkillsRowProps } from "@/types/animatedSkills.type";
 
