@@ -3,7 +3,6 @@ name: Statics tests
 on:
   pull_request:
     branches:
-      - main
       - dev
 
 jobs:
