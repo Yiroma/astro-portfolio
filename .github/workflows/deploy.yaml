@@ -60,8 +60,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          no-cache: true
 
       - name: Copy docker-compose.prod.yml to server
         uses: appleboy/scp-action@v0.1.7
@@ -98,7 +97,7 @@ jobs:
             docker system prune -a -f
 
             # ÉTAPE 4: Forcer le téléchargement de la nouvelle image
-            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest --no-cache
+            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
 
             # ÉTAPE 5: Vérifier que c'est la bonne image
             echo "=== IMAGE INFO ==="
