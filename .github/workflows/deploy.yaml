@@ -51,7 +51,6 @@ jobs:
           tags: |
             type=ref,event=branch
             type=sha,prefix={{branch}}-
-            type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
@@ -72,7 +71,7 @@ jobs:
           source: "docker-compose.prod.yml"
           target: "/home/yiroma/web-projects/portfolio/"
 
-      - name: Deploy to server
+            - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -86,32 +85,33 @@ jobs:
             # Se connecter au registry GitHub
             echo ${{ secrets.GITHUB_TOKEN }} | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin
 
-            # ÉTAPE 1: Arrêter et supprimer complètement le conteneur
+            # Arrêter le conteneur
             docker-compose -f docker-compose.prod.yml down || true
-            docker rm -f portfolio-yiroma || true
 
-            # ÉTAPE 2: Supprimer TOUTES les images portfolio (solution radicale)
-            docker images | grep astro-portfolio | awk '{print $3}' | xargs docker rmi -f || true
+            # Supprimer l'ancienne image latest
+            docker rmi ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest || true
 
-            # ÉTAPE 3: Nettoyer complètement le cache Docker
-            docker system prune -a -f
+            # Utiliser le tag unique du commit (garantit la bonne image)
+            COMMIT_SHORT="${{ github.sha }}"
+            COMMIT_TAG="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main-${COMMIT_SHORT:0:7}"
+            
+            echo "=== Pulling specific commit image: $COMMIT_TAG ==="
+            docker pull "$COMMIT_TAG"
+            
+            # Re-tagger comme latest pour docker-compose
+            docker tag "$COMMIT_TAG" "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
 
-            # ÉTAPE 4: Forcer le téléchargement de la nouvelle image
-            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-
-            # ÉTAPE 5: Vérifier que c'est la bonne image
-            echo "=== IMAGE INFO ==="
+            # Vérifier l'image
+            echo "=== IMAGE VERIFICATION ==="
             docker images | grep astro-portfolio
-            docker image inspect ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest | grep Created
+            docker image inspect "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest" | grep Created
 
-            # ÉTAPE 6: Démarrer le nouveau conteneur
+            # Démarrer le conteneur
             docker-compose -f docker-compose.prod.yml up -d
 
-            # ÉTAPE 7: Vérifier que le conteneur a bien démarré avec la nouvelle image
-            echo "=== CONTAINER INFO ==="
-            docker ps | grep portfolio
+            # Vérification finale
             sleep 5
             docker exec portfolio-yiroma ls -la /usr/share/nginx/html/_astro/ | head -10
 
-            # ÉTAPE 8: Nettoyer les credentials
+            # Nettoyer
             docker logout ${{ env.REGISTRY }} || true
