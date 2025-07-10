@@ -73,7 +73,7 @@ jobs:
           source: "docker-compose.prod.yml"
           target: "/home/yiroma/web-projects/portfolio/"
 
-      - name: Deploy to server
+         - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -87,20 +87,32 @@ jobs:
             # Se connecter au registry GitHub
             echo ${{ secrets.GITHUB_TOKEN }} | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin
 
-            # Arrêter et supprimer l'ancien conteneur
+            # ÉTAPE 1: Arrêter et supprimer complètement le conteneur
             docker-compose -f docker-compose.prod.yml down || true
+            docker rm -f portfolio-yiroma || true
 
-            # Supprimer l'ancienne image
-            docker rmi ghcr.io/yiroma/astro-portfolio:latest || true
+            # ÉTAPE 2: Supprimer TOUTES les images portfolio (solution radicale)
+            docker images | grep astro-portfolio | awk '{print $3}' | xargs docker rmi -f || true
 
-            # Récupérer la nouvelle image
-            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            # ÉTAPE 3: Nettoyer complètement le cache Docker
+            docker system prune -a -f
 
-            # Démarrer le nouveau conteneur
+            # ÉTAPE 4: Forcer le téléchargement de la nouvelle image
+            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest --no-cache
+
+            # ÉTAPE 5: Vérifier que c'est la bonne image
+            echo "=== IMAGE INFO ==="
+            docker images | grep astro-portfolio
+            docker image inspect ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest | grep Created
+
+            # ÉTAPE 6: Démarrer le nouveau conteneur
             docker-compose -f docker-compose.prod.yml up -d
 
-            # Nettoyer les anciennes images
-            docker image prune -f
+            # ÉTAPE 7: Vérifier que le conteneur a bien démarré avec la nouvelle image
+            echo "=== CONTAINER INFO ==="
+            docker ps | grep portfolio
+            sleep 5
+            docker exec portfolio-yiroma ls -la /usr/share/nginx/html/_astro/ | head -10
 
-            # Nettoyer les credentials Docker (supprimer le warning)
+            # ÉTAPE 8: Nettoyer les credentials
             docker logout ${{ env.REGISTRY }} || true
