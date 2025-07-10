@@ -1,21 +1,21 @@
 # Dockerfile multi-stage pour Astro Portfolio
-# Stage 1: Build de l'application
-FROM node:18-alpine AS builder
+# # Stage 1: Build de l'application
+# FROM node:18-alpine AS builder
 
-# Définir le répertoire de travail
-WORKDIR /app
+# # Définir le répertoire de travail
+# WORKDIR /app
 
-# Copier les fichiers de dépendances
-COPY package*.json ./
+# # Copier les fichiers de dépendances
+# COPY package*.json ./
 
-# Installer toutes les dépendances (y compris devDependencies pour le build)
-RUN npm ci
+# # Installer toutes les dépendances (y compris devDependencies pour le build)
+# RUN npm ci
 
-# Copier le code source
-COPY . .
+# # Copier le code source
+# COPY . .
 
-# Construire l'application
-RUN npm run build
+# # Construire l'application
+# RUN npm run build
 
 # Stage 2: Serveur de production avec nginx
 FROM nginx:alpine AS production
