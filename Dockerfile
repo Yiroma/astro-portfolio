@@ -21,7 +21,7 @@
 FROM nginx:alpine AS production
 
 # Copier la configuration nginx personnalisée
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY dist /usr/share/nginx/html
 
 # Copier une configuration nginx personnalisée (optionnel)
 COPY nginx.conf /etc/nginx/nginx.conf
