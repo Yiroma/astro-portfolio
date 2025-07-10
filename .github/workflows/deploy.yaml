@@ -90,7 +90,10 @@ jobs:
             # Arrêter et supprimer l'ancien conteneur
             docker-compose -f docker-compose.prod.yml down || true
 
-            # Tirer la nouvelle image
+            # Supprimer l'ancienne image
+            docker rmi ghcr.io/yiroma/astro-portfolio:latest || true
+
+            # Récupérer la nouvelle image
             docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
 
             # Démarrer le nouveau conteneur
