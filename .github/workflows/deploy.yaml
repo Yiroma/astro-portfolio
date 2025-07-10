@@ -71,7 +71,7 @@ jobs:
           source: "docker-compose.prod.yml"
           target: "/home/yiroma/web-projects/portfolio/"
 
-            - name: Deploy to server
+      - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -94,10 +94,10 @@ jobs:
             # Utiliser le tag unique du commit (garantit la bonne image)
             COMMIT_SHORT="${{ github.sha }}"
             COMMIT_TAG="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main-${COMMIT_SHORT:0:7}"
-            
+
             echo "=== Pulling specific commit image: $COMMIT_TAG ==="
             docker pull "$COMMIT_TAG"
-            
+
             # Re-tagger comme latest pour docker-compose
             docker tag "$COMMIT_TAG" "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
 
