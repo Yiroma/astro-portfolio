@@ -20,13 +20,26 @@ export default defineConfig({
         "@types": "/src/types",
       },
     },
+    build: {
+      minify: "esbuild",
+      cssMinify: true,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vendor: ["react", "react-dom"],
+          },
+        },
+      },
+    },
   },
   output: "static",
   build: {
     inlineStylesheets: "auto",
+    assets: "_astro",
   },
   server: {
     host: true,
     port: 4321,
   },
+  compressHTML: true,
 });

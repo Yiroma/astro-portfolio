@@ -1,24 +1,17 @@
-# Dockerfile multi-stage pour Astro Portfolio
-# # Stage 1: Build de l'application
-# FROM node:18-alpine AS builder
 
-# # Définir le répertoire de travail
-# WORKDIR /app
 
-# # Copier les fichiers de dépendances
-# COPY package*.json ./
-
-# # Installer toutes les dépendances (y compris devDependencies pour le build)
-# RUN npm ci
-
-# # Copier le code source
-# COPY . .
-
-# # Construire l'application
-# RUN npm run build
-
-# Stage 2: Serveur de production avec nginx
+# Serveur de production avec nginx
 FROM nginx:alpine AS production
+
+# Mettre à jour les packages et installer le module Brotli
+RUN apt-get update && \
+    apt-get install -y nginx-module-brotli && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Charger le module Brotli dans nginx
+RUN echo "load_module modules/ngx_http_brotli_filter_module.so;" > /etc/nginx/modules-enabled/50-mod-http-brotli-filter.conf && \
+    echo "load_module modules/ngx_http_brotli_static_module.so;" > /etc/nginx/modules-enabled/50-mod-http-brotli-static.conf
 
 # Copier la configuration nginx personnalisée
 COPY dist /usr/share/nginx/html
