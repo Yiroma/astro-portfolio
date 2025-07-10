@@ -73,7 +73,7 @@ jobs:
           source: "docker-compose.prod.yml"
           target: "/home/yiroma/web-projects/portfolio/"
 
-    - name: Deploy to server
+      - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
