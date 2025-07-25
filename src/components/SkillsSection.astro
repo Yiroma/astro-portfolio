@@ -1,0 +1,70 @@
+---
+import BackIcon from "@assets/icons/backIcon.astro";
+import BrainIcon from "@assets/icons/brainIcon.astro";
+import FrontIcon from "@assets/icons/frontIcon.astro";
+import ProductIcon from "@assets/icons/productIcon.astro";
+
+const skillsAndDescription = [
+  {
+    title: "Développement Front-end & Mobile",
+    description: [
+      "Création d’interfaces web responsive & mobile-first",
+      "Développement avec des frameworks modernes (React, Next, Astro)",
+      "Applications mobiles hybrides (React Native)",
+      "Connexion aux APIs REST et services tiers",
+    ],
+    icon: FrontIcon,
+  },
+  {
+    title: "Développement Back-end & Base de Données",
+    description: [
+      "Développement serveur avec Node.js",
+      "Conception de bases de données relationnelles (MySQL, PostgreSQL, SQLite)",
+      "Requêtes SQL complexes et optimisation des performances",
+      "Architecture REST, sécurité des données et authentification",
+    ],
+    icon: BackIcon,
+  },
+  {
+    title: "Conception, UI/UX & Prototypage",
+    description: [
+      "Analyse des besoins et modélisation UML (cas d’utilisation, classes, séquences)",
+      "Architecture logicielle (MVC, composants, services)",
+      "Création de maquettes et prototypes avec Figma",
+      "Optimisation de l’expérience utilisateur (UX)",
+    ],
+    icon: BrainIcon,
+  },
+  {
+    title: "Gestion de Projet & Déploiement",
+    description: [
+      "Méthodologie Agile Scrum",
+      "Gestion de version avec Git, GitHub",
+      "Mise en production (CI/CD, hébergement VPS, Docker)",
+      "Tests statiques/unitaires/intégration/end-to-end, maintenance évolutive et corrective",
+    ],
+    icon: ProductIcon,
+  },
+];
+---
+
+<section id="skills" class="px-4">
+  <h2 class="text-4xl font-bold">Mes compétences</h2>
+
+  {
+    skillsAndDescription.map((skill) => (
+      <div class="collapse-arrow collapse my-4 border border-base-300 bg-base-100">
+        <input type="radio" name="my-accordion-2" />
+        <div class="collapse-title flex items-center gap-4 text-lg font-semibold md:gap-8">
+          <skill.icon />
+          {skill.title}
+        </div>
+        <ul class="collapse-content list-disc">
+          {skill.description.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</section>
