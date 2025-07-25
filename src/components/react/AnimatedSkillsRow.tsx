@@ -7,7 +7,7 @@ export default function AnimatedSkillsRow({ skills, direction }: AnimatedSkillsR
   const animationDirection = direction === "left" ? -50 : 50;
 
   return (
-    <div className="overflow-hidden">
+    <div className="w-full overflow-hidden">
       <motion.ul
         className="hero-content flex flex-row gap-12 whitespace-nowrap"
         animate={{

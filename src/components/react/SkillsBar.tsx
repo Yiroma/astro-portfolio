@@ -58,7 +58,7 @@ const skills = {
 
 export default function SkillsBar() {
   return (
-    <div className="hero-content mx-auto flex w-full flex-col gap-1 md:px-16">
+    <div className="container mx-auto flex h-32 w-full flex-col gap-1 md:h-40 md:px-16">
       <AnimatedSkillsRow skills={skills.frontend} direction="left" />
       <AnimatedSkillsRow skills={skills.backend} direction="right" />
       <AnimatedSkillsRow skills={skills.toolsAndDevOps} direction="left" />
