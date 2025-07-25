@@ -1,17 +1,12 @@
 # Serveur de production avec nginx
 FROM nginx:alpine AS production
 
-# Mettre à jour les packages et installer le module Brotli
-RUN apk update && apk add --no-cache nginx-mod-http-brotli
-
-# Copier la configuration nginx personnalisée
+# Copier les fichiers
 COPY dist /usr/share/nginx/html
-
-# Copier une configuration nginx personnalisée
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Exposer seulement le port HTTP
+# Exposer le port
 EXPOSE 80
 
-# Commande par défaut
+# Démarrer nginx
 CMD ["nginx", "-g", "daemon off;"]
