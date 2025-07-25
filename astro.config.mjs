@@ -20,24 +20,6 @@ export default defineConfig({
         "@types": "/src/types",
       },
     },
-    build: {
-      minify: "esbuild",
-      cssMinify: true,
-      rollupOptions: {
-        output: {
-          manualChunks: (id) => {
-            if (id.includes("node_modules")) {
-              if (id.includes("react")) return "react";
-              if (id.includes("@astrojs")) return "astro";
-              return "vendor";
-            }
-          },
-          chunkFileNames: "assets/[name]-[hash].js",
-          entryFileNames: "assets/[name]-[hash].js",
-          assetFileNames: "assets/[name]-[hash].[ext]",
-        },
-      },
-    },
   },
   output: "static",
   build: {
