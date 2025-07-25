@@ -73,7 +73,7 @@
 
 :root {
   --font-sans: "Onest", system-ui, sans-serif;
-  --font-title: "Space Grotesk", system-ui, sans-serif;
+  --font-title: "Cascadia Code", monospace;
 }
 
 html {
