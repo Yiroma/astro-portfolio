@@ -3,11 +3,15 @@ import Layout from "@/layouts/Layout.astro";
 // Components
 import Home from "@/components/Home.astro";
 import SkillsBar from "@/components/react/SkillsBar";
+import SkillsSection from "@/components/SkillsSection.astro";
 // Styles
 import "../styles/global.css";
 ---
 
-<Layout>
+<Layout
+  title="Portfolio de Romaric Yi, Concepteur Développeur d'Applications, Développeur Full Stack à Orléans"
+>
   <Home />
   <SkillsBar client:visible />
+  <SkillsSection />
 </Layout>
