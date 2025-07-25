@@ -62,12 +62,8 @@ export default function SkillsBar() {
       <AnimatedSkillsRow skills={skills.frontend} direction="left" />
       <AnimatedSkillsRow skills={skills.backend} direction="right" />
       <AnimatedSkillsRow skills={skills.toolsAndDevOps} direction="left" />
-
-      {/* Gradient fade gauche - Plus étendu */}
-      <div className="pointer-events-none absolute top-0 left-0 z-10 h-full w-24 bg-gradient-to-r from-base-100 from-40% to-transparent md:w-40 lg:w-56 xl:w-72 2xl:w-96"></div>
-
-      {/* Gradient fade droite - Plus étendu */}
-      <div className="pointer-events-none absolute top-0 right-0 z-10 h-full w-24 bg-gradient-to-l from-base-100 from-40% to-transparent md:w-40 lg:w-56 xl:w-72 2xl:w-96"></div>
+      <div className="pointer-events-none absolute top-0 left-0 z-10 h-full w-12 bg-gradient-to-r from-base-100 from-40% to-transparent md:w-40 lg:w-56"></div>
+      <div className="pointer-events-none absolute top-0 right-0 z-10 h-full w-24 bg-gradient-to-l from-base-100 from-40% to-transparent md:w-40 lg:w-56"></div>
     </div>
   );
 }
