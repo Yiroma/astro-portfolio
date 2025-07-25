@@ -7,7 +7,7 @@ services:
     container_name: portfolio-yiroma
     restart: unless-stopped
     ports:
-      - "3001:80" # Port interne pour éviter conflit avec nginx principal
+      - "3001:80"
     networks:
       - web-projects
     healthcheck:
