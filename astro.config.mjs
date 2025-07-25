@@ -25,16 +25,23 @@ export default defineConfig({
       cssMinify: true,
       rollupOptions: {
         output: {
-          manualChunks: {
-            vendor: ["react", "react-dom"],
+          manualChunks: (id) => {
+            if (id.includes("node_modules")) {
+              if (id.includes("react")) return "react";
+              if (id.includes("@astrojs")) return "astro";
+              return "vendor";
+            }
           },
+          chunkFileNames: "assets/[name]-[hash].js",
+          entryFileNames: "assets/[name]-[hash].js",
+          assetFileNames: "assets/[name]-[hash].[ext]",
         },
       },
     },
   },
   output: "static",
   build: {
-    inlineStylesheets: "auto",
+    inlineStylesheets: "never",
     assets: "_astro",
   },
   server: {
