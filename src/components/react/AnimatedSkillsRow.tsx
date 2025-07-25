@@ -26,7 +26,7 @@ export default function AnimatedSkillsRow({ skills, direction }: AnimatedSkillsR
         {duplicatedSkills.map((skill, index) => (
           <li key={`${skill.name}-${index}`} className="flex flex-shrink-0 items-center gap-2">
             <img src={skill.icon} alt="" className="h-6 w-6 rounded-sm" />
-            <span className="font-title text-lg">{skill.name}</span>
+            <span className="font-title">{skill.name}</span>
           </li>
         ))}
       </motion.ul>
