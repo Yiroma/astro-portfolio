@@ -8,7 +8,7 @@ const skillsAndDescription = [
   {
     title: "Développement Front-end & Mobile",
     description: [
-      "Création d’interfaces web responsive & mobile-first",
+      "Création d'interfaces web responsive & mobile-first",
       "Développement avec des frameworks modernes (React, Next, Astro)",
       "Applications mobiles hybrides (React Native)",
       "Connexion aux APIs REST et services tiers",
@@ -28,10 +28,10 @@ const skillsAndDescription = [
   {
     title: "Conception, UI/UX & Prototypage",
     description: [
-      "Analyse des besoins et modélisation UML (cas d’utilisation, classes, séquences)",
+      "Analyse des besoins et modélisation UML (cas d'utilisation, classes, séquences)",
       "Architecture logicielle (MVC, composants, services)",
       "Création de maquettes et prototypes avec Figma",
-      "Optimisation de l’expérience utilisateur (UX)",
+      "Optimisation de l'expérience utilisateur (UX)",
     ],
     icon: BrainIcon,
   },
@@ -52,18 +52,35 @@ const skillsAndDescription = [
   <h2 class="text-4xl font-bold">Mes compétences</h2>
 
   {
-    skillsAndDescription.map((skill) => (
-      <div class="collapse-arrow collapse my-4 border border-base-300 bg-base-100">
-        <input type="radio" name="my-accordion-2" />
-        <div class="collapse-title flex items-center gap-4 text-lg font-semibold md:gap-8">
+    skillsAndDescription.map((skill, index) => (
+      <div class="collapse-arrow collapse my-4 border border-base-content/20 bg-base-100">
+        <input
+          type="radio"
+          name="skills-accordion"
+          id={`skill-${index}`}
+          value={index}
+          aria-controls={`skill-content-${index}`}
+        />
+        <label
+          for={`skill-${index}`}
+          class="collapse-title flex cursor-pointer items-center gap-4 text-lg font-semibold md:gap-8"
+          aria-expanded="false"
+        >
           <skill.icon />
           {skill.title}
+        </label>
+        <div
+          class="collapse-content"
+          id={`skill-content-${index}`}
+          role="region"
+          aria-labelledby={`skill-${index}`}
+        >
+          <ul class="ml-4 list-disc">
+            {skill.description.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
         </div>
-        <ul class="collapse-content list-disc">
-          {skill.description.map((item) => (
-            <li>{item}</li>
-          ))}
-        </ul>
       </div>
     ))
   }
