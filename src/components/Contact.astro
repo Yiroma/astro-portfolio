@@ -1,0 +1,96 @@
+---
+
+---
+
+<section id="contact" class="w-full border-b border-base-300 py-12">
+  <div class="mx-auto max-w-7xl px-4">
+    <h2 class="mb-2 text-lg font-bold text-primary">Discutons</h2>
+    <h3 class="mb-6 text-4xl font-bold">Contactez-moi</h3>
+
+    <div class="grid gap-10 lg:grid-cols-2">
+      <!-- Info section -->
+      <div class="text-base-content">
+        <p class="mb-4">
+          Vous avez une question ou un projet en tête ? N'hésitez pas à me contacter.
+        </p>
+        <div class="flex items-center gap-2">
+          <span class="font-semibold">Localisation:</span>
+          <span class="text-white">Orléans, France</span>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div>
+        <form
+          id="contact-form"
+          action="https://formspree.io/f/mdkdzgro"
+          method="POST"
+          class="flex flex-col gap-4"
+        >
+          <label class="floating-label">
+            <span>Adresse e-mail</span>
+            <input
+              type="email"
+              name="email"
+              placeholder="email@exemple.com"
+              required
+              class="input-bordered input w-full"
+            />
+          </label>
+
+          <label class="floating-label">
+            <span>Votre message</span>
+            <textarea
+              name="message"
+              placeholder="Votre message..."
+              required
+              class="textarea-bordered textarea h-32 w-full"></textarea>
+          </label>
+          <!-- Honeypot anti-spam -->
+          <input type="text" name="_gotcha" class="hidden" aria-hidden="true" />
+          <button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+
+        <!-- Success and error messages -->
+        <div id="form-success" class="mt-4 alert hidden alert-success">
+          ✅ Merci pour votre message ! Je vous répondrai dans les plus brefs délais.
+        </div>
+        <div id="form-error" class="mt-4 alert hidden alert-error">
+          ❌ Une erreur est survenue. Veuillez réessayer ultérieurement.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="module" is:inline>
+  const form = document.getElementById("contact-form");
+  const successMsg = document.getElementById("form-success");
+  const errorMsg = document.getElementById("form-error");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        form.reset();
+        form.style.display = "none";
+        successMsg.classList.remove("hidden");
+      } else {
+        errorMsg.classList.remove("hidden");
+      }
+    } catch (err) {
+      console.error("Form submission error:", err);
+      errorMsg.classList.remove("hidden");
+    }
+  });
+</script>
