@@ -1,7 +1,9 @@
 ---
-import type { IconProps } from "@/types/icon.type";
+type IconProps = {
+  class?: string;
+};
 
-const { class: className = "h-8 w-8 text-primary" } = Astro.props;
+const { class: className = "h-8 w-8 text-primary" }: IconProps = Astro.props;
 ---
 
 <svg
