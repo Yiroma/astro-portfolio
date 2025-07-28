@@ -14,7 +14,9 @@ import "../styles/global.css";
 >
   <Home />
   <SkillsBar client:visible />
-  <div class="flex flex-col items-center gap-8 lg:flex-row">
+  <div
+    class="mx-auto flex max-w-7xl flex-col items-center gap-8 border-b border-base-content/20 pb-12 md:pb-16 lg:flex-row"
+  >
     <SkillsSection />
     <div class="flex h-[292px] w-full justify-center pt-3 md:pt-9 lg:w-1/2">
       <LetterGlitch client:load />
