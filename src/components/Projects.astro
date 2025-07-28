@@ -1,0 +1,87 @@
+---
+import GithubIcon from "@/assets/icons/GithubIcon.astro";
+import WebIcon from "@/assets/icons/WebIcon.astro";
+
+const projects = [
+  {
+    title: "Project 1",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+    image: "/default.webp",
+    github: "https://github.com/romaric-yi/project-1",
+    website: "https://project-1.com",
+  },
+  {
+    title: "Project 2",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+    image: "/default.webp",
+    github: "https://github.com/romaric-yi/project-2",
+    website: "https://project-2.com",
+  },
+  {
+    title: "Project 3",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+    image: "/default.webp",
+    github: "https://github.com/romaric-yi/project-2",
+    website: "https://project-2.com",
+  },
+  {
+    title: "Project 4",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+    image: "/default.webp",
+    github: "https://github.com/romaric-yi/project-2",
+    website: "https://project-2.com",
+  },
+];
+---
+
+<section
+  id="projects"
+  class="mx-auto flex max-w-7xl flex-col gap-4 border-b border-base-content/20 pb-12 md:gap-8 lg:gap-12"
+>
+  <h2 class="text-4xl font-bold">Mes projets</h2>
+  <div class="mx-auto grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-12">
+    {
+      projects.map((project) => (
+        <div class="card w-full bg-base-100 shadow-sm">
+          <figure>
+            <img src={project.image} alt={project.title} class="w-full" />
+          </figure>
+          <div class="card-body">
+            <h3 class="card-title">{project.title}</h3>
+            <p>{project.description}</p>
+            <div class="card-actions justify-end">
+              <a
+                class="btn btn-outline btn-primary"
+                href={project.github}
+                aria-label="Voir le projet sur Github"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GithubIcon />
+              </a>
+              <a
+                class="btn btn-primary"
+                href={project.website}
+                aria-label="Voir le site web"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <WebIcon />
+              </a>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <a
+    href="https://github.com/romaric-yi"
+    aria-label="Voir plus de projets sur Github"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="btn btn-block btn-neutral"
+  >
+    Plus de projets sur Github
+    <GithubIcon />
+  </a>
+</section>
