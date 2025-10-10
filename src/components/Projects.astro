@@ -4,32 +4,34 @@ import WebIcon from "@/assets/icons/WebIcon.astro";
 
 const projects = [
   {
-    title: "Project 1",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
-    image: "/default.webp",
-    github: "https://github.com/romaric-yi/project-1",
-    website: "https://project-1.com",
+    title: "CarePlan - medical planner solution",
+    description:
+      "Application de gestion de rendez-vous médicaux avec système d'authentification, gestion des rôles utilisateur et interface dédiée.",
+    image: "/careplan.webp",
+    github: "https://github.com/WildCodeSchool-CDA-FT-2025-03/CDA-Projet-2-Team-1",
+    website: "",
   },
   {
-    title: "Project 2",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
-    image: "/default.webp",
-    github: "https://github.com/romaric-yi/project-2",
-    website: "https://project-2.com",
+    title: "Hive - home media center",
+    description: "Application web media center communautaire",
+    image: "/hive.webp",
+    github: "https://github.com/WildCodeSchool-CDA-FT-2025-03/projet1_cody",
+    website: "",
   },
   {
-    title: "Project 3",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
-    image: "/default.webp",
-    github: "https://github.com/romaric-yi/project-2",
-    website: "https://project-2.com",
+    title: "Taxi Loire Valley Services",
+    description: `Site vitrine "vanilla JS/CSS" pour l'entreprise Loire Valley Services`,
+    image: "/taxilvs.webp",
+    github: "",
+    website: "https://taxiloirevalleyservices.com",
   },
   {
-    title: "Project 4",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
-    image: "/default.webp",
-    github: "https://github.com/romaric-yi/project-2",
-    website: "https://project-2.com",
+    title: "DevMX, le blog",
+    description:
+      "Blog privé pour l'équipe de développement du même nom, avec un système d'authentification, upload de fichiers, gestion de compte et interface dédiée aux administrateurs.",
+    image: "/devmx.webp",
+    github: "https://github.com/Yiroma/Blog-DevMX",
+    website: "",
   },
 ];
 ---
@@ -50,24 +52,28 @@ const projects = [
             <h3 class="card-title">{project.title}</h3>
             <p>{project.description}</p>
             <div class="card-actions justify-end">
-              <a
-                class="btn btn-outline btn-primary"
-                href={project.github}
-                aria-label="Voir le projet sur Github"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <GithubIcon />
-              </a>
-              <a
-                class="btn btn-primary"
-                href={project.website}
-                aria-label="Voir le site web"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <WebIcon />
-              </a>
+              {project.github && (
+                <a
+                  class="btn btn-outline btn-primary"
+                  href={project.github}
+                  aria-label="Voir le projet sur Github"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <GithubIcon />
+                </a>
+              )}
+              {project.website && (
+                <a
+                  class="btn btn-primary"
+                  href={project.website}
+                  aria-label="Voir le site web"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <WebIcon />
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -75,7 +81,7 @@ const projects = [
     }
   </div>
   <a
-    href="https://github.com/romaric-yi"
+    href="https://github.com/Yiroma"
     aria-label="Voir plus de projets sur Github"
     target="_blank"
     rel="noopener noreferrer"
