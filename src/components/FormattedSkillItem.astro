@@ -1,0 +1,20 @@
+---
+const { text } = Astro.props;
+
+function parseSkillText(text: string) {
+  return text.split(/(\*\*.*?\*\*)/).map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return { type: "bold", content: part.slice(2, -2) };
+    }
+    return { type: "text", content: part };
+  });
+}
+
+const parsedText = parseSkillText(text);
+---
+
+{
+  parsedText.map((part, index) =>
+    part.type === "bold" ? <strong>{part.content}</strong> : <span>{part.content}</span>
+  )
+}
