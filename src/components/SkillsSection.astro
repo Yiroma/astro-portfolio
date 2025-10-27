@@ -1,4 +1,6 @@
 ---
+import FormattedSkillItem from "@/components/FormattedSkillItem.astro";
+// icons
 import BackIcon from "@assets/icons/BackIcon.astro";
 import BrainIcon from "@assets/icons/BrainIcon.astro";
 import FrontIcon from "@assets/icons/FrontIcon.astro";
@@ -6,42 +8,45 @@ import ProductIcon from "@assets/icons/ProductIcon.astro";
 
 const skillsAndDescription = [
   {
-    title: "Développement Front-end & Mobile",
+    title: "Développement Full-Stack & Applications Web",
     description: [
-      "Création d'interfaces web responsive & mobile-first",
-      "Développement avec des frameworks modernes (React, Next, Astro)",
-      "Applications mobiles hybrides (React Native)",
-      "Connexion aux APIs REST et services tiers",
+      "Interfaces web **React**, **Next**, **Astro**, **TypeScript** et **TailwindCSS** responsive et mobile-first",
+      "Intégration d'APIs **GraphQL** (Apollo Client) et **REST**, connexion aux services tiers",
+      "Applications mobiles hybrides **React Native**",
+      "Design systems et composants UI accessibles **Shadcn UI**, **Daisy UI**",
     ],
     icon: FrontIcon,
   },
   {
-    title: "Développement Back-end & Base de Données",
+    title: "Architecture Back-end & Microservices",
     description: [
-      "Développement serveur avec Node.js",
-      "Conception de bases de données relationnelles (MySQL, PostgreSQL, SQLite)",
-      "Requêtes SQL complexes et optimisation des performances",
-      "Architecture REST, sécurité des données et authentification",
+      "Conception d'architectures **microservices** scalables avec **Node.js** et **TypeScript**",
+      "APIs **GraphQL** (Apollo Server, Type-GraphQL) et **REST** (Express)",
+      "ORM **TypeORM** avec bases de données **PostgreSQL**, **MySQL**, **SQLite**",
+      "Requêtes **SQL** complexes et optimisation des performances",
+      "Cache **Redis**, Gateway **Nginx**, Authentification **JWT** et **Argon2**",
     ],
     icon: BackIcon,
   },
   {
-    title: "Conception, UI/UX & Prototypage",
+    title: "Conception, UX/UI & Gestion de Projet",
     description: [
-      "Analyse des besoins et modélisation UML (cas d'utilisation, classes, séquences)",
-      "Architecture logicielle (MVC, composants, services)",
-      "Création de maquettes et prototypes avec Figma",
-      "Optimisation de l'expérience utilisateur (UX)",
+      "Modélisation **UML** (cas d'utilisation, classes, séquences) et architecture logicielle (**MVC**, **Clean Architecture**, composants, services)",
+      "Wireframes, maquettes et prototypes avec **Figma**",
+      "Optimisation de l'expérience utilisateur (**UX**)",
+      "Méthodologie **Agile Scrum**, gestion de version **Git/GitHub**",
+      "Méthodologie **Merise** pour la modélisation de bases de données relationnelles (**MCD**, **MLD**, **MPD**)",
     ],
     icon: BrainIcon,
   },
   {
-    title: "Gestion de Projet & Déploiement",
+    title: "DevOps, Tests & Qualité du Code",
     description: [
-      "Méthodologie Agile Scrum",
-      "Gestion de version avec Git, GitHub",
-      "Mise en production (CI/CD, hébergement VPS, Docker)",
-      "Tests statiques/unitaires/intégration/end-to-end, maintenance évolutive et corrective",
+      "Conteneurisation **Docker** et orchestration **Docker Compose**",
+      "CI/CD avec **GitHub Actions**, déploiement VPS/Cloud, hébergement VPS",
+      "Tests statiques/unitaires & intégration (**Vitest**, **Jest**) et E2E (**Playwright**)",
+      "Linting automatique et pre-commit hooks (**ESLint**, **Prettier**, **Husky**)",
+      "Maintenance évolutive et corrective",
     ],
     icon: ProductIcon,
   },
@@ -77,7 +82,9 @@ const skillsAndDescription = [
         >
           <ul class="ml-4 list-disc">
             {skill.description.map((item) => (
-              <li>{item}</li>
+              <li>
+                <FormattedSkillItem text={item} />
+              </li>
             ))}
           </ul>
         </div>

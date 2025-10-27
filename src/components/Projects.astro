@@ -4,31 +4,45 @@ import WebIcon from "@/assets/icons/WebIcon.astro";
 
 const projects = [
   {
-    title: "CarePlan - medical planner solution",
-    description:
-      "Application de gestion de rendez-vous médicaux avec système d'authentification, gestion des rôles utilisateur et interface dédiée.",
+    title: "CarePlan - Plateforme de Gestion Médicale",
+    description: `Développement d'une application de gestion de planning médical en équipe de 5 développeurs.
+
+      Le défi principal était de créer une architecture scalable capable de gérer simultanément les données patients et le planning médical. J'ai conçu une architecture microservices avec authentification multi-rôles permettant aux agents d'accueil, secrétaires, médecins et administrateurs d'accéder aux fonctionnalités selon leurs permissions.
+
+      Le projet a nécessité une approche collaborative rigoureuse avec méthodologie Agile Scrum, incluant tests automatisés et déploiement continu pour garantir la fiabilité en milieu médical.`,
     image: "/careplan.webp",
     github: "https://github.com/WildCodeSchool-CDA-FT-2025-03/CDA-Projet-2-Team-1",
     website: "",
   },
   {
-    title: "Hive - home media center",
-    description: "Application web media center communautaire",
+    title: "Hive - Home Media Center",
+    description: `Création d'une plateforme personnelle de gestion de médiathèque pour organiser films, séries et livres.
+
+      Le principal défi technique était la gestion des relations complexes entre contenus, critiques et favoris, avec un système de recherche et filtres avancés. J'ai développé une interface mobile-first responsive permettant une navigation fluide sur tous supports.
+
+      Projet collaboratif mené en équipe de 3 développeurs avec des conventions de code strictes et une architecture modulaire facilitant la maintenance et l'évolution.`,
     image: "/hive.webp",
     github: "https://github.com/WildCodeSchool-CDA-FT-2025-03/projet1_cody",
     website: "",
   },
   {
     title: "Taxi Loire Valley Services",
-    description: `Site vitrine "vanilla JS/CSS" pour l'entreprise Loire Valley Services`,
+    description: `Conception et développement d'un site vitrine moderne pour un service de taxi, optimisé pour la conversion client.
+
+L'objectif était de créer une présence web professionnelle avec réservation en ligne et optimisation SEO locale. J'ai implémenté un design responsive avec animations fluides, intégration multilingue FR/EN et optimisations performance (score Lighthouse 95+).
+
+Le site a considérablement amélioré la visibilité en ligne du client et facilité la prise de contact avec les prospects.`,
     image: "/taxilvs.webp",
     github: "",
     website: "https://taxiloirevalleyservices.com",
   },
   {
     title: "DevMX, le blog",
-    description:
-      "Blog privé pour l'équipe de développement du même nom, avec un système d'authentification, upload de fichiers, gestion de compte et interface dédiée aux administrateurs.",
+    description: `Développement d'une plateforme de publication de contenu pour la communauté des développeurs.
+
+Le défi était de créer un éditeur riche permettant la publication d'articles techniques avec syntaxe de code, tout en maintenant une architecture sécurisée. J'ai implémenté un système complet de gestion utilisateurs, publication et modération avec interface d'administration.
+
+La plateforme permet désormais aux développeurs de partager leurs connaissances dans un environnement dédié et optimisé.`,
     image: "/devmx.webp",
     github: "https://github.com/Yiroma/Blog-DevMX",
     website: "",
@@ -50,7 +64,7 @@ const projects = [
           </figure>
           <div class="card-body">
             <h3 class="card-title">{project.title}</h3>
-            <p>{project.description}</p>
+            <p class="whitespace-pre-line">{project.description}</p>
             <div class="card-actions justify-end">
               {project.github && (
                 <a
