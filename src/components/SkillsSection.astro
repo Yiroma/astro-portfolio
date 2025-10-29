@@ -64,12 +64,35 @@ const skillsAndDescription = [
           name="skills-accordion"
           id={`skill-${index}`}
           value={index}
-          aria-controls={`skill-content-${index}`}
+          class="sr-only"
         />
         <label
           for={`skill-${index}`}
           class="collapse-title flex cursor-pointer items-center gap-4 text-lg font-semibold md:gap-8"
+          role="button"
+          tabindex="0"
           aria-expanded="false"
+          aria-controls={`skill-content-${index}`}
+          onkeydown="if(event.key==='Enter'||event.key===' '){this.click()}"
+          onclick={`
+            event.preventDefault();
+            const input = document.getElementById('skill-${index}');
+            const isCurrentlyExpanded = this.getAttribute('aria-expanded') === 'true';
+            
+            // Reset all accordions
+            document.querySelectorAll('[aria-controls^="skill-content-"]').forEach(btn => {
+              btn.setAttribute('aria-expanded', 'false');
+            });
+            document.querySelectorAll('input[name="skills-accordion"]').forEach(radio => {
+              radio.checked = false;
+            });
+            
+            // Toggle current accordion
+            if (!isCurrentlyExpanded) {
+              this.setAttribute('aria-expanded', 'true');
+              input.checked = true;
+            }
+          `}
         >
           <skill.icon />
           {skill.title}
@@ -78,7 +101,7 @@ const skillsAndDescription = [
           class="collapse-content"
           id={`skill-content-${index}`}
           role="region"
-          aria-labelledby={`skill-${index}`}
+          aria-labelledby={`skill-button-${index}`}
         >
           <ul class="ml-4 list-disc">
             {skill.description.map((item) => (
