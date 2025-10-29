@@ -64,12 +64,15 @@ const skillsAndDescription = [
           name="skills-accordion"
           id={`skill-${index}`}
           value={index}
-          aria-controls={`skill-content-${index}`}
+          class="sr-only"
         />
         <label
           for={`skill-${index}`}
+          id={`skill-button-${index}`}
           class="collapse-title flex cursor-pointer items-center gap-4 text-lg font-semibold md:gap-8"
-          aria-expanded="false"
+          tabindex="0"
+          onkeydown="if(event.key==='Enter'||event.key===' '){this.click()}"
+          onclick={`toggleAccordion(${index})`}
         >
           <skill.icon />
           {skill.title}
@@ -78,7 +81,7 @@ const skillsAndDescription = [
           class="collapse-content"
           id={`skill-content-${index}`}
           role="region"
-          aria-labelledby={`skill-${index}`}
+          aria-labelledby={`skill-button-${index}`}
         >
           <ul class="ml-4 list-disc">
             {skill.description.map((item) => (
@@ -92,3 +95,20 @@ const skillsAndDescription = [
     ))
   }
 </section>
+
+<script is:inline>
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  function toggleAccordion(index) {
+    event.preventDefault();
+    const input = document.getElementById(`skill-${index}`);
+    const isCurrentlyExpanded = input.checked;
+
+    document.querySelectorAll('input[name="skills-accordion"]').forEach((radio) => {
+      radio.checked = false;
+    });
+
+    if (!isCurrentlyExpanded) {
+      input.checked = true;
+    }
+  }
+</script>
