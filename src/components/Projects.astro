@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+// icons
 import GithubIcon from "@/assets/icons/GithubIcon.astro";
 import WebIcon from "@/assets/icons/WebIcon.astro";
 
@@ -58,9 +60,17 @@ La plateforme permet désormais aux développeurs de partager leurs connaissance
   <div class="mx-auto grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-12">
     {
       projects.map((project) => (
-        <div class="card w-full bg-base-100 shadow-sm">
+        <div class="card w-full border border-base-content/20 bg-base-100 shadow-sm">
           <figure>
-            <img src={project.image} alt={project.title} class="w-full" />
+            <Image
+              src={project.image}
+              alt={project.title}
+              class="w-full"
+              width={600}
+              height={400}
+              loading="lazy"
+              format="webp"
+            />
           </figure>
           <div class="card-body">
             <h3 class="card-title">{project.title}</h3>
