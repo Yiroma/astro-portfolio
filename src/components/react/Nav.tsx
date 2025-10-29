@@ -9,12 +9,12 @@ import type { NavItem } from "@/types/nav.type";
 
 const navItems: NavItem[] = [
   {
-    label: "Home",
+    label: "Accueil",
     href: "#home",
     icon: "home",
   },
   {
-    label: "Projects",
+    label: "Projets",
     href: "#projects",
     icon: "project",
   },
