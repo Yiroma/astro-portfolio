@@ -68,31 +68,11 @@ const skillsAndDescription = [
         />
         <label
           for={`skill-${index}`}
+          id={`skill-button-${index}`}
           class="collapse-title flex cursor-pointer items-center gap-4 text-lg font-semibold md:gap-8"
-          role="button"
           tabindex="0"
-          aria-expanded="false"
-          aria-controls={`skill-content-${index}`}
           onkeydown="if(event.key==='Enter'||event.key===' '){this.click()}"
-          onclick={`
-            event.preventDefault();
-            const input = document.getElementById('skill-${index}');
-            const isCurrentlyExpanded = this.getAttribute('aria-expanded') === 'true';
-            
-            // Reset all accordions
-            document.querySelectorAll('[aria-controls^="skill-content-"]').forEach(btn => {
-              btn.setAttribute('aria-expanded', 'false');
-            });
-            document.querySelectorAll('input[name="skills-accordion"]').forEach(radio => {
-              radio.checked = false;
-            });
-            
-            // Toggle current accordion
-            if (!isCurrentlyExpanded) {
-              this.setAttribute('aria-expanded', 'true');
-              input.checked = true;
-            }
-          `}
+          onclick={`toggleAccordion(${index})`}
         >
           <skill.icon />
           {skill.title}
@@ -115,3 +95,20 @@ const skillsAndDescription = [
     ))
   }
 </section>
+
+<script is:inline>
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  function toggleAccordion(index) {
+    event.preventDefault();
+    const input = document.getElementById(`skill-${index}`);
+    const isCurrentlyExpanded = input.checked;
+
+    document.querySelectorAll('input[name="skills-accordion"]').forEach((radio) => {
+      radio.checked = false;
+    });
+
+    if (!isCurrentlyExpanded) {
+      input.checked = true;
+    }
+  }
+</script>
