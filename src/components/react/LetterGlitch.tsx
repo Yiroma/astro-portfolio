@@ -154,7 +154,7 @@ const LetterGlitch = ({
   }, [glitchColors, glitchSpeed]);
 
   return (
-    <div className="relative h-full w-full overflow-hidden bg-base-100">
+    <div className="relative h-full w-full overflow-hidden bg-base-200">
       <canvas ref={canvasRef} className="block h-full w-full" />
     </div>
   );
