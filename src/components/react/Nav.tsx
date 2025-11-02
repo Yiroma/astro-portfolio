@@ -42,7 +42,9 @@ export default function Nav() {
   const [activeSection, setActiveSection] = useState<string>("home");
 
   useEffect(() => {
-    const sections = document.querySelectorAll("div[id]");
+    const sections = document.querySelectorAll(
+      "section[id='home'], section[id='projects'], section[id='contact']"
+    );
 
     if (!sections.length) return;
 
@@ -56,8 +58,8 @@ export default function Nav() {
 
     const observerOptions = {
       root: null,
-      rootMargin: "-20% 0px -60% 0px",
-      threshold: 0.1,
+      rootMargin: "-10% 0px -10% 0px",
+      threshold: [0.1, 0.3, 0.5, 0.7],
     };
 
     const observer = new window.IntersectionObserver(observerCallback, observerOptions);
@@ -87,7 +89,7 @@ export default function Nav() {
   };
 
   return (
-    <nav className="pointer-events-auto fixed bottom-4 left-1/2 z-50 flex w-full max-w-md -translate-x-1/2 transform justify-between rounded-full border border-base-content/10 bg-base-content/5 px-8 py-3 text-xs backdrop-blur-md transition-all duration-300 hover:border-base-content/20 hover:bg-base-content/10 md:top-4 md:bottom-auto md:px-12 md:text-base">
+    <nav className="pointer-events-auto fixed bottom-4 left-1/2 z-50 flex w-full max-w-md -translate-x-1/2 transform justify-between rounded-full border border-base-content/10 bg-base-100/60 px-8 py-3 text-xs backdrop-blur-md transition-all duration-300 hover:border-base-content/20 md:top-4 md:bottom-auto md:px-12 md:text-base">
       <ul className="flex w-full items-center justify-around">
         {navItems.map((item) => {
           const IconComponent = getIconComponent(item.icon);
