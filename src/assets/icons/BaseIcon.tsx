@@ -22,6 +22,7 @@ export default function BaseIcon({
       width={width}
       height={height}
       fill="currentColor"
+      stroke="currentColor"
       className={`text-base-content ${className}`}
     >
       {children}
