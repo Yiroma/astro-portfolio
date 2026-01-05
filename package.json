@@ -1,7 +1,7 @@
 {
   "name": "yiroma's portfolio",
+  "version": "1.0.1",
   "type": "module",
-  "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
@@ -15,16 +15,16 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
+    "@astrojs/check": "^0.9.6",
     "@tailwindcss/vite": "^4.1.10",
-    "astro": "^5.10.0",
+    "astro": "^5.16.6",
     "daisyui": "^5.0.43",
     "motion": "^12.23.0",
     "tailwindcss": "^4.1.10",
     "typescript": "^5.8.3"
   },
   "devDependencies": {
-    "@astrojs/react": "^4.3.0",
+    "@astrojs/react": "^4.4.2",
     "@commitlint/cli": "^19.0.0",
     "@commitlint/config-conventional": "^19.0.0",
     "@eslint/js": "^9.19.0",
