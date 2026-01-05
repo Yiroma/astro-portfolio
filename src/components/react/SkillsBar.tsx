@@ -6,6 +6,7 @@ import Docker from "@/assets/icons/docker.svg?url";
 import Eslint from "@/assets/icons/eslint.svg?url";
 import Express from "@/assets/icons/express.svg?url";
 import Figma from "@/assets/icons/figma.svg?url";
+import Java from "@/assets/icons/java.svg?url";
 import Git from "@/assets/icons/git.svg?url";
 import Github from "@/assets/icons/github.svg?url";
 import Graphql from "@/assets/icons/graphql.svg?url";
@@ -21,6 +22,7 @@ import Prettier from "@/assets/icons/prettier.svg?url";
 import ReactIcon from "@/assets/icons/react.svg?url";
 import Redis from "@/assets/icons/redis.svg?url";
 import Shadcn from "@/assets/icons/shadcn.svg?url";
+import Spring from "@/assets/icons/spring.svg?url";
 import Tailwind from "@/assets/icons/tailwindcss.svg?url";
 import Typescript from "@/assets/icons/typescript.svg?url";
 
@@ -42,6 +44,8 @@ const skills = {
     { name: "MySQL", icon: Mysql },
     { name: "Postgres", icon: Postgresql },
     { name: "Redis", icon: Redis },
+    { name: "Java", icon: Java },
+    { name: "Spring", icon: Spring },
   ],
   toolsAndDevOps: [
     { name: "Docker", icon: Docker },
