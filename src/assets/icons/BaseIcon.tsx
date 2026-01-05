@@ -9,7 +9,7 @@ interface BaseIconProps extends IconProps {
 }
 
 export default function BaseIcon({
-  class: className = "h-6 w-6",
+  className = "h-6 w-6",
   viewBox = "0 0 24 24",
   width = "24",
   height = "24",

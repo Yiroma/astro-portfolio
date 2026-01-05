@@ -71,7 +71,7 @@ const skillsAndDescription = [
           id={`skill-button-${index}`}
           class="collapse-title flex cursor-pointer items-center gap-4 text-lg font-semibold md:gap-8"
           tabindex="0"
-          onkeydown="if(event.key==='Enter'||event.key===' '){this.click()}"
+          onkeydown="if(e.key==='Enter'||e.key===' '){this.click()}"
           onclick={`toggleAccordion(${index})`}
         >
           <skill.icon />
@@ -98,8 +98,8 @@ const skillsAndDescription = [
 
 <script is:inline>
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function toggleAccordion(index) {
-    event.preventDefault();
+  function toggleAccordion(index, e) {
+    e.preventDefault();
     const input = document.getElementById(`skill-${index}`);
     const isCurrentlyExpanded = input.checked;
 

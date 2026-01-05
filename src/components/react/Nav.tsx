@@ -91,7 +91,7 @@ export default function Nav() {
 
   return (
     <nav className="pointer-events-auto fixed bottom-4 left-1/2 z-50 flex w-full max-w-md -translate-x-1/2 transform items-center justify-between rounded-full border border-base-content/10 bg-base-100/60 px-8 py-3 text-xs backdrop-blur-md transition-all duration-300 hover:border-base-content/20 md:top-4 md:bottom-auto md:px-12 md:text-base">
-      <LogoIcon class="mr-4 h-8 w-8 hover:text-primary" />
+      <LogoIcon className="mr-4 h-8 w-8 hover:text-primary" />
       <ul className="flex w-full items-center justify-around">
         {navItems.map((item) => {
           const IconComponent = getIconComponent(item.icon);
@@ -108,7 +108,7 @@ export default function Nav() {
                 onClick={(e) => handleNavClick(e, targetId)}
               >
                 <IconComponent
-                  class={`block h-5 w-5 md:hidden ${
+                  className={`block h-5 w-5 md:hidden ${
                     isActive ? "scale-105 text-primary" : "text-base-content/80"
                   }`}
                 />
