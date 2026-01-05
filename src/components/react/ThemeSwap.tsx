@@ -13,8 +13,8 @@ export default function ThemeSwap() {
         aria-label="Basculer entre le thème clair et le thème sombre"
       />
       <span className="sr-only">Changer de thème sombre / thème clair</span>
-      <SunIcon class="swap-off h-6 w-6 fill-current" />
-      <MoonIcon class="swap-on h-6 w-6 fill-current" />
+      <SunIcon className="swap-off h-6 w-6 fill-current" />
+      <MoonIcon className="swap-on h-6 w-6 fill-current" />
     </label>
   );
 }
