@@ -56,6 +56,51 @@ const fullImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
     <meta property="twitter:image" content={fullImageUrl} />
     <!-- Title -->
     <title>{title}</title>
+    <!-- Structured Data JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Romaric Yi",
+        "jobTitle": "Concepteur Développeur d'Applications",
+        "description": "Développeur Full Stack basé à Orléans. React, TypeScript, Node.js, Express, Java, PostgreSQL… Découvrez mes projets et contactez-moi pour vos besoins web.",
+        "url": "https://yiromaric.fr",
+        "image": "https://yiromaric.fr/default.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Orléans",
+          "addressCountry": "FR"
+        },
+        "sameAs": ["https://github.com/yiroma", "https://www.linkedin.com/in/yiromaric/"],
+        "knowsAbout": [
+          "React",
+          "TypeScript",
+          "Node.js",
+          "Next.js",
+          "Astro",
+          "GraphQL",
+          "PostgreSQL",
+          "Docker",
+          "TailwindCSS",
+          "Java",
+          "Spring",
+          "PostgreSQL",
+          "MySQL",
+          "SQLite",
+          "Redis",
+          "Docker",
+          "Nginx",
+          "Git",
+          "Github",
+          "ESLint",
+          "Prettier",
+          "Husky",
+          "Jest",
+          "Playwright"
+        ],
+        "email": "yiromaric@gmail.com"
+      }
+    </script>
   </head>
   <body class="flex flex-col bg-base-200">
     <Header class="pointer-events-none" />
