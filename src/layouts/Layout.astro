@@ -34,12 +34,30 @@ const fullImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Onest:wght@100..900&display=swap"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Onest:wght@100..900&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Onest:wght@100..900&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <!-- SEO Meta Tags -->
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta name="author" content="Romaric Yi" />
+    <meta
+      name="keywords"
+      content="Romaric Yi, Développeur Full Stack, React, TypeScript, Node.js, Next.js, Astro, PostgreSQL, Orléans, Concepteur Développeur Applications, GraphQL, TailwindCSS"
+    />
     <link rel="canonical" href={canonical} />
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
