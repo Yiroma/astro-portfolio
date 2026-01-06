@@ -4,9 +4,20 @@ import Footer from "../components/Footer.astro";
 
 type Props = {
   title: string;
+  description: string;
+  image?: string;
+  canonical?: string;
 };
 
-const { title } = Astro.props as Props;
+const {
+  title,
+  description,
+  image = "/default.webp",
+  canonical = "https://yiromaric.fr/",
+} = Astro.props as Props;
+
+const siteUrl = "https://yiromaric.fr";
+const fullImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
 ---
 
 <!doctype html>
@@ -14,21 +25,36 @@ const { title } = Astro.props as Props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <!-- Favicons -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate icon" href="favicon.ico" type="image/x-icon" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Onest:wght@100..900&display=swap"
       rel="stylesheet"
     />
+    <!-- SEO Meta Tags -->
     <meta name="generator" content={Astro.generator} />
-    <meta
-      name="description"
-      content="Portfolio de Romaric Yi, Concepteur Développeur d'Applications / Développeur Full Stack"
-    />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullImageUrl} />
+    <meta property="og:locale" content="fr_FR" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonical} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={fullImageUrl} />
+    <!-- Title -->
     <title>{title}</title>
   </head>
   <body class="flex flex-col bg-base-200">
