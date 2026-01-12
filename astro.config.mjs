@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
+import path from "path";
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,14 +13,14 @@ export default defineConfig({
     plugins: [tailwindcss()],
     resolve: {
       alias: {
-        "@": "/src",
-        "@components": "/src/components",
-        "@layouts": "/src/layouts",
-        "@pages": "/src/pages",
-        "@utils": "/src/utils",
-        "@assets": "/src/assets",
-        "@styles": "/src/styles",
-        "@types": "/src/types",
+        "@": path.resolve("./src"),
+        "@components": path.resolve("./src/components"),
+        "@layouts": path.resolve("./src/layouts"),
+        "@pages": path.resolve("./src/pages"),
+        "@utils": path.resolve("./src/utils"),
+        "@assets": path.resolve("./src/assets"),
+        "@styles": path.resolve("./src/styles"),
+        "@types": path.resolve("./src/types"),
       },
     },
   },
