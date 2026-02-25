@@ -43,7 +43,7 @@ Utiliser l’impératif présent (ex : "ajoute", "corrige", "modifie")
 
 # 🌿 Convention de nommage des Branches
 
-modèle: `<type>/<description-courte>`
+modèle: `<type>-<description-courte>`
 
 ## 🔹 Types de branches
 
@@ -85,10 +85,10 @@ git branch -d feature/nom-de-la-feature
 
 ## 🔹 Exemples de bonnes branches
 
-- `feature/page-contact`
-- `feature/systeme-notation`
-- `bugfix/menu-mobile`
-- `hotfix/faille-xss`
-- `chore/config-eslint`
-- `docs/readme-installation`
-- `refactor/hooks-personnalises`
+- `feature-page-contact`
+- `feature-systeme-notation`
+- `bugfix-menu-mobile`
+- `hotfix-faille-xss`
+- `chore-config-eslint`
+- `docs-readme-installation`
+- `refactor-hooks-personnalises`
