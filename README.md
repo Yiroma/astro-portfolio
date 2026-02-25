@@ -122,7 +122,7 @@ astro-portfolio/
 │   └── commit-msg               # Validation Conventional Commits
 │
 ├── public/                      # Assets statiques
-│   ├── *.webp                   # Images de projets (optimisées)
+│   ├── *.webp                   # Images de projets
 │   ├── favicon.*                # Favicons multi-formats
 │   ├── robots.txt               # SEO
 │   └── site.webmanifest         # PWA manifest
@@ -426,17 +426,17 @@ Ce projet suit des conventions strictes pour maintenir la qualité et la cohére
 
 ### Branches
 
-**Format** : `<type>/<description-courte>`
+**Format** : `<type>-<description-courte>`
 
 **Exemples** :
 
 ```bash
-feature/carrousel-projets
-bugfix/menu-mobile
-hotfix/erreur-404
-chore/mise-a-jour-deps
-docs/guide-contribution
-refactor/composants-react
+feature-carrousel-projets
+bugfix-menu-mobile
+hotfix-erreur-404
+chore-mise-a-jour-deps
+docs-guide-contribution
+refactor-composants-react
 ```
 
 ### Documentation complète
@@ -444,7 +444,6 @@ refactor/composants-react
 Consultez les fichiers suivants pour plus de détails :
 
 - 📄 **[GitConventions.md](./GitConventions.md)** : Conventions commits et branches
-- 📄 **[DEVELOPMENT.md](./DEVELOPMENT.md)** : Guide de développement détaillé
 
 ---
 
@@ -464,14 +463,5 @@ Consultez les fichiers suivants pour plus de détails :
 - Portfolio : [yiromaric.fr](https://yiromaric.fr)
 - GitHub : [@yiroma](https://github.com/yiroma)
 - LinkedIn : [Romaric Yi](https://linkedin.com/in/yiromaric)
-
----
-
-## 🙏 Remerciements
-
-- [Astro](https://astro.build) pour le framework incroyable
-- [TailwindCSS](https://tailwindcss.com) pour le système de styles
-- [DaisyUI](https://daisyui.com) pour les composants UI
-- La communauté open-source pour les outils et inspirations
 
 ---
