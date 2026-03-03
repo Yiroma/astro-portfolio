@@ -1,5 +1,4 @@
-import MoonIcon from "@/assets/icons/MoonIcon";
-import SunIcon from "@/assets/icons/SunIcon";
+import { MoonIcon, SunIcon } from "@assets/icons/ui";
 
 export default function ThemeSwap() {
   return (

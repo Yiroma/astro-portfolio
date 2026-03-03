@@ -13,6 +13,8 @@ export default function BaseIcon({
   viewBox = "0 0 24 24",
   width = "24",
   height = "24",
+  fill = "currentColor",
+  stroke,
   children,
 }: BaseIconProps) {
   return (
@@ -21,9 +23,9 @@ export default function BaseIcon({
       viewBox={viewBox}
       width={width}
       height={height}
-      fill="currentColor"
-      stroke="currentColor"
-      className={`text-base-content ${className}`}
+      fill={fill}
+      stroke={stroke}
+      className={className}
     >
       {children}
     </svg>
