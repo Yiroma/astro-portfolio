@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 // components
 import ThemeSwap from "@/components/react/ThemeSwap";
-import HomeIcon from "@/assets/icons/ui/HomeIcon";
-import LogoIcon from "@/assets/icons/ui/logo";
-import ProjectIcon from "@/assets/icons/ui/ProjectIcon";
-import ContactIcon from "@/assets/icons/ui/ContactIcon";
+// icons
+import { HomeIcon, LogoIcon, ProjectIcon, ContactIcon } from "@assets/icons/ui";
 // types
 import type { NavItem } from "@/types/nav.type";
 import type { IconComponent, IconProps } from "@/types/icon.type";

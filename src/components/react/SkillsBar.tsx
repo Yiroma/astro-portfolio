@@ -1,62 +1,44 @@
 import AnimatedSkillsRow from "@/components/react/AnimatedSkillsRow";
-// icons
-import Api from "@/assets/icons/tech/api.svg?url";
-import Apollo from "@/assets/icons/tech/apollo.svg?url";
-import Docker from "@/assets/icons/tech/docker.svg?url";
-import Eslint from "@/assets/icons/tech/eslint.svg?url";
-import Express from "@/assets/icons/tech/express.svg?url";
-import Figma from "@/assets/icons/tech/figma.svg?url";
-import Java from "@/assets/icons/tech/java.svg?url";
-import Git from "@/assets/icons/tech/git.svg?url";
-import Github from "@/assets/icons/tech/github.svg?url";
-import Graphql from "@/assets/icons/tech/graphql.svg?url";
-import Husky from "@/assets/icons/tech/husky.svg?url";
-import Jest from "@/assets/icons/tech/jest.svg?url";
-import Mysql from "@/assets/icons/tech/mysql.svg?url";
-import Nextjs from "@/assets/icons/tech/next.svg?url";
-import Nginx from "@/assets/icons/tech/nginx.svg?url";
-import Nodejs from "@/assets/icons/tech/node.svg?url";
-import Playwright from "@/assets/icons/tech/playwright.svg?url";
-import Postgresql from "@/assets/icons/tech/postgre.svg?url";
-import Prettier from "@/assets/icons/tech/prettier.svg?url";
-import ReactIcon from "@/assets/icons/tech/react.svg?url";
-import Redis from "@/assets/icons/tech/redis.svg?url";
-import Shadcn from "@/assets/icons/tech/shadcn.svg?url";
-import Spring from "@/assets/icons/tech/spring.svg?url";
-import Tailwind from "@/assets/icons/tech/tailwindcss.svg?url";
-import Typescript from "@/assets/icons/tech/typescript.svg?url";
+
+const icons = import.meta.glob<string>("/src/assets/icons/tech/*.svg", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
+
+const icon = (name: string): string => icons[`/src/assets/icons/tech/${name}.svg`];
 
 const skills = {
   frontend: [
-    { name: "React", icon: ReactIcon },
-    { name: "Next", icon: Nextjs },
-    { name: "Typescript", icon: Typescript },
-    { name: "Tailwind", icon: Tailwind },
-    { name: "Shadcn", icon: Shadcn },
-    { name: "Figma", icon: Figma },
+    { name: "React", icon: icon("react") },
+    { name: "Next", icon: icon("next") },
+    { name: "Typescript", icon: icon("typescript") },
+    { name: "Tailwind", icon: icon("tailwindcss") },
+    { name: "Shadcn", icon: icon("shadcn") },
+    { name: "Figma", icon: icon("figma") },
   ],
   backend: [
-    { name: "Node", icon: Nodejs },
-    { name: "Express", icon: Express },
-    { name: "REST", icon: Api },
-    { name: "GraphQL", icon: Graphql },
-    { name: "Apollo", icon: Apollo },
-    { name: "MySQL", icon: Mysql },
-    { name: "Postgres", icon: Postgresql },
-    { name: "Redis", icon: Redis },
-    { name: "Java", icon: Java },
-    { name: "Spring", icon: Spring },
+    { name: "Node", icon: icon("node") },
+    { name: "Express", icon: icon("express") },
+    { name: "REST", icon: icon("api") },
+    { name: "GraphQL", icon: icon("graphql") },
+    { name: "Apollo", icon: icon("apollo") },
+    { name: "MySQL", icon: icon("mysql") },
+    { name: "Postgres", icon: icon("postgre") },
+    { name: "Redis", icon: icon("redis") },
+    { name: "Java", icon: icon("java") },
+    { name: "Spring", icon: icon("spring") },
   ],
   toolsAndDevOps: [
-    { name: "Docker", icon: Docker },
-    { name: "Nginx", icon: Nginx },
-    { name: "Git", icon: Git },
-    { name: "Github", icon: Github },
-    { name: "ESLint", icon: Eslint },
-    { name: "Prettier", icon: Prettier },
-    { name: "Husky", icon: Husky },
-    { name: "Jest", icon: Jest },
-    { name: "Playwright", icon: Playwright },
+    { name: "Docker", icon: icon("docker") },
+    { name: "Nginx", icon: icon("nginx") },
+    { name: "Git", icon: icon("git") },
+    { name: "Github", icon: icon("github") },
+    { name: "ESLint", icon: icon("eslint") },
+    { name: "Prettier", icon: icon("prettier") },
+    { name: "Husky", icon: icon("husky") },
+    { name: "Jest", icon: icon("jest") },
+    { name: "Playwright", icon: icon("playwright") },
   ],
 };
 
