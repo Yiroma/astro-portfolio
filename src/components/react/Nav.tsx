@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 // components
 import ThemeSwap from "@/components/react/ThemeSwap";
 import HomeIcon from "@/assets/icons/ui/HomeIcon";
-import LogoIcon from "@/assets/logo";
+import LogoIcon from "@/assets/icons/ui/logo";
 import ProjectIcon from "@/assets/icons/ui/ProjectIcon";
 import ContactIcon from "@/assets/icons/ui/ContactIcon";
 // types
