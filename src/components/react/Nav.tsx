@@ -7,6 +7,7 @@ import ProjectIcon from "@/assets/icons/ui/ProjectIcon";
 import ContactIcon from "@/assets/icons/ui/ContactIcon";
 // types
 import type { NavItem } from "@/types/nav.type";
+import type { IconComponent, IconProps } from "@/types/icon.type";
 
 const navItems: NavItem[] = [
   {
@@ -26,17 +27,10 @@ const navItems: NavItem[] = [
   },
 ];
 
-const getIconComponent = (iconType: string) => {
-  switch (iconType) {
-    case "home":
-      return HomeIcon;
-    case "project":
-      return ProjectIcon;
-    case "contact":
-      return ContactIcon;
-    default:
-      return HomeIcon;
-  }
+const iconComponents: Record<IconComponent, React.ComponentType<IconProps>> = {
+  home: HomeIcon,
+  project: ProjectIcon,
+  contact: ContactIcon,
 };
 
 export default function Nav() {
@@ -94,7 +88,7 @@ export default function Nav() {
       <LogoIcon className="mr-4 h-8 w-8 hover:text-primary" />
       <ul className="flex w-full items-center justify-around">
         {navItems.map((item) => {
-          const IconComponent = getIconComponent(item.icon);
+          const IconComponent = iconComponents[item.icon];
           const targetId = item.href.substring(1);
           const isActive = activeSection === targetId;
 
