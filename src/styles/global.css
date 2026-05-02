@@ -10,18 +10,20 @@
   --color-base-200: oklch(0.968 0.007 247.896);
   --color-base-300: oklch(0.929 0.013 255.508);
   --color-base-content: oklch(0.208 0.042 264.695);
+  --color-base-content-muted: oklch(0.48 0.046 257.417);
   --color-primary: oklch(0.546 0.245 262.881);
   --color-primary-content: oklch(1 0 0);
+  --color-primary-soft: oklch(0.94 0.04 262);
   --color-secondary: oklch(0.279 0.041 260.031);
   --color-secondary-content: oklch(1 0 0);
   --color-accent: oklch(0.75 0.17 55);
   --color-accent-content: oklch(0.208 0.042 264.695);
   --color-neutral: oklch(0.208 0.042 264.695);
   --color-neutral-content: oklch(0.984 0.003 247.858);
-  --color-info: oklch(0.505 0.192 244);
+  --color-info: oklch(0.45 0.19 244);
   --color-info-content: oklch(1 0 0);
   --color-success: oklch(0.527 0.154 152);
-  --color-success-content: oklch(1 0 0);
+  --color-success-content: oklch(0.208 0.042 264.695);
   --color-warning: oklch(0.812 0.171 83);
   --color-warning-content: oklch(0.208 0.042 264.695);
   --color-error: oklch(0.538 0.22 27);
@@ -45,8 +47,10 @@
   --color-base-200: oklch(0.279 0.041 260.031);
   --color-base-300: oklch(0.372 0.044 257.287);
   --color-base-content: oklch(0.984 0.003 247.858);
+  --color-base-content-muted: oklch(0.704 0.04 256.788);
   --color-primary: oklch(0.661 0.214 264.052);
-  --color-primary-content: oklch(1 0 0);
+  --color-primary-content: oklch(0.208 0.042 264.695);
+  --color-primary-soft: oklch(0.32 0.041 260.031);
   --color-secondary: oklch(0.929 0.013 255.508);
   --color-secondary-content: oklch(0.208 0.042 264.695);
   --color-accent: oklch(0.8 0.17 75);
@@ -59,7 +63,7 @@
   --color-success-content: oklch(0.208 0.042 264.695);
   --color-warning: oklch(0.882 0.181 83);
   --color-warning-content: oklch(0.208 0.042 264.695);
-  --color-error: oklch(0.628 0.221 27);
+  --color-error: oklch(0.538 0.22 27);
   --color-error-content: oklch(1 0 0);
   --radius-selector: 0.5rem;
   --radius-field: 0.5rem;
@@ -71,6 +75,13 @@
   --noise: 0;
 }
 
+/* Fond soft primary : impose base-content comme couleur de texte (conformité WCAG AA).
+   Ne jamais combiner bg-primary-soft avec text-primary — le contraste est insuffisant. */
+.bg-primary-soft {
+  background-color: var(--color-primary-soft);
+  color: var(--color-base-content);
+}
+
 :root {
   --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
   --font-title: "Plus Jakarta Sans", system-ui, sans-serif;
@@ -79,6 +90,12 @@
 
 html {
   font-family: var(--font-sans);
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv11", "ss01";
 }
 
 h1,
@@ -96,4 +113,32 @@ pre,
 kbd,
 samp {
   font-family: var(--font-mono);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.container-custom {
+  margin-inline: auto;
+  max-width: 72rem;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .container-custom {
+    padding-inline: 2rem;
+  }
+}
+
+.section-padding {
+  padding-block: 5rem;
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding-block: 8rem;
+  }
 }
