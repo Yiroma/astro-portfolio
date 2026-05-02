@@ -2,33 +2,35 @@
 @plugin "daisyui";
 
 @plugin "daisyui/theme" {
-  name: "winter";
+  name: "light";
   default: false;
   prefersdark: false;
   color-scheme: "light";
-  --color-base-100: oklch(100% 0 0);
-  --color-base-200: oklch(97.466% 0.011 259.822);
-  --color-base-300: oklch(93.268% 0.016 262.751);
-  --color-base-content: oklch(41.886% 0.053 255.824);
-  --color-primary: oklch(0.4718 0.2998 264.21);
-  --color-primary-content: oklch(0.967 0.0159 253.9);
-  --color-secondary: oklch(42.551% 0.161 282.339);
-  --color-secondary-content: oklch(88.51% 0.032 282.339);
-  --color-accent: oklch(59.939% 0.191 335.171);
-  --color-accent-content: oklch(11.988% 0.038 335.171);
-  --color-neutral: oklch(37% 0.044 257.287);
-  --color-neutral-content: oklch(0.8771 0.0099 252.82);
-  --color-info: oklch(88.127% 0.085 214.515);
-  --color-info-content: oklch(17.625% 0.017 214.515);
-  --color-success: oklch(80.494% 0.077 197.823);
-  --color-success-content: oklch(16.098% 0.015 197.823);
-  --color-warning: oklch(89.172% 0.045 71.47);
-  --color-warning-content: oklch(17.834% 0.009 71.47);
-  --color-error: oklch(73.092% 0.11 20.076);
-  --color-error-content: oklch(14.618% 0.022 20.076);
-  --radius-selector: 1rem;
+  --color-base-100: oklch(1 0 0);
+  --color-base-200: oklch(0.968 0.007 247.896);
+  --color-base-300: oklch(0.929 0.013 255.508);
+  --color-base-content: oklch(0.208 0.042 264.695);
+  --color-base-content-muted: oklch(0.48 0.046 257.417);
+  --color-primary: oklch(0.546 0.245 262.881);
+  --color-primary-content: oklch(1 0 0);
+  --color-primary-soft: oklch(0.94 0.04 262);
+  --color-secondary: oklch(0.279 0.041 260.031);
+  --color-secondary-content: oklch(1 0 0);
+  --color-accent: oklch(0.75 0.17 55);
+  --color-accent-content: oklch(0.208 0.042 264.695);
+  --color-neutral: oklch(0.208 0.042 264.695);
+  --color-neutral-content: oklch(0.984 0.003 247.858);
+  --color-info: oklch(0.45 0.19 244);
+  --color-info-content: oklch(1 0 0);
+  --color-success: oklch(0.527 0.154 152);
+  --color-success-content: oklch(0.208 0.042 264.695);
+  --color-warning: oklch(0.812 0.171 83);
+  --color-warning-content: oklch(0.208 0.042 264.695);
+  --color-error: oklch(0.538 0.22 27);
+  --color-error-content: oklch(1 0 0);
+  --radius-selector: 0.5rem;
   --radius-field: 0.5rem;
-  --radius-box: 1rem;
+  --radius-box: 0.75rem;
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
   --border: 1px;
@@ -37,33 +39,35 @@
 }
 
 @plugin "daisyui/theme" {
-  name: "night";
+  name: "dark";
   default: true;
   prefersdark: true;
   color-scheme: "dark";
-  --color-base-100: oklch(20.768% 0.039 265.754);
-  --color-base-200: oklch(19.314% 0.037 265.754);
-  --color-base-300: oklch(17.86% 0.034 265.754);
-  --color-base-content: oklch(84.153% 0.007 265.754);
-  --color-primary: oklch(75.351% 0.138 232.661);
-  --color-primary-content: oklch(15.07% 0.027 232.661);
-  --color-secondary: oklch(68.011% 0.158 276.934);
-  --color-secondary-content: oklch(13.602% 0.031 276.934);
-  --color-accent: oklch(72.36% 0.176 350.048);
-  --color-accent-content: oklch(14.472% 0.035 350.048);
-  --color-neutral: oklch(0.2755 0.037 260.02);
-  --color-neutral-content: oklch(0.8746 0.0053 247.88);
-  --color-info: oklch(68.455% 0.148 237.251);
-  --color-info-content: oklch(0% 0 0);
-  --color-success: oklch(78.452% 0.132 181.911);
-  --color-success-content: oklch(15.69% 0.026 181.911);
-  --color-warning: oklch(83.242% 0.139 82.95);
-  --color-warning-content: oklch(16.648% 0.027 82.95);
-  --color-error: oklch(71.785% 0.17 13.118);
-  --color-error-content: oklch(14.357% 0.034 13.118);
-  --radius-selector: 1rem;
+  --color-base-100: oklch(0.208 0.042 264.695);
+  --color-base-200: oklch(0.279 0.041 260.031);
+  --color-base-300: oklch(0.372 0.044 257.287);
+  --color-base-content: oklch(0.984 0.003 247.858);
+  --color-base-content-muted: oklch(0.704 0.04 256.788);
+  --color-primary: oklch(0.661 0.214 264.052);
+  --color-primary-content: oklch(0.208 0.042 264.695);
+  --color-primary-soft: oklch(0.32 0.041 260.031);
+  --color-secondary: oklch(0.929 0.013 255.508);
+  --color-secondary-content: oklch(0.208 0.042 264.695);
+  --color-accent: oklch(0.8 0.17 75);
+  --color-accent-content: oklch(0.208 0.042 264.695);
+  --color-neutral: oklch(0.279 0.041 260.031);
+  --color-neutral-content: oklch(0.984 0.003 247.858);
+  --color-info: oklch(0.769 0.148 213);
+  --color-info-content: oklch(0.208 0.042 264.695);
+  --color-success: oklch(0.673 0.177 152);
+  --color-success-content: oklch(0.208 0.042 264.695);
+  --color-warning: oklch(0.882 0.181 83);
+  --color-warning-content: oklch(0.208 0.042 264.695);
+  --color-error: oklch(0.538 0.22 27);
+  --color-error-content: oklch(1 0 0);
+  --radius-selector: 0.5rem;
   --radius-field: 0.5rem;
-  --radius-box: 1rem;
+  --radius-box: 0.75rem;
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
   --border: 1px;
@@ -71,13 +75,27 @@
   --noise: 0;
 }
 
+/* Fond soft primary : impose base-content comme couleur de texte (conformité WCAG AA).
+   Ne jamais combiner bg-primary-soft avec text-primary — le contraste est insuffisant. */
+.bg-primary-soft {
+  background-color: var(--color-primary-soft);
+  color: var(--color-base-content);
+}
+
 :root {
-  --font-sans: "Onest", system-ui, sans-serif;
-  --font-title: "Cascadia Code", monospace;
+  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+  --font-title: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 
 html {
   font-family: var(--font-sans);
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv11", "ss01";
 }
 
 h1,
@@ -88,4 +106,39 @@ h5,
 h6,
 .font-title {
   font-family: var(--font-title);
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-mono);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.container-custom {
+  margin-inline: auto;
+  max-width: 72rem;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .container-custom {
+    padding-inline: 2rem;
+  }
+}
+
+.section-padding {
+  padding-block: 5rem;
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding-block: 8rem;
+  }
 }

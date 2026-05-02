@@ -6,8 +6,8 @@ export default function ThemeSwap() {
       <input
         type="checkbox"
         className="theme-controller"
-        value="winter"
-        data-toggle-theme="winter,night"
+        value="light"
+        data-toggle-theme="light,dark"
         data-act-class="ACTIVECLASS"
         aria-label="Basculer entre le thème clair et le thème sombre"
       />
