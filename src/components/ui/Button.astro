@@ -1,9 +1,11 @@
 ---
+import type { HTMLAttributes } from "astro/types";
+
 type Variant = "primary" | "secondary" | "outline" | "ghost";
 type Size = "sm" | "md" | "lg" | "icon";
 type Target = "_blank" | "_self" | "_parent" | "_top";
 
-interface Props {
+interface Props extends HTMLAttributes<"button"> {
   href?: string;
   variant?: Variant;
   size?: Size;
@@ -11,9 +13,6 @@ interface Props {
   rel?: string;
   muted?: boolean;
   class?: string;
-  "aria-label"?: string;
-  type?: "button" | "submit" | "reset";
-  disabled?: boolean;
   download?: boolean | string;
 }
 
@@ -25,10 +24,10 @@ const {
   target,
   rel,
   class: className,
-  "aria-label": ariaLabel,
   type = "button",
   disabled,
   download,
+  ...rest
 } = Astro.props;
 
 const rel_ = target === "_blank" ? (rel ?? "noopener noreferrer") : rel;
@@ -41,8 +40,8 @@ const rel_ = target === "_blank" ? (rel ?? "noopener noreferrer") : rel;
       target={target}
       rel={rel_}
       download={download}
-      aria-label={ariaLabel}
       class:list={["btn", `btn--${variant}`, `btn--${size}`, { "btn--muted": muted }, className]}
+      {...rest}
     >
       <slot />
     </a>
@@ -50,8 +49,8 @@ const rel_ = target === "_blank" ? (rel ?? "noopener noreferrer") : rel;
     <button
       type={type}
       disabled={disabled}
-      aria-label={ariaLabel}
       class:list={["btn", `btn--${variant}`, `btn--${size}`, { "btn--muted": muted }, className]}
+      {...rest}
     >
       <slot />
     </button>
