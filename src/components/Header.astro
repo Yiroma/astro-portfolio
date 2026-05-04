@@ -1,12 +1,14 @@
 ---
 import { LogoIcon, MenuBurgerIcon, MenuCloseIcon } from "@/assets/icons/ui";
+import Button from "@components/ui/Button.astro";
+import Container from "@components/ui/Container.astro";
 import Nav from "@/components/Nav.astro";
 import NavMobile from "@/components/NavMobile.astro";
 import ThemeSwap from "@/components/ThemeSwap.astro";
 ---
 
 <header class="sticky top-0 z-50 w-full border-b border-base-300 bg-base-100/80 backdrop-blur-md">
-  <div class="container-custom flex h-16 items-center justify-between">
+  <Container class="flex h-16 items-center justify-between">
     <a href="/" class="inline-flex items-center gap-2" aria-label="Romaric YI — Retour à l'accueil">
       <LogoIcon />
       <span class="text-base font-bold text-base-content">Romaric YI</span>
@@ -15,29 +17,29 @@ import ThemeSwap from "@/components/ThemeSwap.astro";
     <Nav />
 
     <div class="flex items-center gap-3">
-      <a
-        href="/CV-Romaric-YI-Full-Stack-Developer.pdf"
-        class="btn hidden h-9 btn-sm btn-primary md:inline-flex"
-        download
-      >
-        Télécharger mon CV
-      </a>
+      <div class="hidden md:inline-flex">
+        <Button href="/cv.pdf" variant="primary" size="sm" download> Télécharger mon CV </Button>
+      </div>
+
       <div class="hidden md:block">
         <ThemeSwap />
       </div>
-      <button
-        id="nav-burger"
-        type="button"
-        class="btn btn-ghost btn-sm md:hidden"
-        aria-label="Ouvrir le menu"
-        aria-expanded="false"
-        aria-controls="mobile-nav"
-      >
-        <MenuBurgerIcon />
-        <MenuCloseIcon />
-      </button>
+
+      <div class="md:hidden">
+        <Button
+          id="nav-burger"
+          variant="ghost"
+          size="sm"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <MenuBurgerIcon />
+          <MenuCloseIcon />
+        </Button>
+      </div>
     </div>
-  </div>
+  </Container>
 
   <NavMobile />
 </header>

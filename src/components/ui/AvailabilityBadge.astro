@@ -1,0 +1,12 @@
+---
+import Badge from "./Badge.astro";
+
+interface Props {
+  label: string;
+  class?: string;
+}
+
+const { label, class: className } = Astro.props;
+---
+
+<Badge variant="success" size="md" dot class:list={className}>{label}</Badge>

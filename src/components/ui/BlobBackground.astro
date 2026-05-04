@@ -1,0 +1,178 @@
+---
+interface Props {
+  blobCount?: 1 | 2 | 3;
+  diagonal?: boolean;
+  spotlights?: boolean;
+  fade?: boolean;
+  class?: string;
+}
+
+const {
+  blobCount = 3,
+  diagonal = true,
+  spotlights = true,
+  fade = true,
+  class: className,
+} = Astro.props;
+---
+
+<div data-blob-bg class:list={["blob-bg", className]} aria-hidden="true">
+  {Array.from({ length: blobCount }).map((_, i) => <div class:list={`blob blob-${i + 1}`} />)}
+  {diagonal && <div class="diagonal-pattern pointer-events-none absolute inset-0" />}
+  {spotlights && <div class="spotlights pointer-events-none absolute inset-0" />}
+  {fade && <div class="fade-overlay pointer-events-none absolute inset-0" />}
+</div>
+
+<style>
+  .blob-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform;
+  }
+  .blob-1 {
+    width: 700px;
+    height: 700px;
+    filter: blur(90px);
+    opacity: 0.22;
+    top: -10%;
+    left: 5%;
+    background: color-mix(in oklch, var(--color-primary) 70%, transparent);
+  }
+  .blob-2 {
+    width: 560px;
+    height: 560px;
+    filter: blur(100px);
+    opacity: 0.28;
+    top: -5%;
+    right: 5%;
+    background: color-mix(in oklch, var(--color-primary) 55%, transparent);
+  }
+  .blob-3 {
+    width: 480px;
+    height: 480px;
+    filter: blur(80px);
+    opacity: 0.2;
+    bottom: -10%;
+    left: 40%;
+    background: color-mix(in oklch, var(--color-primary) 45%, transparent);
+  }
+
+  .diagonal-pattern {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--color-base-300) 0,
+      var(--color-base-300) 1px,
+      transparent 0,
+      transparent 50%
+    );
+    background-size: 20px 20px;
+    opacity: 0.16;
+  }
+
+  .spotlights {
+    background:
+      radial-gradient(
+        ellipse 55% 60% at 5% 10%,
+        color-mix(in oklch, var(--color-primary) 14%, transparent) 0%,
+        transparent 65%
+      ),
+      radial-gradient(
+        ellipse 40% 45% at 95% 90%,
+        color-mix(in oklch, var(--color-primary) 9%, transparent) 0%,
+        transparent 60%
+      );
+  }
+
+  .fade-overlay {
+    background: radial-gradient(
+      ellipse 100% 100% at 50% 50%,
+      transparent 30%,
+      var(--color-base-100) 100%
+    );
+  }
+</style>
+
+<script>
+  function randomTarget(rangeX: number, rangeY: number) {
+    return {
+      x: (Math.random() - 0.5) * rangeX,
+      y: (Math.random() - 0.5) * rangeY,
+      scale: 0.85 + Math.random() * 0.3,
+    };
+  }
+
+  const BLOB_CONFIGS = [
+    { rangeX: 500, rangeY: 350, speed: 0.018, interval: 180 },
+    { rangeX: 600, rangeY: 400, speed: 0.012, interval: 240 },
+    { rangeX: 450, rangeY: 300, speed: 0.022, interval: 150 },
+  ];
+
+  function initBlobAnimation(container: Element): () => void {
+    const blobEls = Array.from(container.querySelectorAll<HTMLElement>(".blob"));
+    if (blobEls.length === 0) return () => {};
+
+    const configs = BLOB_CONFIGS.slice(0, blobEls.length);
+    const states = configs.map(({ rangeX, rangeY }) => ({
+      x: 0,
+      y: 0,
+      scale: 1,
+      target: randomTarget(rangeX, rangeY),
+    }));
+
+    let frameCount = 0;
+    let rafId: number;
+
+    function animate() {
+      frameCount++;
+
+      states.forEach((state, i) => {
+        const { rangeX, rangeY, speed, interval } = configs[i];
+
+        if (frameCount % interval === 0) {
+          state.target = randomTarget(rangeX, rangeY);
+        }
+
+        state.x += (state.target.x - state.x) * speed;
+        state.y += (state.target.y - state.y) * speed;
+        state.scale += (state.target.scale - state.scale) * speed;
+
+        const el = blobEls[i];
+        if (el) {
+          el.style.transform = `translate(${state.x}px, ${state.y}px) scale(${state.scale})`;
+        }
+      });
+
+      rafId = requestAnimationFrame(animate);
+    }
+
+    rafId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafId);
+  }
+
+  const cleanups: Array<() => void> = [];
+
+  function start() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    document.querySelectorAll("[data-blob-bg]").forEach((container) => {
+      cleanups.push(initBlobAnimation(container));
+    });
+  }
+
+  start();
+
+  document.addEventListener(
+    "astro:before-swap",
+    () => {
+      cleanups.forEach((fn) => fn());
+      cleanups.length = 0;
+    },
+    { once: true }
+  );
+</script>

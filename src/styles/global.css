@@ -121,25 +121,3 @@ samp {
   outline-offset: 2px;
   border-radius: 4px;
 }
-
-.container-custom {
-  margin-inline: auto;
-  max-width: 72rem;
-  padding-inline: 1.5rem;
-}
-
-@media (min-width: 1024px) {
-  .container-custom {
-    padding-inline: 2rem;
-  }
-}
-
-.section-padding {
-  padding-block: 5rem;
-}
-
-@media (min-width: 1024px) {
-  .section-padding {
-    padding-block: 8rem;
-  }
-}

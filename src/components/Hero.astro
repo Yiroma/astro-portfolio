@@ -1,0 +1,159 @@
+---
+import AvailabilityBadge from "@components/ui/AvailabilityBadge.astro";
+import BlobBackground from "@components/ui/BlobBackground.astro";
+import Button from "@components/ui/Button.astro";
+import Container from "@components/ui/Container.astro";
+import Eyebrow from "@components/ui/Eyebrow.astro";
+import GradientText from "@components/ui/GradientText.astro";
+import { socialLinks } from "@data/nav";
+---
+
+<section id="profil" class="hero-section relative z-0 overflow-hidden py-20 md:py-32">
+  <BlobBackground />
+
+  <Container class="relative z-10">
+    <div class="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+      <div class="flex flex-col items-start">
+        <AvailabilityBadge
+          label="Disponible — CDI · Mission · Freelance"
+          class="hero-anim-badge mb-6"
+        />
+
+        <Eyebrow class="hero-anim-badge mb-4">
+          Développeur Full Stack · Orléans & Remote France
+        </Eyebrow>
+
+        <h1
+          class="hero-anim-title mb-6 text-[clamp(2rem,4vw,3.25rem)] leading-[1.12] font-extrabold tracking-[-0.02em] text-base-content"
+        >
+          Je conçois des applications<br />
+          <GradientText>pensées pour durer.</GradientText>
+        </h1>
+
+        <p class="hero-anim-desc mb-4 max-w-lg text-lg leading-relaxed text-base-content/70">
+          Développeur Full Stack diplômé <strong class="text-base-content"
+            >Concepteur Développeur d'Applications (Bac+4, RNCP 37873)</strong
+          >, spécialisé en architectures sécurisées avec <strong class="text-base-content"
+            >React, Next.js, Node.js, TypeScript</strong
+          > et <strong class="text-base-content">Java/Spring Boot</strong>.
+        </p>
+        <p class="hero-anim-desc mb-10 max-w-lg text-base leading-relaxed text-base-content/70">
+          <strong class="text-base-content">10 ans de management</strong> avant d'entrer dans le développement
+          : je traduis des besoins flous en solutions concrètes, et je communique avec les profils non-tech
+          sans les perdre.
+        </p>
+
+        <div class="hero-anim-cta mb-6 flex flex-wrap gap-3">
+          <Button href="#realisations" variant="primary" size="md">Voir mes réalisations</Button>
+          <Button href="/cv.pdf" variant="outline" size="md" download>Télécharger mon CV</Button>
+        </div>
+
+        <div class="hero-anim-cta flex items-center gap-3">
+          {
+            socialLinks.map(({ label, href, icon: Icon }) => (
+              <Button
+                href={href}
+                variant="outline"
+                size="icon"
+                muted
+                target={href.startsWith("mailto:") ? undefined : "_blank"}
+                aria-label={label}
+              >
+                <Icon class="size-4" />
+              </Button>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="hero-anim-image flex items-center justify-center">
+        <div
+          class="flex aspect-[5/4] w-full max-w-md items-center justify-center rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/15 via-primary/8 to-transparent"
+        >
+          <div class="flex flex-col items-center gap-4 text-primary/50">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-28"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0H3"
+              ></path>
+            </svg>
+            <p class="text-xs font-medium tracking-wide">Illustration à venir</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .hero-section {
+    background: color-mix(in oklch, var(--color-primary) 4%, var(--color-base-100));
+  }
+
+  /* Entrées animées */
+  @keyframes hero-scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.85);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes hero-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes hero-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .hero-anim-badge {
+    animation: hero-scale-in 0.35s ease-out both;
+  }
+  .hero-anim-title {
+    animation: hero-fade-up 0.5s ease-out 0.08s both;
+  }
+  .hero-anim-desc {
+    animation: hero-fade-up 0.5s ease-out 0.16s both;
+  }
+  .hero-anim-cta {
+    animation: hero-fade-up 0.5s ease-out 0.24s both;
+  }
+  .hero-anim-image {
+    animation: hero-fade-in 0.6s ease-out 0.4s both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-anim-badge,
+    .hero-anim-title,
+    .hero-anim-desc,
+    .hero-anim-cta,
+    .hero-anim-image {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
