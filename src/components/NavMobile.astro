@@ -1,0 +1,85 @@
+---
+import ThemeSwap from "@/components/ThemeSwap.astro";
+import { navItems } from "@/data/nav";
+---
+
+<div
+  id="mobile-nav"
+  class="fixed inset-x-0 top-16 z-40 hidden w-full border-b border-base-300 bg-base-100 shadow-md md:hidden"
+>
+  <nav aria-label="Navigation mobile">
+    <ul class="container-custom flex flex-col py-3">
+      {
+        navItems.map(({ label, href }) => (
+          <li>
+            <a
+              href={href}
+              class="nav-link block py-3 text-sm font-medium text-base-content/60 transition-colors duration-150 hover:text-base-content"
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="mt-3 flex items-center gap-3 border-t border-base-300 pt-3">
+        <a
+          href="/CV-Romaric-YI-Full-Stack-Developer.pdf"
+          class="btn h-9 flex-1 btn-sm btn-primary"
+          download
+        >
+          Télécharger mon CV
+        </a>
+        <ThemeSwap />
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<script>
+  const burger = document.getElementById("nav-burger");
+  const mobileMenu = document.getElementById("mobile-nav");
+  const iconMenu = burger?.querySelector(".icon-menu");
+  const iconClose = burger?.querySelector(".icon-close");
+
+  function openMenu() {
+    mobileMenu?.classList.remove("hidden");
+    burger?.setAttribute("aria-expanded", "true");
+    burger?.setAttribute("aria-label", "Fermer le menu");
+    iconMenu?.classList.add("hidden");
+    iconClose?.classList.remove("hidden");
+  }
+
+  function closeMenu() {
+    mobileMenu?.classList.add("hidden");
+    burger?.setAttribute("aria-expanded", "false");
+    burger?.setAttribute("aria-label", "Ouvrir le menu");
+    iconMenu?.classList.remove("hidden");
+    iconClose?.classList.add("hidden");
+  }
+
+  burger?.addEventListener("click", () => {
+    if (mobileMenu?.classList.contains("hidden")) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768) closeMenu();
+  });
+
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-link[href^="#"]');
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href");
+      if (!href?.startsWith("#")) return;
+      const target = document.getElementById(href.slice(1));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        closeMenu();
+      }
+    });
+  });
+</script>
