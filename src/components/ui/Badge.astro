@@ -1,0 +1,97 @@
+---
+type Variant = "default" | "success" | "warning" | "error" | "info" | "outline";
+type Size = "sm" | "md";
+
+interface Props {
+  variant?: Variant;
+  size?: Size;
+  dot?: boolean;
+  class?: string;
+}
+
+const { variant = "default", size = "sm", dot = false, class: className } = Astro.props;
+---
+
+<span class:list={["badge", `badge--${variant}`, `badge--${size}`, className]}>
+  {dot && <span class="badge__dot" aria-hidden="true" />}
+  <slot />
+</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    line-height: 1;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+
+  .badge--sm {
+    padding: 0.25rem 0.625rem;
+    font-size: 0.6875rem;
+  }
+  .badge--md {
+    padding: 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .badge--default {
+    background: color-mix(in oklch, var(--color-primary) 12%, transparent);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+  .badge--success {
+    background: color-mix(in oklch, var(--color-success) 12%, transparent);
+    border-color: var(--color-success);
+    color: var(--color-success);
+  }
+  .badge--warning {
+    background: color-mix(in oklch, var(--color-warning) 12%, transparent);
+    border-color: var(--color-warning);
+    color: var(--color-warning-content);
+  }
+  .badge--error {
+    background: color-mix(in oklch, var(--color-error) 12%, transparent);
+    border-color: var(--color-error);
+    color: var(--color-error);
+  }
+  .badge--info {
+    background: color-mix(in oklch, var(--color-info) 12%, transparent);
+    border-color: var(--color-info);
+    color: var(--color-info);
+  }
+  .badge--outline {
+    background: transparent;
+    border-color: var(--color-base-300);
+    color: var(--color-base-content);
+    opacity: 0.8;
+  }
+
+  @keyframes badge-dot-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  .badge__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+    animation: badge-dot-pulse 2s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .badge__dot {
+      animation: none;
+    }
+  }
+</style>
