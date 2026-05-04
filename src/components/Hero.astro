@@ -2,6 +2,7 @@
 import AvailabilityBadge from "@components/ui/AvailabilityBadge.astro";
 import BlobBackground from "@components/ui/BlobBackground.astro";
 import Button from "@components/ui/Button.astro";
+import Container from "@components/ui/Container.astro";
 import Eyebrow from "@components/ui/Eyebrow.astro";
 import GradientText from "@components/ui/GradientText.astro";
 import { socialLinks } from "@data/nav";
@@ -10,7 +11,7 @@ import { socialLinks } from "@data/nav";
 <section id="home" class="hero-section relative z-0 overflow-hidden py-20 md:py-32">
   <BlobBackground />
 
-  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-8">
+  <Container class="relative z-10">
     <div class="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
       <div class="flex flex-col items-start">
         <AvailabilityBadge
@@ -90,7 +91,7 @@ import { socialLinks } from "@data/nav";
         </div>
       </div>
     </div>
-  </div>
+  </Container>
 </section>
 
 <style>
