@@ -1,0 +1,82 @@
+---
+import { navItems } from "@/data/nav";
+---
+
+<nav aria-label="Navigation principale" class="hidden md:block">
+  <ul class="flex items-center gap-6">
+    {
+      navItems.map(({ label, href }) => (
+        <li>
+          <a
+            href={href}
+            class="nav-link py-1 text-sm font-medium text-base-content/60 transition-colors duration-150 hover:text-base-content"
+          >
+            {label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    border-radius: 1px;
+    background-color: var(--color-primary);
+    transform: scaleX(0);
+    transition: transform 150ms ease;
+  }
+
+  .nav-link[aria-current="page"]::after {
+    transform: scaleX(1);
+  }
+
+  /* Spécificité Astro scoped > utilités Tailwind — fonctionne sans !important. */
+  .nav-link[aria-current="page"],
+  .nav-link[aria-current="page"]:hover {
+    color: var(--color-base-content);
+    font-weight: 700;
+  }
+</style>
+
+<script>
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-link[href^="#"]');
+
+  const sectionIds = [
+    ...new Set(Array.from(navLinks).map((l) => l.getAttribute("href")!.slice(1))),
+  ];
+  const sections = sectionIds
+    .map((id) => document.getElementById(id))
+    .filter(Boolean) as HTMLElement[];
+
+  if (sections.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const activeHref = `#${entry.target.id}`;
+            navLinks.forEach((link) => {
+              if (link.getAttribute("href") === activeHref) {
+                link.setAttribute("aria-current", "page");
+              } else {
+                link.removeAttribute("aria-current");
+              }
+            });
+          }
+        });
+      },
+      { rootMargin: "-20% 0px -60% 0px", threshold: 0 }
+    );
+    sections.forEach((el) => observer.observe(el));
+  }
+</script>
