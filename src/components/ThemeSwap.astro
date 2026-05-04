@@ -1,0 +1,64 @@
+---
+import { MoonIcon, SunIcon } from "@/assets/icons/ui";
+---
+
+<label
+  class="swap h-9 w-9 swap-rotate cursor-pointer rounded-md border border-base-300 text-base-content/60 transition-colors hover:text-base-content"
+  aria-label="Basculer le thème clair / sombre"
+>
+  <input type="checkbox" class="theme-controller" value="light" />
+  <span class="sr-only">Changer de thème sombre / thème clair</span>
+  <SunIcon />
+  <MoonIcon />
+</label>
+
+<style is:global>
+  @media (prefers-reduced-motion: no-preference) {
+    ::view-transition-new(root) {
+      animation: theme-reveal 500ms ease-in;
+      z-index: 9999;
+    }
+
+    ::view-transition-old(root) {
+      animation: none;
+      z-index: 1;
+    }
+
+    @keyframes theme-reveal {
+      from {
+        clip-path: circle(0px at var(--theme-vt-x, 50vw) var(--theme-vt-y, 50vh));
+      }
+      to {
+        clip-path: circle(150vmax at var(--theme-vt-x, 50vw) var(--theme-vt-y, 50vh));
+      }
+    }
+  }
+</style>
+
+<script>
+  const inputs = document.querySelectorAll<HTMLInputElement>("input.theme-controller");
+
+  inputs.forEach((input) => {
+    input.addEventListener("click", (e) => {
+      if (!document.startViewTransition) return;
+
+      e.preventDefault();
+
+      const label = input.closest("label")!;
+      const { left, top, width, height } = label.getBoundingClientRect();
+      document.documentElement.style.setProperty(
+        "--theme-vt-x",
+        `${Math.round(left + width / 2)}px`
+      );
+      document.documentElement.style.setProperty(
+        "--theme-vt-y",
+        `${Math.round(top + height / 2)}px`
+      );
+
+      document.startViewTransition(() => {
+        input.checked = !input.checked;
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+    });
+  });
+</script>

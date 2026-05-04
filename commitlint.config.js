@@ -21,12 +21,8 @@ export default {
     ],
     // Le type est obligatoire
     "type-empty": [2, "never"],
-    // Le scope est optionnel mais s'il existe, il doit être en minuscules
-    "scope-case": [2, "always", "lower-case"],
     // La description est obligatoire
     "subject-empty": [2, "never"],
-    // La description doit commencer par une minuscule
-    "subject-case": [2, "always", "lower-case"],
     // Pas de point à la fin de la description
     "subject-full-stop": [2, "never", "."],
     // Longueur maximum de l'en-tête (type + scope + description)

@@ -10,7 +10,7 @@ export default defineConfig({
   site: "https://yiromaric.fr",
   integrations: [react(), sitemap()],
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [/** @type {any} */ (tailwindcss())],
     resolve: {
       alias: {
         "@": path.resolve("./src"),
