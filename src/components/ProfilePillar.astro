@@ -1,0 +1,95 @@
+---
+import Badge from "@components/ui/Badge.astro";
+import Eyebrow from "@components/ui/Eyebrow.astro";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  tags?: string[];
+  alternate?: boolean;
+  illustration?: string;
+}
+
+const { eyebrow, title, tags = [], alternate = false, illustration } = Astro.props;
+const hasIllustrationSlot = Astro.slots.has("illustration");
+---
+
+<article class:list={["pillar", alternate && "pillar--alternate"]}>
+  <div class="pillar__frame">
+    {
+      hasIllustrationSlot ? (
+        <slot name="illustration" />
+      ) : illustration ? (
+        <span class="text-xs font-medium tracking-tighter opacity-55">{illustration}</span>
+      ) : null
+    }
+  </div>
+
+  <div class="pillar__content">
+    <div class="flex flex-col gap-2">
+      <Eyebrow class="mb-2">{eyebrow}</Eyebrow>
+      <h3>{title}</h3>
+    </div>
+
+    <p><slot /></p>
+
+    <div class="mt-4 flex flex-wrap gap-2">
+      {tags.map((tag) => <Badge variant="outline">{tag}</Badge>)}
+    </div>
+  </div>
+</article>
+
+<style>
+  .pillar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .pillar__content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .pillar__frame {
+    width: 100%;
+    max-width: 20rem;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in oklch, var(--color-primary) 20%, transparent);
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklch, var(--color-primary) 15%, transparent),
+      transparent
+    );
+    color: color-mix(in oklch, var(--color-primary) 55%, transparent);
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .pillar {
+      flex-direction: row;
+      gap: 2.5rem;
+    }
+
+    .pillar--alternate {
+      flex-direction: row-reverse;
+    }
+
+    .pillar__frame {
+      flex: 0 0 30%;
+      max-width: unset;
+    }
+
+    .pillar__content {
+      flex: 1;
+      gap: 0.875rem;
+    }
+  }
+</style>
