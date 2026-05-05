@@ -1,105 +1,35 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { Badge } from "@components/react/ui/Badge";
 import { Btn } from "@components/react/ui/Btn";
+import { GithubIcon } from "@/assets/icons/ui/GithubIcon";
+import { WebIcon } from "@/assets/icons/ui/WebIcon";
 import type { Project } from "@/types/project.type";
+import { useCardAnimation } from "@components/react/hooks/useCardAnimation";
+import type { Phase } from "@components/react/hooks/useModalPhase";
 
 interface ProjectCardProps {
   project: Project;
   onClick: () => void;
-  phase: "idle" | "open" | "closing";
+  phase: Phase;
 }
 
 export function ProjectCard({ project, onClick, phase }: ProjectCardProps) {
-  const cardRef = useRef<React.ElementRef<"div">>(null);
-  const [animStyle, setAnimStyle] = useState<React.CSSProperties | undefined>(undefined);
-  const animating = useRef(false);
-  const offsetRef = useRef<{ dx: number; dy: number } | null>(null);
-  const resetTimerRef = useRef<number | null>(null);
-
-  function handleOpen() {
-    if (animating.current) return;
-
-    const rect = cardRef.current?.getBoundingClientRect();
-    if (!rect) {
-      onClick();
-      return;
-    }
-
-    const dx = window.innerWidth / 2 - (rect.left + rect.width / 2);
-    const dy = window.innerHeight / 2 - (rect.top + rect.height / 2);
-
-    offsetRef.current = { dx, dy };
-    animating.current = true;
-    setAnimStyle({
-      transform: `translate(${dx}px, ${dy}px) scale(1.08)`,
-      opacity: 0,
-      transition: "transform 350ms cubic-bezier(0.4, 0, 0.2, 1), opacity 260ms ease-in",
-      zIndex: 50,
-      position: "relative",
-      pointerEvents: "none",
-    });
-
-    window.setTimeout(() => onClick(), 180);
-  }
-
-  useEffect(() => {
-    if (phase === "closing" && offsetRef.current) {
-      const { dx, dy } = offsetRef.current;
-      // Positionner instantanément à la position "envolée"
-      setAnimStyle({
-        transform: `translate(${dx}px, ${dy}px) scale(1.08)`,
-        opacity: 0,
-        transition: "none",
-        zIndex: 50,
-        position: "relative",
-        pointerEvents: "none",
-      });
-      // Puis animer le retour vers la position d'origine
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => {
-          setAnimStyle({
-            transform: "translate(0px, 0px) scale(1)",
-            opacity: 1,
-            transition: "transform 320ms cubic-bezier(0.2, 0, 0, 1), opacity 280ms ease-out",
-            zIndex: 50,
-            position: "relative",
-            pointerEvents: "none",
-          });
-        });
-      });
-    } else if (phase === "idle" && animating.current) {
-      animating.current = false;
-      offsetRef.current = null;
-      // L'animation de retour est terminée, on retire juste les styles inline
-      setAnimStyle({ transition: "none" });
-      resetTimerRef.current = window.setTimeout(() => setAnimStyle(undefined), 50);
-    }
-  }, [phase]);
-
-  useEffect(() => {
-    return () => {
-      if (resetTimerRef.current !== null) window.clearTimeout(resetTimerRef.current);
-    };
-  }, []);
+  const { cardRef, animStyle, trigger } = useCardAnimation(phase, onClick);
 
   return (
     <div
       ref={cardRef}
       role="button"
       tabIndex={0}
-      onClick={handleOpen}
+      onClick={trigger}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          handleOpen();
+          trigger();
         }
       }}
       className="flex cursor-pointer flex-col gap-[1.125rem] rounded-2xl border border-base-300 bg-base-100 p-7 select-none hover:-translate-y-[3px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.09)]"
-      style={
-        animStyle ?? {
-          transition: "box-shadow 200ms ease, transform 200ms ease",
-        }
-      }
+      style={animStyle ?? { transition: "box-shadow 200ms ease, transform 200ms ease" }}
     >
       {/* Image */}
       <div className="-mx-7 -mt-7 mb-1.5 aspect-[3/2] w-[calc(100%+3.5rem)] shrink-0 overflow-hidden rounded-t-2xl border-b border-base-300 bg-base-200">
@@ -181,13 +111,15 @@ export function ProjectCard({ project, onClick, phase }: ProjectCardProps) {
               href={link.href}
               variant={link.variant ?? "outline"}
               external={link.external}
-              size="sm"
+              size="icon"
+              aria-label={link.label}
+              title={link.label}
             >
-              {link.label}
+              {link.icon === "github" ? <GithubIcon /> : <WebIcon />}
             </Btn>
           ))}
         </div>
-        <Btn variant="ghost" size="sm" onClick={handleOpen}>
+        <Btn variant="ghost" size="sm" onClick={trigger}>
           Voir les détails →
         </Btn>
       </div>

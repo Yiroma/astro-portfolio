@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Badge } from "@components/react/ui/Badge";
 import { Btn } from "@components/react/ui/Btn";
+import { GithubIcon } from "@/assets/icons/ui/GithubIcon";
+import { WebIcon } from "@/assets/icons/ui/WebIcon";
 import type { Project } from "@/types/project.type";
 
 interface ProjectModalProps {
@@ -49,7 +51,7 @@ export function ProjectModal({ project, onClose, isClosing = false }: ProjectMod
           type="button"
           onClick={onClose}
           aria-label="Fermer"
-          className="absolute top-4 right-4 flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-base-300 bg-transparent text-base leading-none text-base-content opacity-70"
+          className="absolute top-4 right-4 flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-white/20 bg-black/50 text-base leading-none text-white backdrop-blur-sm transition-colors hover:bg-black/70"
         >
           ✕
         </button>
@@ -147,8 +149,11 @@ export function ProjectModal({ project, onClose, isClosing = false }: ProjectMod
                 href={link.href}
                 variant={link.variant ?? "outline"}
                 external={link.external}
+                size="icon"
+                aria-label={link.label}
+                title={link.label}
               >
-                {link.label}
+                {link.icon === "github" ? <GithubIcon /> : <WebIcon />}
               </Btn>
             ))}
           </div>

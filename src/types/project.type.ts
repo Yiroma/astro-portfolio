@@ -3,6 +3,7 @@ export interface ProjectLink {
   href: string;
   variant?: "primary" | "outline";
   external?: boolean;
+  icon?: "github" | "website";
 }
 
 export interface Project {
