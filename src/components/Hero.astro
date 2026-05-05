@@ -8,7 +8,7 @@ import GradientText from "@components/ui/GradientText.astro";
 import { socialLinks } from "@data/nav";
 ---
 
-<section id="profil" class="hero-section relative z-0 overflow-hidden py-20 md:py-32">
+<section id="hero" class="hero-section relative z-0 overflow-hidden py-20 md:py-32">
   <BlobBackground />
 
   <Container class="relative z-10">
@@ -45,7 +45,14 @@ import { socialLinks } from "@data/nav";
 
         <div class="hero-anim-cta mb-6 flex flex-wrap gap-3">
           <Button href="#realisations" variant="primary" size="md">Voir mes réalisations</Button>
-          <Button href="/cv.pdf" variant="outline" size="md" download>Télécharger mon CV</Button>
+          <Button
+            href="/CV-Romaric-Yi-Full-Stack-Developer.pdf"
+            variant="outline"
+            size="md"
+            target="_blank"
+          >
+            Télécharger mon CV
+          </Button>
         </div>
 
         <div class="hero-anim-cta flex items-center gap-3">
