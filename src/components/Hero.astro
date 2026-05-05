@@ -8,7 +8,7 @@ import GradientText from "@components/ui/GradientText.astro";
 import { socialLinks } from "@data/nav";
 ---
 
-<section id="profil" class="hero-section relative z-0 overflow-hidden py-20 md:py-32">
+<section id="hero" class="hero-section relative z-0 overflow-hidden py-20 md:py-32">
   <BlobBackground />
 
   <Container class="relative z-10">
@@ -23,21 +23,19 @@ import { socialLinks } from "@data/nav";
           Développeur Full Stack · Orléans & Remote France
         </Eyebrow>
 
-        <h1
-          class="hero-anim-title mb-6 text-[clamp(2rem,4vw,3.25rem)] leading-[1.12] font-extrabold tracking-[-0.02em] text-base-content"
-        >
+        <h1 class="hero-anim-title mb-6">
           Je conçois des applications<br />
           <GradientText>pensées pour durer.</GradientText>
         </h1>
 
-        <p class="hero-anim-desc mb-4 max-w-lg text-lg leading-relaxed text-base-content/70">
+        <p class="hero-anim-desc mb-4 max-w-lg">
           Développeur Full Stack diplômé <strong class="text-base-content"
             >Concepteur Développeur d'Applications (Bac+4, RNCP 37873)</strong
           >, spécialisé en architectures sécurisées avec <strong class="text-base-content"
             >React, Next.js, Node.js, TypeScript</strong
           > et <strong class="text-base-content">Java/Spring Boot</strong>.
         </p>
-        <p class="hero-anim-desc mb-10 max-w-lg text-base leading-relaxed text-base-content/70">
+        <p class="hero-anim-desc mb-10 max-w-lg">
           <strong class="text-base-content">10 ans de management</strong> avant d'entrer dans le développement
           : je traduis des besoins flous en solutions concrètes, et je communique avec les profils non-tech
           sans les perdre.
@@ -45,7 +43,14 @@ import { socialLinks } from "@data/nav";
 
         <div class="hero-anim-cta mb-6 flex flex-wrap gap-3">
           <Button href="#realisations" variant="primary" size="md">Voir mes réalisations</Button>
-          <Button href="/cv.pdf" variant="outline" size="md" download>Télécharger mon CV</Button>
+          <Button
+            href="/CV-Romaric-Yi-Full-Stack-Developer.pdf"
+            variant="outline"
+            size="md"
+            target="_blank"
+          >
+            Télécharger mon CV
+          </Button>
         </div>
 
         <div class="hero-anim-cta flex items-center gap-3">
