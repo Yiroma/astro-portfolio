@@ -73,7 +73,7 @@ import { socialLinks } from "@data/nav";
 
       <div class="hero-anim-image flex items-center justify-center">
         <div
-          class="flex aspect-[5/4] w-full max-w-md items-center justify-center rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/15 via-primary/8 to-transparent"
+          class="hero-illustration flex aspect-[5/4] w-full max-w-md items-center justify-center rounded-2xl"
         >
           <div class="flex flex-col items-center gap-4 text-primary/50">
             <svg
@@ -101,7 +101,22 @@ import { socialLinks } from "@data/nav";
 
 <style>
   .hero-section {
-    background: color-mix(in oklch, var(--color-primary) 4%, var(--color-base-100));
+    background: color-mix(in srgb, var(--color-primary) 4%, var(--color-base-100));
+  }
+
+  .hero-illustration {
+    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-primary) 15%, transparent),
+      color-mix(in srgb, var(--color-primary) 8%, transparent),
+      transparent
+    );
+  }
+
+  [data-theme="light"] .hero-illustration {
+    background: var(--color-base-200);
+    border-color: var(--color-base-300);
   }
 
   /* Entrées animées */

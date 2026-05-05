@@ -1,0 +1,156 @@
+---
+import BlobBackground from "@components/ui/BlobBackground.astro";
+import Container from "@components/ui/Container.astro";
+import Eyebrow from "@components/ui/Eyebrow.astro";
+import ProjectsGrid from "@components/react/ProjectsGrid";
+import type { Project } from "@components/react/ProjectsGrid";
+
+const projects: Project[] = [
+  {
+    index: 1,
+    label: "Projet de fin de cursus CDA",
+    date: "2025",
+    title: "CarePlan",
+    subtitle: "Gestion de plannings médicaux",
+    tags: [
+      "React",
+      "TypeScript",
+      "GraphQL",
+      "Apollo",
+      "TypeORM",
+      "PostgreSQL",
+      "Microservices",
+      "Docker",
+      "CI/CD",
+      "Playwright",
+      "RGAA",
+    ],
+    resume:
+      "Application de gestion de plannings pour cabinets médicaux, avec trois rôles (Secrétaire, Médecin, Administrateur) et une accessibilité RGAA 4.1 effective.",
+    context:
+      "Projet de fin de cursus CDA. Application de gestion de plannings pour cabinets médicaux avec trois rôles : Secrétaire, Médecin, Administrateur.",
+    problem:
+      "Séparer clairement les responsabilités entre rôles, garantir une accessibilité réelle (pas cosmétique), et industrialiser le delivery sur une stack microservices avec tests à plusieurs niveaux.",
+    solution:
+      "Architecture microservices modélisée UML, API GraphQL Apollo, tests Jest + Playwright E2E, Docker complet, CI/CD. Accessibilité dès la conception : navigation 100 % clavier, focus trap, validation NVDA, ARIA sur tous composants custom.",
+    result:
+      "Application livrée et soutenue avec succès. Alignée avec les standards demandé par le client. Conformité RGAA et WCAG 2.1 <strong>effective</strong>, pas seulement déclarative.",
+    links: [
+      { label: "Voir la démo", href: "#", variant: "primary", external: false, icon: "website" },
+      {
+        label: "Code GitHub",
+        href: "https://github.com/Yiroma",
+        variant: "outline",
+        external: true,
+        icon: "github",
+      },
+    ],
+    image: "/careplan.webp",
+  },
+  {
+    index: 2,
+    label: "Mission freelance — client réel",
+    date: "2024",
+    title: "Taxi Loire Valley Services",
+    subtitle: "Site vitrine VTC",
+    tags: ["React", "Next.js", "SEO local", "Schema.org", "Lighthouse 95+"],
+    resume:
+      "Site vitrine pour un client VTC local, conçu pour capter du trafic organique local sans budget publicitaire, avec un score Lighthouse > 95 sur les 4 piliers.",
+    context:
+      "Première mission freelance (2024). Client VTC local sans présence en ligne, souhaitant capter des clients via Google sans budget publicité.",
+    problem:
+      "Concevoir de zéro une identité visuelle et un site rapide, accessible, référencé localement — avec un coût d'acquisition zéro pour le client.",
+    solution:
+      "Identité visuelle, intégration responsive, SEO local (mots-clés géolocalisés, Schema.org, Google Business Profile). Gestion de bout en bout de la prospection à la maintenance.",
+    result:
+      "<strong>Score Lighthouse &gt; 95 sur les 4 piliers</strong> (performance, accessibilité, bonnes pratiques, SEO). Site en ligne et opérationnel.",
+    links: [
+      { label: "Voir le site", href: "#", variant: "primary", external: true, icon: "website" },
+    ],
+    image: "/taxilvs.webp",
+  },
+  {
+    index: 3,
+    label: "Projet personnel",
+    date: "2026",
+    title: "Budget Management",
+    subtitle: "Application de suivi financière personnelle",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind",
+      "Java",
+      "Spring Boot",
+      "PostgreSQL",
+      "Docker",
+      "API REST",
+    ],
+    resume:
+      "Application permettant de suivre ses dépenses, catégoriser des transactions et visualiser ses flux financiers.",
+    context:
+      "Application permettant de suivre ses dépenses, catégoriser des transactions et visualiser ses flux financiers.",
+    problem:
+      "Approfondir la stack Java/Spring Boot tout en gardant un front Next.js moderne. Pratiquer une architecture en couches stricte avec une API REST disciplinée.",
+    solution:
+      "Architecture en couches, API REST stricte, Docker + Makefile pour faciliter l'onboarding, documentation interne. Accessibilité RGAA visée dès la conception.",
+    result: "Projet en cours — à compléter à livraison.",
+    links: [
+      {
+        label: "Code GitHub",
+        href: "https://github.com/Yiroma",
+        variant: "outline",
+        external: true,
+        icon: "github",
+      },
+    ],
+    inProgress: true,
+    image: "",
+  },
+  {
+    index: 4,
+    label: "Projet personnel",
+    date: "2025",
+    title: "Hive",
+    subtitle: "Home media center",
+    tags: ["React", "TypeScript", "Tailwind", "Apollo", "GraphQL", "TypeORM", "SQLite", "WCAG AA"],
+    resume:
+      "Application de centralisation, notation et recommandation de contenus multimédias (films, séries, musique), avec une accessibilité mobile-first respectant strictement les ratios de contraste WCAG AA.",
+    context:
+      "Application de centralisation, notation et recommandation de contenus multimédias (films, séries, musique).",
+    problem:
+      "Construire une expérience mobile-first vraiment accessible dans un domaine où les apps grand public négligent l'a11y.",
+    solution:
+      "Interface mobile-first React + TypeScript + Tailwind, alternatives textuelles systématiques, <strong>respect strict des ratios de contraste WCAG AA</strong>. Stack GraphQL/Apollo + TypeORM sur SQLite.",
+    result: "À compléter selon avancement.",
+    links: [
+      {
+        label: "Code GitHub",
+        href: "https://github.com/Yiroma",
+        variant: "outline",
+        external: true,
+        icon: "github",
+      },
+    ],
+    image: "/hive.webp",
+  },
+];
+---
+
+<section id="realisations" class="projects-section relative z-0 overflow-hidden py-16 md:py-24">
+  <BlobBackground />
+
+  <Container class="relative z-10">
+    <div class="mb-12">
+      <Eyebrow class="mb-3">Ce que j'ai livré</Eyebrow>
+      <h2>Des projets réels,<br />du contexte, des résultats.</h2>
+    </div>
+
+    <ProjectsGrid projects={projects} client:visible />
+  </Container>
+</section>
+
+<style>
+  .projects-section {
+    background: color-mix(in srgb, var(--color-primary) 4%, var(--color-base-100));
+  }
+</style>

@@ -43,7 +43,7 @@ const {
     opacity: 0.22;
     top: -10%;
     left: 5%;
-    background: color-mix(in oklch, var(--color-primary) 70%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 70%, transparent);
   }
   .blob-2 {
     width: 560px;
@@ -52,7 +52,7 @@ const {
     opacity: 0.28;
     top: -5%;
     right: 5%;
-    background: color-mix(in oklch, var(--color-primary) 55%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 55%, transparent);
   }
   .blob-3 {
     width: 480px;
@@ -61,7 +61,7 @@ const {
     opacity: 0.2;
     bottom: -10%;
     left: 40%;
-    background: color-mix(in oklch, var(--color-primary) 45%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 45%, transparent);
   }
 
   .diagonal-pattern {
@@ -79,13 +79,13 @@ const {
   .spotlights {
     background:
       radial-gradient(
-        ellipse 55% 60% at 5% 10%,
-        color-mix(in oklch, var(--color-primary) 14%, transparent) 0%,
+        in srgb ellipse 55% 60% at 5% 10%,
+        color-mix(in srgb, var(--color-primary) 14%, transparent) 0%,
         transparent 65%
       ),
       radial-gradient(
-        ellipse 40% 45% at 95% 90%,
-        color-mix(in oklch, var(--color-primary) 9%, transparent) 0%,
+        in srgb ellipse 40% 45% at 95% 90%,
+        color-mix(in srgb, var(--color-primary) 9%, transparent) 0%,
         transparent 60%
       );
   }
