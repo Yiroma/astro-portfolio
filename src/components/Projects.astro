@@ -1,120 +1,156 @@
 ---
-import { Image } from "astro:assets";
-// icons
-import { GithubIcon, WebIcon } from "@assets/icons/ui";
+import BlobBackground from "@components/ui/BlobBackground.astro";
+import Container from "@components/ui/Container.astro";
+import Eyebrow from "@components/ui/Eyebrow.astro";
+import ProjectsGrid from "@components/react/ProjectsGrid";
+import type { Project } from "@components/react/ProjectsGrid";
 
-const projects = [
+const projects: Project[] = [
   {
-    title: "Budget Management — Application de gestion financière (en cours...)",
-    description: `Développement en autonomie d'une application web full-stack dédiée à la gestion complète des finances : pilotage de comptes bancaires, budgets prévisionnels et analyse des flux de dépenses.
-
-Le défi technique majeur résidait dans la conception d'une architecture robuste capable de garantir l'intégrité des données financières sensibles. J'ai structuré le projet autour d'une API REST performante et d'une modélisation UML exhaustive, assurant une séparation claire des responsabilités et une scalabilité optimale du backend.
-
-L'industrialisation du projet a reposé sur une culture DevOps forte, incluant une containerisation complète sous Docker pour l'homogénéité des environnements. Une attention particulière a été portée à la qualité logicielle via l'application de conventions de code strictes, des tests automatisés et une documentation technique détaillée, reflétant des standards de production professionnelle.`,
-    image: "/no-image.webp",
-    alt: "Capture d'écran de l'application de gestion de budget",
-    github: "https://github.com/Yiroma/budget-management",
-    website: "",
-  },
-  {
-    title: "CarePlan - Plateforme de Gestion Médicale",
-    description: `Développement d'une application de gestion de planning médical en équipe de 5 développeurs.
-
-      Le défi principal était de créer une architecture scalable capable de gérer simultanément les données patients et le planning médical. J'ai conçu une architecture microservices avec authentification multi-rôles permettant aux agents d'accueil, secrétaires, médecins et administrateurs d'accéder aux fonctionnalités selon leurs permissions.
-
-      Le projet a nécessité une approche collaborative rigoureuse avec méthodologie Agile Scrum, incluant tests automatisés et déploiement continu pour garantir la fiabilité en milieu médical.`,
+    index: 1,
+    label: "Projet de fin de cursus CDA",
+    date: "2025",
+    title: "CarePlan",
+    subtitle: "Gestion de plannings médicaux",
+    tags: [
+      "React",
+      "TypeScript",
+      "GraphQL",
+      "Apollo",
+      "TypeORM",
+      "PostgreSQL",
+      "Microservices",
+      "Docker",
+      "CI/CD",
+      "Playwright",
+      "RGAA",
+    ],
+    resume:
+      "Application de gestion de plannings pour cabinets médicaux, avec trois rôles (Secrétaire, Médecin, Administrateur) et une accessibilité RGAA 4.1 effective.",
+    context:
+      "Projet de fin de cursus CDA. Application de gestion de plannings pour cabinets médicaux avec trois rôles : Secrétaire, Médecin, Administrateur.",
+    problem:
+      "Séparer clairement les responsabilités entre rôles, garantir une accessibilité réelle (pas cosmétique), et industrialiser le delivery sur une stack microservices avec tests à plusieurs niveaux.",
+    solution:
+      "Architecture microservices modélisée UML, API GraphQL Apollo, tests Jest + Playwright E2E, Docker complet, CI/CD. Accessibilité dès la conception : navigation 100 % clavier, focus trap, validation NVDA, ARIA sur tous composants custom.",
+    result:
+      "Application livrée et soutenue avec succès. Alignée avec les standards demandé par le client. Conformité RGAA et WCAG 2.1 <strong>effective</strong>, pas seulement déclarative.",
+    links: [
+      { label: "Voir la démo", href: "#", variant: "primary", external: false, icon: "website" },
+      {
+        label: "Code GitHub",
+        href: "https://github.com/Yiroma",
+        variant: "outline",
+        external: true,
+        icon: "github",
+      },
+    ],
     image: "/careplan.webp",
-    alt: "Capture d'écran de la plateforme de gestion de planning médical",
-    github: "https://github.com/WildCodeSchool-CDA-FT-2025-03/CDA-Projet-2-Team-1",
-    website: "",
   },
   {
+    index: 2,
+    label: "Mission freelance — client réel",
+    date: "2024",
     title: "Taxi Loire Valley Services",
-    description: `Conception et développement d'un site vitrine moderne pour un service de taxi, optimisé pour la conversion client.
-
-L'objectif était de créer une présence web professionnelle avec réservation en ligne et optimisation SEO locale. J'ai implémenté un design responsive avec animations fluides, intégration multilingue FR/EN et optimisations performance (score Lighthouse 95+).
-
-Le site a considérablement amélioré la visibilité en ligne du client et facilité la prise de contact avec les prospects.`,
+    subtitle: "Site vitrine VTC",
+    tags: ["React", "Next.js", "SEO local", "Schema.org", "Lighthouse 95+"],
+    resume:
+      "Site vitrine pour un client VTC local, conçu pour capter du trafic organique local sans budget publicitaire, avec un score Lighthouse > 95 sur les 4 piliers.",
+    context:
+      "Première mission freelance (2024). Client VTC local sans présence en ligne, souhaitant capter des clients via Google sans budget publicité.",
+    problem:
+      "Concevoir de zéro une identité visuelle et un site rapide, accessible, référencé localement — avec un coût d'acquisition zéro pour le client.",
+    solution:
+      "Identité visuelle, intégration responsive, SEO local (mots-clés géolocalisés, Schema.org, Google Business Profile). Gestion de bout en bout de la prospection à la maintenance.",
+    result:
+      "<strong>Score Lighthouse &gt; 95 sur les 4 piliers</strong> (performance, accessibilité, bonnes pratiques, SEO). Site en ligne et opérationnel.",
+    links: [
+      { label: "Voir le site", href: "#", variant: "primary", external: true, icon: "website" },
+    ],
     image: "/taxilvs.webp",
-    alt: "Capture d'écran du site vitrine de Taxi Loire Valley Services",
-    github: "",
-    website: "https://taxiloirevalleyservices.com",
   },
   {
-    title: "DevMX, le blog",
-    description: `Développement d'une plateforme de publication de contenu pour la communauté des développeurs.
-
-Le défi était de créer un éditeur riche permettant la publication d'articles techniques avec syntaxe de code, tout en maintenant une architecture sécurisée. J'ai implémenté un système complet de gestion utilisateurs, publication et modération avec interface d'administration.
-
-La plateforme permet désormais aux développeurs de partager leurs connaissances dans un environnement dédié et optimisé.`,
-    image: "/devmx.webp",
-    alt: "Capture d'écran de la plateforme de publication de contenu",
-    github: "https://github.com/Yiroma/Blog-DevMX",
-    website: "",
+    index: 3,
+    label: "Projet personnel",
+    date: "2026",
+    title: "Budget Management",
+    subtitle: "Application de suivi financière personnelle",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind",
+      "Java",
+      "Spring Boot",
+      "PostgreSQL",
+      "Docker",
+      "API REST",
+    ],
+    resume:
+      "Application permettant de suivre ses dépenses, catégoriser des transactions et visualiser ses flux financiers.",
+    context:
+      "Application permettant de suivre ses dépenses, catégoriser des transactions et visualiser ses flux financiers.",
+    problem:
+      "Approfondir la stack Java/Spring Boot tout en gardant un front Next.js moderne. Pratiquer une architecture en couches stricte avec une API REST disciplinée.",
+    solution:
+      "Architecture en couches, API REST stricte, Docker + Makefile pour faciliter l'onboarding, documentation interne. Accessibilité RGAA visée dès la conception.",
+    result: "Projet en cours — à compléter à livraison.",
+    links: [
+      {
+        label: "Code GitHub",
+        href: "https://github.com/Yiroma",
+        variant: "outline",
+        external: true,
+        icon: "github",
+      },
+    ],
+    inProgress: true,
+    image: "",
+  },
+  {
+    index: 4,
+    label: "Projet personnel",
+    date: "2025",
+    title: "Hive",
+    subtitle: "Home media center",
+    tags: ["React", "TypeScript", "Tailwind", "Apollo", "GraphQL", "TypeORM", "SQLite", "WCAG AA"],
+    resume:
+      "Application de centralisation, notation et recommandation de contenus multimédias (films, séries, musique), avec une accessibilité mobile-first respectant strictement les ratios de contraste WCAG AA.",
+    context:
+      "Application de centralisation, notation et recommandation de contenus multimédias (films, séries, musique).",
+    problem:
+      "Construire une expérience mobile-first vraiment accessible dans un domaine où les apps grand public négligent l'a11y.",
+    solution:
+      "Interface mobile-first React + TypeScript + Tailwind, alternatives textuelles systématiques, <strong>respect strict des ratios de contraste WCAG AA</strong>. Stack GraphQL/Apollo + TypeORM sur SQLite.",
+    result: "À compléter selon avancement.",
+    links: [
+      {
+        label: "Code GitHub",
+        href: "https://github.com/Yiroma",
+        variant: "outline",
+        external: true,
+        icon: "github",
+      },
+    ],
+    image: "/hive.webp",
   },
 ];
 ---
 
-<section
-  id="projects"
-  class="mx-auto flex max-w-7xl flex-col gap-4 border-b border-base-content/20 px-4 pb-12 md:gap-8 lg:gap-12"
->
-  <h2 class="text-4xl font-bold">Mes projets</h2>
-  <div class="mx-auto grid max-w-7xl grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-12">
-    {
-      projects.map((project) => (
-        <div class="card w-full border border-base-content/5 bg-base-100 shadow-sm">
-          <figure>
-            <Image
-              src={project.image}
-              alt={project.alt}
-              class="w-full"
-              width={600}
-              height={400}
-              loading="lazy"
-              format="webp"
-            />
-          </figure>
-          <div class="card-body">
-            <h3 class="card-title">{project.title}</h3>
-            <p class="whitespace-pre-line">{project.description}</p>
-            <div class="card-actions justify-end">
-              {project.github && (
-                <a
-                  class="btn btn-outline btn-primary"
-                  href={project.github}
-                  aria-label="Voir le projet sur Github"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <GithubIcon />
-                </a>
-              )}
-              {project.website && (
-                <a
-                  class="btn btn-outline btn-primary"
-                  href={project.website}
-                  aria-label="Visiter le site internet"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <WebIcon />
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
-      ))
-    }
-  </div>
-  <a
-    href="https://github.com/Yiroma"
-    aria-label="Voir plus de projets sur Github"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="btn btn-block btn-neutral"
-  >
-    Plus de projets sur Github
-    <GithubIcon />
-  </a>
+<section id="realisations" class="projects-section relative z-0 overflow-hidden py-16 md:py-24">
+  <BlobBackground />
+
+  <Container class="relative z-10">
+    <div class="mb-12">
+      <Eyebrow class="mb-3">Ce que j'ai livré</Eyebrow>
+      <h2>Des projets réels,<br />du contexte, des résultats.</h2>
+    </div>
+
+    <ProjectsGrid projects={projects} client:visible />
+  </Container>
 </section>
+
+<style>
+  .projects-section {
+    background: color-mix(in srgb, var(--color-primary) 4%, var(--color-base-100));
+  }
+</style>

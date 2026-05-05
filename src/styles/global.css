@@ -109,6 +109,33 @@ h6,
   font-family: var(--font-title);
 }
 
+h1 {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.12;
+  color: var(--color-base-content);
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-base-content);
+}
+
+h3 {
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-base-content);
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--color-base-content-muted);
+}
+
 code,
 pre,
 kbd,
@@ -120,26 +147,4 @@ samp {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: 4px;
-}
-
-.container-custom {
-  margin-inline: auto;
-  max-width: 72rem;
-  padding-inline: 1.5rem;
-}
-
-@media (min-width: 1024px) {
-  .container-custom {
-    padding-inline: 2rem;
-  }
-}
-
-.section-padding {
-  padding-block: 5rem;
-}
-
-@media (min-width: 1024px) {
-  .section-padding {
-    padding-block: 8rem;
-  }
 }

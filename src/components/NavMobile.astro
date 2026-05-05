@@ -1,4 +1,5 @@
 ---
+import Container from "@components/ui/Container.astro";
 import ThemeSwap from "@/components/ThemeSwap.astro";
 import { navItems } from "@/data/nav";
 ---
@@ -8,7 +9,7 @@ import { navItems } from "@/data/nav";
   class="fixed inset-x-0 top-16 z-40 hidden w-full border-b border-base-300 bg-base-100 shadow-md md:hidden"
 >
   <nav aria-label="Navigation mobile">
-    <ul class="container-custom flex flex-col py-3">
+    <Container as="ul" class="flex flex-col py-3">
       {
         navItems.map(({ label, href }) => (
           <li>
@@ -31,7 +32,7 @@ import { navItems } from "@/data/nav";
         </a>
         <ThemeSwap />
       </li>
-    </ul>
+    </Container>
   </nav>
 </div>
 

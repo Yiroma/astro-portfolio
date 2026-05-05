@@ -2,11 +2,9 @@
 import Layout from "@/layouts/Layout.astro";
 // Components
 import Contact from "@/components/Contact.astro";
-import Home from "@/components/Home.astro";
-import LetterGlitch from "@/components/react/LetterGlitch";
+import Hero from "@/components/Hero.astro";
+import Profile from "@/components/Profile.astro";
 import Projects from "@/components/Projects.astro";
-import SkillsBar from "@/components/react/SkillsBar";
-import SkillsSection from "@/components/SkillsSection.astro";
 // Styles
 import "../styles/global.css";
 ---
@@ -15,16 +13,9 @@ import "../styles/global.css";
   title="Romaric Yi | Développeur Full Stack JS/TS • Châteauneuf-sur-Loire"
   description="Développeur Full Stack basé à Châteauneuf-sur-Loire (45), région Orléanaise. React, TypeScript, Node.js, Express, Java, PostgreSQL… Découvrez mes projets et contactez-moi pour vos besoins web."
 >
-  <Home />
-  <SkillsBar client:visible />
-  <div
-    class="mx-auto flex max-w-7xl flex-col items-center gap-8 border-b border-base-content/20 pb-12 md:pb-16 lg:flex-row"
-  >
-    <SkillsSection />
-    <div class="flex h-[292px] w-full justify-center pt-3 md:pt-9 lg:w-1/2">
-      <LetterGlitch client:load />
-    </div>
-  </div>
+  <Hero />
+  <Profile />
   <Projects />
+
   <Contact />
 </Layout>

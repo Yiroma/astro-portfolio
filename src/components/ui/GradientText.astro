@@ -1,0 +1,52 @@
+---
+interface Props {
+  as?: "span" | "h1" | "h2" | "h3";
+  class?: string;
+}
+
+const { as: Tag = "span", class: className } = Astro.props;
+---
+
+<Tag class:list={["gradient-text", className]}>
+  <slot />
+</Tag>
+
+<style>
+  @keyframes shimmer {
+    0% {
+      background-position: 0% center;
+    }
+    55% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: -150% center;
+    }
+  }
+
+  .gradient-text {
+    background: linear-gradient(
+      90deg,
+      var(--color-primary) 0%,
+      #60a5fa 30%,
+      #bfdbfe 48%,
+      #dbeafe 52%,
+      #60a5fa 70%,
+      var(--color-primary) 100%
+    );
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 5s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gradient-text {
+      animation: none;
+      background: none;
+      -webkit-text-fill-color: currentColor;
+      color: var(--color-primary);
+    }
+  }
+</style>
