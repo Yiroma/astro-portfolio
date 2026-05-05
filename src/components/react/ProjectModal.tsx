@@ -7,9 +7,10 @@ import type { Project } from "@/types/project.type";
 interface ProjectModalProps {
   project: Project;
   onClose: () => void;
+  isClosing?: boolean;
 }
 
-export function ProjectModal({ project, onClose }: ProjectModalProps) {
+export function ProjectModal({ project, onClose, isClosing = false }: ProjectModalProps) {
   const panelRef = useRef<React.ElementRef<"div">>(null);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
   return createPortal(
     <div
       aria-hidden="true"
-      className="fixed inset-0 z-[9999] flex animate-[modal-backdrop-in_200ms_ease_both] items-center justify-center bg-black/55 p-4 backdrop-blur-sm"
+      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-black/55 p-4 backdrop-blur-sm ${isClosing ? "animate-[modal-backdrop-out_300ms_ease_both]" : "animate-[modal-backdrop-in_200ms_ease_both]"}`}
     >
       <button
         type="button"
@@ -41,7 +42,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         aria-label={project.title}
         ref={panelRef}
         tabIndex={-1}
-        className="relative z-[1] flex max-h-[90dvh] w-full max-w-[52rem] animate-[modal-panel-in_220ms_ease_both] flex-col gap-6 overflow-y-auto rounded-2xl border border-base-300 bg-base-100 p-8 outline-none"
+        className={`relative z-[1] flex max-h-[90dvh] w-full max-w-[52rem] flex-col gap-6 overflow-y-auto rounded-2xl border border-base-300 bg-base-100 p-8 outline-none ${isClosing ? "animate-[modal-panel-out_280ms_ease_both]" : "animate-[modal-panel-in_220ms_ease_both]"}`}
       >
         {/* Fermer */}
         <button
