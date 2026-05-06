@@ -66,8 +66,7 @@ const { variant = "default", size = "sm", dot = false, class: className } = Astr
   .badge--outline {
     background: transparent;
     border-color: var(--color-base-300);
-    color: var(--color-base-content);
-    opacity: 0.8;
+    color: color-mix(in oklch, var(--color-base-content) 50%, transparent);
   }
 
   @keyframes badge-dot-pulse {
