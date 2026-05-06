@@ -6,6 +6,7 @@ import Container from "@components/ui/Container.astro";
 import Eyebrow from "@components/ui/Eyebrow.astro";
 import GradientText from "@components/ui/GradientText.astro";
 import { socialLinks } from "@data/nav";
+import { ChevronDown, Download, Image } from "@lucide/astro";
 ---
 
 <section id="hero" class="hero-section relative z-0 overflow-hidden py-20 md:py-32">
@@ -42,13 +43,17 @@ import { socialLinks } from "@data/nav";
         </p>
 
         <div class="hero-anim-cta mb-6 flex flex-wrap gap-3">
-          <Button href="#realisations" variant="primary" size="md">Voir mes réalisations</Button>
+          <Button href="#realisations" variant="primary" size="md">
+            <ChevronDown size={16} />
+            Voir mes réalisations</Button
+          >
           <Button
             href="/CV-Romaric-Yi-Full-Stack-Developer.pdf"
             variant="outline"
             size="md"
             target="_blank"
           >
+            <Download size={16} />
             Télécharger mon CV
           </Button>
         </div>
@@ -76,22 +81,7 @@ import { socialLinks } from "@data/nav";
           class="hero-illustration flex aspect-[5/4] w-full max-w-md items-center justify-center rounded-2xl"
         >
           <div class="flex flex-col items-center gap-4 text-primary/50">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="size-28"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="1.5"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0H3"
-              ></path>
-            </svg>
-            <p class="text-xs font-medium tracking-wide">Illustration à venir</p>
+            <Image size={48} />
           </div>
         </div>
       </div>
