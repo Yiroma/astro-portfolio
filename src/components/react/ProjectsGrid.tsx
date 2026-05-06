@@ -12,7 +12,7 @@ export default function ProjectsGrid({ projects }: { projects: Project[] }) {
 
   return (
     <>
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,28rem),1fr))] gap-5">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         {projects.map((p) => (
           <ProjectCard
             key={p.index}

@@ -1,5 +1,6 @@
 ---
-import { LogoIcon, MenuBurgerIcon, MenuCloseIcon } from "@/components/ui/icons";
+import { LogoIcon } from "@/components/ui/icons";
+import { Menu, X, Download } from "@lucide/astro";
 import Button from "@components/ui/Button.astro";
 import Container from "@components/ui/Container.astro";
 import Nav from "@/components/Nav.astro";
@@ -24,6 +25,7 @@ import ThemeSwap from "@/components/ThemeSwap.astro";
           size="sm"
           target="_blank"
         >
+          <Download size={16} />
           Télécharger mon CV
         </Button>
       </div>
@@ -41,8 +43,8 @@ import ThemeSwap from "@/components/ThemeSwap.astro";
           aria-expanded="false"
           aria-controls="mobile-nav"
         >
-          <MenuBurgerIcon />
-          <MenuCloseIcon />
+          <Menu class="icon-menu" />
+          <X class="icon-close hidden" />
         </Button>
       </div>
     </div>
