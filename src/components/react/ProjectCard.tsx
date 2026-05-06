@@ -1,8 +1,7 @@
 import React from "react";
-import { Badge } from "@components/react/ui/Badge";
-import { Btn } from "@components/react/ui/Btn";
-import { GithubIcon } from "@/assets/icons/ui/GithubIcon";
-import { WebIcon } from "@/assets/icons/ui/WebIcon";
+import { Badge } from "@/components/ui/Badge";
+import { Btn } from "@/components/ui/Btn";
+import { GithubReactIcon, WebReactIcon } from "@/components/ui/icons";
 import type { Project } from "@/types/project.type";
 import { useCardAnimation } from "@components/react/hooks/useCardAnimation";
 import type { Phase } from "@components/react/hooks/useModalPhase";
@@ -115,7 +114,7 @@ export function ProjectCard({ project, onClick, phase }: ProjectCardProps) {
               aria-label={link.label}
               title={link.label}
             >
-              {link.icon === "github" ? <GithubIcon /> : <WebIcon />}
+              {link.icon === "github" ? <GithubReactIcon /> : <WebReactIcon />}
             </Btn>
           ))}
         </div>
