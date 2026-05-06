@@ -1,4 +1,4 @@
-import { GithubIcon, LinkedinIcon, MailIcon } from "@assets/icons/ui";
+import { GithubIcon, LinkedinIcon, MailIcon } from "@/components/ui/icons";
 
 export const navItems = [
   { label: "Profil", href: "#profil" },

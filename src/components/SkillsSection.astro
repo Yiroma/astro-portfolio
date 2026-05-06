@@ -1,0 +1,162 @@
+---
+import Container from "@components/ui/Container.astro";
+import Eyebrow from "@components/ui/Eyebrow.astro";
+import SkillCard from "@components/SkillCard.astro";
+
+import { TvMinimal, Server, Database, Boxes, ShieldCogIcon } from "@lucide/astro";
+
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+
+type Category = {
+  title: string;
+  skills: string[];
+  icon: AstroComponentFactory;
+  horizontalAtLg: boolean;
+};
+
+const categories: Category[] = [
+  {
+    title: "Front-end",
+    skills: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Sass",
+      "Shadcn/UI",
+      "Figma",
+      "Accessibilité",
+    ],
+    icon: TvMinimal,
+    horizontalAtLg: false,
+  },
+  {
+    title: "Back-end",
+    skills: [
+      "Node.js",
+      "Express",
+      "Java",
+      "Spring Boot",
+      "API REST",
+      "GraphQL",
+      "Apollo Server",
+      "TypeORM",
+    ],
+    icon: Server,
+    horizontalAtLg: false,
+  },
+  {
+    title: "Données",
+    skills: ["PostgreSQL", "MySQL", "SQLite", "MongoDB", "Redis"],
+    icon: Database,
+    horizontalAtLg: false,
+  },
+  {
+    title: "DevOps & Qualité",
+    skills: [
+      "Git / GitHub",
+      "Docker / Nginx",
+      "CI/CD",
+      "Vitest / Jest",
+      "Playwright (E2E)",
+      "RGAA / WCAG 2.1",
+      "Jira / Notion",
+    ],
+    icon: ShieldCogIcon,
+    horizontalAtLg: false,
+  },
+  {
+    title: "Architecture",
+    skills: ["MVC", "Clean Architecture", "Microservices", "UML", "Merise"],
+    icon: Boxes,
+    horizontalAtLg: true,
+  },
+];
+---
+
+<section id="competences" class="skills-section bg-base-200 py-16 md:py-24">
+  <Container>
+    <div class="mb-12">
+      <Eyebrow class="mb-3">Ma stack</Eyebrow>
+      <h2>
+        Polyglotte, pragmatique,<br />accessibilité incluse.
+      </h2>
+    </div>
+
+    <div class="skills-grid grid grid-cols-1 gap-4">
+      {
+        categories.map((category) => (
+          <SkillCard
+            title={category.title}
+            skills={category.skills}
+            icon={category.icon}
+            horizontalAtLg={category.horizontalAtLg}
+          />
+        ))
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .skills-section {
+    box-shadow:
+      0 -20px 24px rgba(0, 0, 0, 0.06),
+      0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+  @media (min-width: 480px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skills-grid > :global(:last-child) {
+      grid-column: span 2;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .skills-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .skills-grid > :global(:nth-child(-n + 3)) {
+      grid-column: span 2;
+    }
+
+    .skills-grid > :global(:nth-child(n + 4)) {
+      grid-column: span 3;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .skills-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .skills-grid > :global(:nth-child(-n + 4)) {
+      grid-column: span 1;
+    }
+
+    .skills-grid > :global(:last-child) {
+      grid-column: span 4;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .skills-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .skills-grid > :global(:nth-child(-n + 3)) {
+      grid-column: span 1;
+    }
+
+    .skills-grid > :global(:nth-child(n + 4)) {
+      grid-column: span 1;
+    }
+
+    .skills-grid > :global(:last-child) {
+      grid-column: span 1;
+    }
+  }
+</style>

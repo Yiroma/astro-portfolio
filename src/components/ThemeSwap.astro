@@ -1,15 +1,15 @@
 ---
-import { MoonIcon, SunIcon } from "@/assets/icons/ui";
+import { Moon, Sun } from "@lucide/astro";
 ---
 
 <label
-  class="swap h-9 w-9 swap-rotate cursor-pointer rounded-md border border-base-300 text-base-content/60 transition-colors hover:text-base-content"
+  class="swap h-9 w-9 swap-rotate cursor-pointer rounded-md border border-base-300 text-base-content/60 transition-colors hover:border-base-content hover:text-base-content"
   aria-label="Basculer le thème clair / sombre"
 >
   <input type="checkbox" class="theme-controller" value="light" />
   <span class="sr-only">Changer de thème sombre / thème clair</span>
-  <SunIcon />
-  <MoonIcon />
+  <Sun class="swap-on" size={16} />
+  <Moon class="swap-off" size={16} />
 </label>
 
 <style is:global>

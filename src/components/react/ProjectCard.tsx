@@ -1,8 +1,7 @@
 import React from "react";
-import { Badge } from "@components/react/ui/Badge";
-import { Btn } from "@components/react/ui/Btn";
-import { GithubIcon } from "@/assets/icons/ui/GithubIcon";
-import { WebIcon } from "@/assets/icons/ui/WebIcon";
+import { Badge } from "@/components/ui/Badge";
+import { Btn } from "@/components/ui/Btn";
+import { GithubReactIcon, WebReactIcon } from "@/components/ui/icons";
 import type { Project } from "@/types/project.type";
 import { useCardAnimation } from "@components/react/hooks/useCardAnimation";
 import type { Phase } from "@components/react/hooks/useModalPhase";
@@ -62,11 +61,8 @@ export function ProjectCard({ project, onClick, phase }: ProjectCardProps) {
       {/* Meta */}
       <div className="flex items-center justify-between gap-2">
         <div className="flex min-w-0 items-center gap-2">
-          <span className="shrink-0 text-xs font-semibold tracking-[0.08em] text-primary uppercase">
-            Projet {project.index}
-          </span>
-          <span className="overflow-hidden text-xs text-ellipsis whitespace-nowrap text-base-content/50">
-            · {project.label}
+          <span className="shrink-0 text-xs font-semibold tracking-[0.08em] text-primary">
+            {project.label}
           </span>
         </div>
         {project.inProgress ? (
@@ -115,7 +111,7 @@ export function ProjectCard({ project, onClick, phase }: ProjectCardProps) {
               aria-label={link.label}
               title={link.label}
             >
-              {link.icon === "github" ? <GithubIcon /> : <WebIcon />}
+              {link.icon === "github" ? <GithubReactIcon /> : <WebReactIcon />}
             </Btn>
           ))}
         </div>
