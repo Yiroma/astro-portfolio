@@ -94,59 +94,61 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  -webkit-font-smoothing: antialiased;
-  font-feature-settings: "cv11", "ss01";
-}
+@layer base {
+  body {
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.font-title {
-  font-family: var(--font-title);
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .font-title {
+    font-family: var(--font-title);
+  }
 
-h1 {
-  font-size: clamp(2rem, 4vw, 3.25rem);
-  font-weight: 800;
-  line-height: 1.12;
-  color: var(--color-base-content);
-}
+  h1 {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.12;
+    color: var(--color-base-content);
+  }
 
-h2 {
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--color-base-content);
-}
+  h2 {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-base-content);
+  }
 
-h3 {
-  font-size: clamp(1.125rem, 2vw, 1.25rem);
-  font-weight: 700;
-  line-height: 1.3;
-  color: var(--color-base-content);
-}
+  h3 {
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--color-base-content);
+  }
 
-p {
-  font-size: 1rem;
-  line-height: 1.75;
-  color: var(--color-base-content-muted);
-}
+  p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-base-content-muted);
+  }
 
-code,
-pre,
-kbd,
-samp {
-  font-family: var(--font-mono);
-}
+  code,
+  pre,
+  kbd,
+  samp {
+    font-family: var(--font-mono);
+  }
 
-:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-  border-radius: 4px;
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 /* ── Animations frise timeline (section Parcours) ── */
