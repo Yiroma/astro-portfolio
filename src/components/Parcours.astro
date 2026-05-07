@@ -1,0 +1,30 @@
+---
+import Container from "@components/ui/Container.astro";
+import Eyebrow from "@components/ui/Eyebrow.astro";
+import { TimelineFrise } from "@components/react/TimelineFrise";
+import { timelineEntries } from "@/data/timeline";
+---
+
+<section id="parcours" class="parcours-section relative z-10 py-16 md:py-24">
+  <Container>
+    <div class="mb-12 md:mb-16">
+      <Eyebrow class="mb-3">Parcours</Eyebrow>
+      <h2>
+        Un itinéraire atypique.<br />Une vraie valeur ajoutée.
+      </h2>
+    </div>
+
+    <div class="max-w-3xl">
+      <TimelineFrise entries={timelineEntries} client:visible />
+    </div>
+  </Container>
+</section>
+
+<style>
+  .parcours-section {
+    background: var(--color-base-100);
+    box-shadow:
+      0 -20px 24px rgba(0, 0, 0, 0.06),
+      0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+</style>
