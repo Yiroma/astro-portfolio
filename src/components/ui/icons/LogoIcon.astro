@@ -1,12 +1,18 @@
 ---
+interface Props {
+  class?: string;
+  width?: string | number;
+  height?: string | number;
+}
 
+const { class: className = "text-primary", width, height } = Astro.props;
 ---
 
 <svg
-  class="text-primary"
+  class:list={className}
+  width={width ?? "27"}
+  height={height ?? "20"}
   viewBox="0 0 381 287"
-  width="27"
-  height="20"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
   aria-hidden="true"
