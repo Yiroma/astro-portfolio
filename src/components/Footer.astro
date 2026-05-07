@@ -1,63 +1,96 @@
 ---
+import { navItems, socialLinks } from "@/data/nav";
 import { GithubIcon, LinkedinIcon, LogoIcon, MailIcon } from "@/components/ui/icons";
+
+const currentYear = new Date().getFullYear();
+
+const iconMap = {
+  GitHub: GithubIcon,
+  LinkedIn: LinkedinIcon,
+  Email: MailIcon,
+} as const;
 ---
 
-<footer>
-  <div class="footer bg-neutral p-10 text-neutral-content sm:footer-horizontal">
-    <aside>
-      <LogoIcon width="50" height="50" className="h-8 w-8" />
-      <p>
-        Romaric YI
-        <br />
-        Concepteur Développeur d'Applications
-      </p>
-    </aside>
-    <nav>
-      <h3 class="footer-title opacity-80">Social</h3>
-      <div class="grid grid-flow-col gap-4">
-        <a
-          href="https://github.com/yiroma"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-        >
-          <GithubIcon />
+<footer class="border-t border-base-300 bg-base-200">
+  <div class="mx-auto max-w-7xl px-6 py-12">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-[1fr_auto]">
+      <div class="flex flex-col gap-6">
+        <a href="/" aria-label="Retour en haut de la page" class="flex w-fit items-center gap-3">
+          <LogoIcon width="28" height="21" class="text-base-content" />
+          <span class="font-title text-lg font-semibold text-base-content"> Romaric YI </span>
         </a>
-        <a
-          href="https://www.linkedin.com/in/yiromaric/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-        >
-          <LinkedinIcon />
-        </a>
-        <a
-          href="mailto:yiromaric@gmail.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Email"
-        >
-          <MailIcon />
-        </a>
+
+        <div class="flex gap-3">
+          {
+            socialLinks.map(({ label, href }) => {
+              const Icon = iconMap[label as keyof typeof iconMap];
+              return (
+                <a
+                  href={href}
+                  target={href.startsWith("mailto") ? undefined : "_blank"}
+                  rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+                  aria-label={label}
+                  class="flex h-10 w-10 items-center justify-center rounded-lg border border-base-300 text-base-content/60 transition-colors duration-150 hover:border-primary hover:text-primary"
+                >
+                  <Icon />
+                </a>
+              );
+            })
+          }
+        </div>
+
+        <div class="text-sm leading-relaxed text-base-content/50">
+          <p>Développeur Full Stack · React · Node.js · TypeScript · Java</p>
+          <p>Châteauneuf-sur-Loire (45) · Région Orléanaise</p>
+          <p>Remote toute la France</p>
+        </div>
       </div>
-    </nav>
-  </div>
-  <div
-    class="footer-center footer bg-neutral p-4 pb-28 text-neutral-content sm:footer-horizontal md:pb-4"
-  >
-    <aside>
-      <p>
-        Copyright © {new Date().getFullYear()} -
-        <a
-          href="https://github.com/Yiroma"
-          class="underline"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Lien vers GitHub de Romaric Yi"
-        >
-          Yiroma
-        </a> - Tous droits réservés.
-      </p>
-    </aside>
+
+      <nav aria-label="Navigation du footer">
+        <h3 class="mb-5 text-xs font-semibold tracking-widest text-base-content/40 uppercase">
+          Navigation
+        </h3>
+        <ul class="flex flex-col gap-3">
+          {
+            navItems.map(({ label, href }) => (
+              <li>
+                <a
+                  href={href}
+                  class="text-sm text-base-content/60 transition-colors duration-150 hover:text-base-content"
+                >
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <div
+      class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-base-300 pt-6 text-xs text-base-content/40 sm:flex-row"
+    >
+      <p>© {currentYear} Romaric YI</p>
+      <nav aria-label="Liens légaux">
+        <ul class="flex gap-6">
+          <li>
+            <a
+              href="/mentions-legales"
+              class="transition-colors duration-150 hover:text-base-content/70"
+            >
+              Mentions légales
+            </a>
+          </li>
+          <li>
+            <a
+              href="/politique-de-confidentialite"
+              class="transition-colors duration-150 hover:text-base-content/70"
+            >
+              Politique de confidentialité
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </footer>
