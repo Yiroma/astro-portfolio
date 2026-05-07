@@ -55,7 +55,7 @@ export function ProjectModal({ project, onClose, isClosing = false }: ProjectMod
         </button>
 
         <div className="flex flex-col gap-6 overflow-y-auto p-8">
-          {/* Image */}
+          {/* Img */}
           <div
             className="-mx-8 -mt-8 aspect-[3/2] w-[calc(100%+4rem)] shrink-0 overflow-hidden rounded-t-2xl border-b border-base-300"
             style={{
@@ -116,7 +116,7 @@ export function ProjectModal({ project, onClose, isClosing = false }: ProjectMod
             </div>
           </div>
 
-          {/* Détails */}
+          {/* Details */}
           <dl className="m-0 flex flex-col">
             {(
               [
@@ -132,10 +132,10 @@ export function ProjectModal({ project, onClose, isClosing = false }: ProjectMod
 
               return (
                 <div key={label} className="flex gap-4">
-                  {/* Frise verticale */}
+                  {/* Vertical line */}
                   <div className="flex w-5 shrink-0 flex-col items-center pt-0.5">
                     {isLast ? (
-                      /* Check final */
+                      /* Final Check */
                       <div
                         className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-white"
                         style={{
@@ -159,7 +159,7 @@ export function ProjectModal({ project, onClose, isClosing = false }: ProjectMod
                         </svg>
                       </div>
                     ) : (
-                      /* Dot intermédiaire */
+                      /* Dot */
                       <div
                         className="h-2.5 w-2.5 rounded-full border-2 border-primary bg-base-100"
                         style={{
@@ -169,7 +169,7 @@ export function ProjectModal({ project, onClose, isClosing = false }: ProjectMod
                         }}
                       />
                     )}
-                    {/* Ligne de connexion */}
+                    {/* Line */}
                     {!isLast && (
                       <div
                         className="relative my-1.5 w-px flex-1 bg-base-300"
@@ -187,7 +187,7 @@ export function ProjectModal({ project, onClose, isClosing = false }: ProjectMod
                     )}
                   </div>
 
-                  {/* Contenu */}
+                  {/* Content */}
                   <div className={!isLast ? "flex-1 pb-5" : "flex-1"}>
                     <dt className="mb-[0.35rem] text-sm font-semibold text-base-content">
                       {label}
@@ -221,7 +221,6 @@ export function ProjectModal({ project, onClose, isClosing = false }: ProjectMod
             </div>
           )}
         </div>
-        {/* fin contenu scrollable */}
       </div>
     </div>,
     document.body
