@@ -1,0 +1,78 @@
+---
+import Eyebrow from "@components/ui/Eyebrow.astro";
+import { socialLinks } from "@data/nav";
+import { Download, Languages, MapPin } from "@lucide/astro";
+---
+
+<div
+  class="contact-cta relative flex flex-col gap-8 overflow-hidden bg-primary p-8 lg:col-span-2 lg:p-12"
+>
+  <div class="flex flex-col gap-5">
+    <Eyebrow class="!text-white/70">Contact</Eyebrow>
+    <h2 class="contact-heading !text-white">
+      Une opportunité<br />à discuter ?
+    </h2>
+    <p class="text-base leading-relaxed text-white/75">
+      CDI, mission longue ou freelance ponctuel - j'étudie tout ce qui correspond à mon profil.
+      Premier échange sans engagement, je réponds sous&nbsp;24h.
+    </p>
+  </div>
+
+  <div class="flex flex-col gap-2.5">
+    <span class="flex items-center gap-2 text-sm text-white/70">
+      <MapPin class="size-4 shrink-0" />
+      Châteauneuf-sur-Loire (45) · Remote France
+    </span>
+    <span class="flex items-center gap-2 text-sm text-white/70">
+      <Languages class="size-4 shrink-0" />
+      Français (natif) · Anglais technique
+    </span>
+  </div>
+
+  <nav aria-label="Liens de contact" class="mt-auto flex flex-col gap-2">
+    {
+      socialLinks.map(({ label, href, icon: Icon }) => (
+        <a
+          href={href}
+          target={href.startsWith("mailto:") ? undefined : "_blank"}
+          rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+          class="flex items-center gap-3 rounded-lg border border-white/10 bg-white/8 px-3.5 py-2.5 text-[0.8125rem] font-medium text-white/85 no-underline transition-[background,border-color] duration-150 hover:border-white/25 hover:bg-white/15 hover:text-white"
+        >
+          <Icon class="size-4 shrink-0" />
+          <span>
+            {label === "GitHub"
+              ? "github.com/Yiroma"
+              : label === "LinkedIn"
+                ? "linkedin.com/in/yiromaric"
+                : "yiromaric@gmail.com"}
+          </span>
+        </a>
+      ))
+    }
+    <a
+      href="/CV-Romaric-Yi-Full-Stack-Developer.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex items-center gap-3 rounded-lg border border-white/10 bg-white/8 px-3.5 py-2.5 text-[0.8125rem] font-medium text-white/85 no-underline transition-[background,border-color] duration-150 hover:border-white/25 hover:bg-white/15 hover:text-white"
+    >
+      <Download class="size-4 shrink-0" />
+      <span>Télécharger le CV</span>
+    </a>
+  </nav>
+</div>
+
+<style>
+  .contact-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
+      radial-gradient(circle at 85% 20%, rgba(255, 255, 255, 0.09) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .contact-heading {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+</style>
