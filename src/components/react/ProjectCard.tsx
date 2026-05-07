@@ -30,7 +30,7 @@ export function ProjectCard({ project, onClick, phase }: ProjectCardProps) {
       className="flex cursor-pointer flex-col gap-[1.125rem] rounded-2xl border border-base-300 bg-base-100 p-7 select-none hover:-translate-y-[3px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.09)]"
       style={animStyle ?? { transition: "box-shadow 200ms ease, transform 200ms ease" }}
     >
-      {/* Image */}
+      {/* Img */}
       <div className="-mx-7 -mt-7 mb-1.5 aspect-[3/2] w-[calc(100%+3.5rem)] shrink-0 overflow-hidden rounded-t-2xl border-b border-base-300 bg-base-200">
         {project.image ? (
           <img
@@ -74,7 +74,7 @@ export function ProjectCard({ project, onClick, phase }: ProjectCardProps) {
         ) : null}
       </div>
 
-      {/* Titre */}
+      {/* Title */}
       <div className="flex flex-col gap-1">
         <h3 className="m-0 text-[1.0625rem] leading-[1.3] font-bold text-base-content">
           {project.title}
@@ -93,7 +93,7 @@ export function ProjectCard({ project, onClick, phase }: ProjectCardProps) {
         ))}
       </div>
 
-      {/* Résumé */}
+      {/* Summary */}
       <p className="m-0 grow text-[0.8125rem] leading-[1.65] text-base-content/70">
         {project.resume}
       </p>

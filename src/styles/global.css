@@ -148,3 +148,40 @@ samp {
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* ── Animations frise timeline (section Parcours) ── */
+@keyframes tl-dot-in {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes tl-line-fill {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes tl-content-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tl-description strong {
+  color: var(--color-base-content);
+  font-weight: 600;
+}

@@ -2,6 +2,7 @@ import js from "@eslint/js";
 import tsPlugin from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
 import eslintPluginAstro from "eslint-plugin-astro";
+import globals from "globals";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
@@ -15,10 +16,8 @@ export default [
       ecmaVersion: "latest",
       sourceType: "module",
       globals: {
-        console: "readonly",
-        process: "readonly",
-        window: "readonly",
-        document: "readonly",
+        ...globals.browser,
+        ...globals.node,
       },
     },
   },
