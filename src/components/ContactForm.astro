@@ -1,0 +1,214 @@
+---
+import Button from "@components/ui/Button.astro";
+import { MailCheck } from "@lucide/astro";
+---
+
+<div
+  class="flex flex-col gap-6 border-t border-base-300 bg-base-100 p-8 lg:col-span-3 lg:border-t-0 lg:border-l lg:p-12"
+>
+  <div>
+    <h3 class="mb-1">Envoyez-moi un message</h3>
+    <p class="text-sm">Je réponds personnellement à chaque demande.</p>
+  </div>
+
+  <!-- form -->
+  <div id="form-state">
+    <form
+      id="contact-form"
+      action="https://formspree.io/f/mdkdzgro"
+      method="POST"
+      class="flex flex-col gap-5"
+    >
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <label class="flex flex-col gap-1.5">
+          <span class="field-label">Nom</span>
+          <input
+            type="text"
+            name="name"
+            placeholder="Prénom Nom"
+            required
+            autocomplete="name"
+            class="field-input"
+          />
+        </label>
+        <label class="flex flex-col gap-1.5">
+          <span class="field-label">E-mail</span>
+          <input
+            type="email"
+            name="email"
+            placeholder="vous@exemple.com"
+            required
+            autocomplete="email"
+            class="field-input"
+          />
+        </label>
+      </div>
+
+      <label class="flex flex-col gap-1.5">
+        <span class="field-label">Sujet</span>
+        <input
+          type="text"
+          name="subject"
+          placeholder="CDI, mission, freelance…"
+          class="field-input"
+        />
+      </label>
+
+      <label class="flex flex-col gap-1.5">
+        <span class="field-label">Message</span>
+        <textarea
+          name="message"
+          placeholder="Décrivez votre besoin ou votre opportunité…"
+          required
+          rows="5"
+          class="field-input field-textarea"></textarea>
+      </label>
+
+      <!-- Honeypot anti-spam -->
+      <input type="text" name="_gotcha" class="hidden" aria-hidden="true" tabindex="-1" />
+
+      <div class="flex flex-wrap items-center gap-4">
+        <Button type="submit" variant="primary" size="md" id="contact-submit">
+          Envoyer le message
+        </Button>
+        <p id="form-error" class="hidden text-[0.8125rem] font-medium text-error" role="alert">
+          Une erreur est survenue. Réessayez ou écrivez directement par e-mail.
+        </p>
+      </div>
+    </form>
+  </div>
+
+  <!-- success -->
+  <div id="success-state" aria-live="polite">
+    <div class="flex flex-col items-center justify-center gap-5 py-10 text-center">
+      <div class="flex size-16 items-center justify-center rounded-full bg-success/10">
+        <MailCheck class="size-12 text-success" />
+      </div>
+      <div class="flex flex-col gap-1">
+        <p class="text-base font-semibold text-base-content">Message envoyé !</p>
+        <p class="text-base-content-muted text-sm">Je reviens vers vous sous 24h.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .field-label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-base-content);
+  }
+
+  .field-input {
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    font-family: inherit;
+    color: var(--color-base-content);
+    background: var(--color-base-200);
+    border: 1px solid var(--color-base-300);
+    border-radius: 0.375rem;
+    outline: none;
+    appearance: none;
+    transition:
+      border-color 150ms,
+      box-shadow 150ms;
+  }
+  .field-input::placeholder {
+    color: var(--color-base-content-muted);
+    opacity: 0.55;
+  }
+  .field-input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);
+  }
+
+  .field-textarea {
+    resize: vertical;
+    min-height: 7.5rem;
+    line-height: 1.6;
+  }
+
+  #form-state,
+  #success-state {
+    transition:
+      opacity 350ms ease,
+      transform 350ms ease;
+  }
+
+  #success-state {
+    display: none;
+  }
+</style>
+
+<script>
+  const formState = document.getElementById("form-state");
+  const successState = document.getElementById("success-state");
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const errorMsg = document.getElementById("form-error");
+  const submitBtn = document.getElementById("contact-submit") as HTMLButtonElement | null;
+
+  const TRANSITION_MS = 350;
+  const SUCCESS_DISPLAY_MS = 4000;
+
+  function fadeOut(el: HTMLElement): Promise<void> {
+    return new Promise((resolve) => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(6px)";
+      el.style.pointerEvents = "none";
+      setTimeout(() => {
+        el.style.display = "none";
+        resolve();
+      }, TRANSITION_MS);
+    });
+  }
+
+  function fadeIn(el: HTMLElement): void {
+    el.style.display = "block";
+    el.style.opacity = "0";
+    el.style.transform = "translateY(6px)";
+    void el.offsetHeight;
+    el.style.opacity = "1";
+    el.style.transform = "none";
+    el.style.pointerEvents = "";
+  }
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!submitBtn || !formState || !successState) return;
+
+    const originalLabel = submitBtn.textContent ?? "Envoyer le message";
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Envoi en cours…";
+    errorMsg?.classList.add("hidden");
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        form.reset();
+        await fadeOut(formState);
+        fadeIn(successState);
+
+        setTimeout(async () => {
+          await fadeOut(successState);
+          fadeIn(formState);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalLabel;
+        }, SUCCESS_DISPLAY_MS);
+      } else {
+        errorMsg?.classList.remove("hidden");
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+      }
+    } catch {
+      errorMsg?.classList.remove("hidden");
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+    }
+  });
+</script>
