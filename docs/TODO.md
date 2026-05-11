@@ -1,38 +1,41 @@
 # Tâches restantes — Portfolio V2
 
-> Synthèse générée le 2026-05-11 à partir de l'état du dépôt et du plan `REFONTE_YIROMARIC.md`.
+> Dernière mise à jour : 2026-05-11.
 > Les tâches sont groupées par thème et ordonnées par priorité dans chaque groupe.
 
 ---
 
 ## 1. Astro Content Collections
 
-Actuellement, les données des projets sont codées en dur dans `src/components/Projects.astro` (tableau `projects[]`) et le parcours dans `src/data/timeline.ts`.
-
-- [ ] Créer le répertoire `src/content/projects/` et la config de collection dans `src/content/config.ts`
-- [ ] Migrer les 4 projets vers des fichiers `.md` / `.mdx` individuels (`careplan.md`, `taxi-loire-valley.md`, `budget-management.md`, `hive.md`)
-- [ ] Migrer la timeline vers `src/content/timeline/` ou garder `src/data/timeline.ts` (décision à prendre)
-- [ ] Mettre à jour `Projects.astro` et les composants React pour lire les données via `getCollection()`
-
----
-
-## 2. Liens cassés / à compléter
-
-### Dans `src/components/Footer.astro`
-
-| Lien                            | Problème                                                                |
-| ------------------------------- | ----------------------------------------------------------------------- |
-| `/mentions-legales`             | Page absente (`src/pages/mentions-legales.astro` non créée)             |
-| `/politique-de-confidentialite` | Page absente (`src/pages/politique-de-confidentialite.astro` non créée) |
-
-### Envisager une centralisation des liens projets
-
-- [ ] Créer `src/data/projects.ts` (ou via Content Collections) pour centraliser URL démo + GitHub par projet
-- [ ] Alimenter ce fichier depuis les composants, plutôt que hardcoder les `href` dans le template
+- [x] Créer `src/content.config.ts` avec l'API Astro 5 (loaders `glob`) — collections `projects`, `timeline`, `profile`
+- [x] Migrer les 4 projets vers `src/content/projects/*.json`
+- [x] Migrer la timeline vers `src/content/timeline/*.json` (5 entrées ordonnées)
+- [x] Migrer les 3 piliers profil vers `src/content/profile/*.json`
+- [x] Mettre à jour `Projects.astro`, `Parcours.astro`, `Profile.astro` pour lire via `getCollection()`
+- [x] Extraire les compétences dans `src/data/skills.ts` (icônes Lucide non sérialisables → fichier TS, pas JSON)
 
 ---
 
-## 3. Pages manquantes
+## 2. Meta tags & SEO
+
+- [x] OG image par défaut : `public/og.png` (1200×630) — `Layout.astro` mis à jour
+- [x] Open Graph enrichi : `og:site_name`, `og:image:alt`, `og:image:width`, `og:image:height`
+- [x] Twitter : balises corrigées (`property` → `name`), ajout de `twitter:image:alt`
+- [x] JSON-LD `Person` rendu dynamique via `set:html={JSON.stringify(jsonLd)}`
+- [x] `jobTitle` mis à jour : "Concepteur Développeur d'Applications Full Stack"
+- [x] JSON-LD enrichi : `alumniOf`, `hasCredential` (RNCP 37873 + 31114), `knowsLanguage`, `addressRegion`, `postalCode`
+- [x] GitHub URL corrigé : `yiroma` → `Yiroma`
+- [x] `knowsAbout` complété : RGAA, WCAG 2.1, Accessibilité web, SEO technique
+
+---
+
+## 3. Alias Vite
+
+- [x] Ajouter `@data` → `src/data` dans `astro.config.mjs` (utilisé dans `Hero.astro` et `ContactCTA.astro`)
+
+---
+
+## 4. Pages
 
 - [x] `src/pages/legals.astro` — créée ✓
 - [x] `src/pages/privacy.astro` — créée ✓
@@ -40,56 +43,30 @@ Actuellement, les données des projets sont codées en dur dans `src/components/
 
 ---
 
-## 4. OG Image
+## 5. Image manquante — Budget Management
 
-L'image Open Graph actuelle est `public/default.webp` (image générique).
-
-- [ ] Créer une OG image dédiée au format **1200 × 630 px** optimisée pour les partages LinkedIn/Twitter
-- [ ] Contenu suggéré : nom + titre professionnel + palette couleur du site
-- [ ] L'enregistrer dans `public/og-image.png` (ou `.webp`) et mettre à jour `Layout.astro` (`image` prop par défaut)
-- [ ] Mettre également à jour la `"image"` dans le JSON-LD (`Layout.astro` ligne 87)
-
----
-
-## 5. JSON-LD — compléter et corriger
-
-Le JSON-LD `Person` dans `src/layouts/Layout.astro` (lignes 78–132) est en place mais incomplet par rapport au modèle de `REFONTE_YIROMARIC.md` (section 6).
-
-- [ ] Ajouter `"telephone": "+33695386099"` (si souhaité publiquement)
-- [ ] Ajouter `"alumniOf"` avec Wild Code School (RNCP 31114 + RNCP 37873)
-- [ ] Ajouter `"postalCode": "45110"` dans `"address"`
-- [ ] Ajouter `"hasOccupation"` ou `"seeks"` pour signaler la recherche active
-- [ ] Corriger la casse de l'URL GitHub : `"https://github.com/yiroma"` → `"https://github.com/Yiroma"` (cohérence avec `nav.ts`)
-- [ ] Ajouter les entrées `"knowsAbout"` manquantes : `"RGAA"`, `"WCAG"`, `"Accessibilité Web"`, `"Clean Architecture"`, `"UML"`, `"Merise"` (déjà dans le modèle, à compléter dans le code)
-
----
-
-## 6. Image manquante — Budget Management
-
-- [ ] Ajouter une capture ou illustration pour le projet Budget Management (`image: ""` dans `Projects.astro`)
+- [ ] Ajouter une capture ou illustration pour le projet Budget Management (`image: ""` dans `src/content/projects/budget-management.json`)
 - [ ] L'enregistrer dans `public/budget-management.webp`
 
 ---
 
-## 7. Finalisation & tests (après les tâches ci-dessus)
+## 6. Finalisation & tests
 
 - [ ] **Lighthouse > 95** sur les 4 piliers — cible : 100 accessibilité, 95+ performance/SEO/bonnes pratiques
 - [ ] Tests sur 3 navigateurs minimum (Chrome, Firefox, Safari/Edge)
 - [ ] Tests responsive : mobile (375px), tablette (768px), desktop (1280px), wide (1440px+)
 - [ ] Tests NVDA / VoiceOver — cohérence avec le positionnement a11y mis en avant dans le profil
-- [ ] Vérifier la résolution de l'alias `@data` dans Vite (utilisé dans `Hero.astro` et `ContactCTA.astro` comme `@data/nav`, mais non déclaré dans `astro.config.mjs` — `@/data/nav` est la forme correcte)
 
 ---
 
 ## Récapitulatif par priorité
 
-| Priorité              | Tâche                                                                  |
-| --------------------- | ---------------------------------------------------------------------- |
-| ✅ Fait               | Créer les pages `/mentions-legales` et `/politique-de-confidentialite` |
-| ✅ Fait               | OG Image dédiée (1200×630)                                             |
-| 🟠 Moyenne            | JSON-LD — compléter les champs manquants                               |
-| 🟠 Moyenne            | Image Budget Management                                                |
-| ✅ Fait               | Page 404 custom                                                        |
-| 🟡 Normale            | Astro Content Collections (migration des projets)                      |
-| 🟡 Normale            | Centraliser les liens projets dans un fichier data                     |
-| 🔵 Après finalisation | Lighthouse > 95 + tests navigateurs + tests NVDA                       |
+| Priorité              | Tâche                                                 |
+| --------------------- | ----------------------------------------------------- |
+| ✅ Fait               | Astro Content Collections (projets, timeline, profil) |
+| ✅ Fait               | OG Image dédiée + meta tags enrichis                  |
+| ✅ Fait               | JSON-LD Person complet et dynamique                   |
+| ✅ Fait               | Alias `@data` déclaré dans Vite                       |
+| ✅ Fait               | Pages légales et 404                                  |
+| 🟠 Moyenne            | Image Budget Management                               |
+| 🔵 Après finalisation | Lighthouse > 95 + tests navigateurs + tests NVDA      |
