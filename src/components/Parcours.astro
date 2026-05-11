@@ -1,8 +1,14 @@
 ---
+import { getCollection } from "astro:content";
 import Container from "@components/ui/Container.astro";
 import Eyebrow from "@components/ui/Eyebrow.astro";
 import { TimelineFrise } from "@components/react/TimelineFrise";
-import { timelineEntries } from "@/data/timeline";
+import type { TimelineItem } from "@/types/timeline.type";
+
+const entries = await getCollection("timeline");
+const timelineEntries: TimelineItem[] = entries
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((entry) => entry.data);
 ---
 
 <section id="parcours" class="parcours-section relative z-10 py-16 md:py-24">

@@ -1,0 +1,23 @@
+{
+  "index": 4,
+  "label": "Projet de cursus CDA",
+  "date": "2025",
+  "title": "Hive",
+  "subtitle": "Home media center",
+  "tags": ["React", "TypeScript", "Tailwind", "Apollo", "GraphQL", "TypeORM", "SQLite", "WCAG AA"],
+  "resume": "Application de centralisation, notation et recommandation de contenus multimédias (films, séries, musique), avec une accessibilité mobile-first respectant strictement les ratios de contraste WCAG AA.",
+  "context": "Application de centralisation, notation et recommandation de contenus multimédias (films, séries, musique).",
+  "problem": "Construire une expérience mobile-first vraiment accessible dans un domaine où les apps grand public négligent l'a11y.",
+  "solution": "Interface mobile-first React + TypeScript + Tailwind, alternatives textuelles systématiques, <strong>respect strict des ratios de contraste WCAG AA</strong>. Stack GraphQL/Apollo + TypeORM sur SQLite.",
+  "result": "À compléter selon avancement.",
+  "links": [
+    {
+      "label": "Code GitHub",
+      "href": "https://github.com/Yiroma/Hive---home-media-center",
+      "variant": "outline",
+      "external": true,
+      "icon": "github"
+    }
+  ],
+  "image": "/hive.webp"
+}
