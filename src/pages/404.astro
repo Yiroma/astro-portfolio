@@ -1,0 +1,131 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import BlobBackground from "@/components/ui/BlobBackground.astro";
+import Container from "@/components/ui/Container.astro";
+import Button from "@/components/ui/Button.astro";
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+import { Home, ArrowLeft } from "@lucide/astro";
+import "../styles/global.css";
+---
+
+<Layout
+  title="Page introuvable — Romaric Yi"
+  description="La page que vous cherchez n'existe pas ou a été déplacée."
+>
+  <section
+    class="error-section relative z-0 flex flex-1 items-center overflow-hidden py-20 md:py-32"
+  >
+    <BlobBackground />
+
+    <Container class="relative z-10">
+      <div class="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+        <div class="flex flex-col items-start">
+          <Eyebrow class="hero-anim-badge mb-4">Erreur 404</Eyebrow>
+
+          <h1 class="hero-anim-title mb-6">
+            Cette page<br />n'existe pas.
+          </h1>
+
+          <p class="hero-anim-desc mb-10 max-w-lg text-base-content/60">
+            La page que vous cherchez a peut-être été déplacée, supprimée, ou l'URL est incorrecte.
+          </p>
+
+          <div class="hero-anim-cta flex flex-wrap gap-3">
+            <Button href="/" variant="primary" size="md">
+              <Home size={16} />
+              Retour à l'accueil
+            </Button>
+            <Button href="javascript:history.back()" variant="outline" size="md">
+              <ArrowLeft size={16} />
+              Page précédente
+            </Button>
+          </div>
+        </div>
+
+        <div class="hero-anim-image flex items-center justify-center">
+          <img
+            src="/error-404.svg"
+            alt="Illustration d'une erreur 404"
+            width="480"
+            height="480"
+            class="error-illustration"
+          />
+        </div>
+      </div>
+    </Container>
+  </section>
+</Layout>
+
+<style>
+  .error-section {
+    background: color-mix(in srgb, var(--color-primary) 4%, var(--color-base-100));
+  }
+
+  .error-illustration {
+    width: min(400px, 80vw);
+    height: auto;
+  }
+
+  @media (max-width: 767px) {
+    .error-illustration {
+      width: min(260px, 70vw);
+    }
+  }
+
+  @keyframes hero-scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.85);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes hero-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes hero-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .hero-anim-badge {
+    animation: hero-scale-in 0.35s ease-out both;
+  }
+  .hero-anim-title {
+    animation: hero-fade-up 0.5s ease-out 0.08s both;
+  }
+  .hero-anim-desc {
+    animation: hero-fade-up 0.5s ease-out 0.16s both;
+  }
+  .hero-anim-cta {
+    animation: hero-fade-up 0.5s ease-out 0.24s both;
+  }
+  .hero-anim-image {
+    animation: hero-fade-in 0.6s ease-out 0.4s both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-anim-badge,
+    .hero-anim-title,
+    .hero-anim-desc,
+    .hero-anim-cta,
+    .hero-anim-image {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
