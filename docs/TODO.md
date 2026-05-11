@@ -86,7 +86,7 @@ Le JSON-LD `Person` dans `src/layouts/Layout.astro` (lignes 78–132) est en pla
 | Priorité              | Tâche                                                                  |
 | --------------------- | ---------------------------------------------------------------------- |
 | ✅ Fait               | Créer les pages `/mentions-legales` et `/politique-de-confidentialite` |
-| 🔴 Haute              | OG Image dédiée (1200×630)                                             |
+| ✅ Fait               | OG Image dédiée (1200×630)                                             |
 | 🟠 Moyenne            | JSON-LD — compléter les champs manquants                               |
 | 🟠 Moyenne            | Image Budget Management                                                |
 | ✅ Fait               | Page 404 custom                                                        |
