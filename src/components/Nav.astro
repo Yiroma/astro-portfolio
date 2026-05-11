@@ -50,10 +50,10 @@ import { navItems } from "@/data/nav";
 </style>
 
 <script>
-  const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-link[href^="#"]');
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-link[href^="/#"]');
 
   const sectionIds = [
-    ...new Set(Array.from(navLinks).map((l) => l.getAttribute("href")!.slice(1))),
+    ...new Set(Array.from(navLinks).map((l) => l.getAttribute("href")!.slice(2))),
   ];
   const sections = sectionIds
     .map((id) => document.getElementById(id))
@@ -64,7 +64,7 @@ import { navItems } from "@/data/nav";
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const activeHref = `#${entry.target.id}`;
+            const activeHref = `/#${entry.target.id}`;
             navLinks.forEach((link) => {
               if (link.getAttribute("href") === activeHref) {
                 link.setAttribute("aria-current", "page");

@@ -1,0 +1,167 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/ui/Container.astro";
+import "../styles/global.css";
+---
+
+<Layout
+  title="Politique de confidentialité — Romaric Yi"
+  description="Politique de confidentialité du site portfolio de Romaric Yi. Informations sur la collecte et le traitement des données personnelles."
+>
+  <section class="py-16 md:py-24">
+    <Container>
+      <div class="mx-auto max-w-3xl">
+        <h1 class="mb-2">Politique de confidentialité</h1>
+        <p class="mb-12 text-sm text-base-content/50">Dernière mise à jour : mai 2026</p>
+
+        <div class="prose-base prose max-w-none">
+          <h2>1. Responsable du traitement</h2>
+          <ul>
+            <li><strong>Nom</strong> : Romaric Yi</li>
+            <li><strong>Adresse</strong> : Châteauneuf-sur-Loire (45110), FRANCE</li>
+            <li>
+              <strong>Email</strong> : <a href="mailto:yiromaric@gmail.com">yiromaric@gmail.com</a>
+            </li>
+          </ul>
+
+          <h2>2. Données collectées et finalités</h2>
+
+          <h3>2.1 Formulaire de contact</h3>
+          <ul>
+            <li>
+              <strong>Données collectées</strong> : nom, adresse e-mail, sujet, message
+            </li>
+            <li>
+              <strong>Finalité</strong> : répondre aux demandes de contact (recrutement, opportunités
+              professionnelles, renseignements)
+            </li>
+            <li>
+              <strong>Base légale</strong> : intérêt légitime (article 6.1.f RGPD)
+            </li>
+            <li><strong>Conservation</strong> : 3 ans après le dernier contact</li>
+          </ul>
+          <p>
+            Le formulaire est traité via le service <strong>Formspree</strong> (États-Unis). Les données
+            saisies transitent par leurs serveurs conformément à leur <a
+              href="https://formspree.io/legal/privacy-policy/"
+              target="_blank"
+              rel="noopener noreferrer">politique de confidentialité</a
+            >.
+          </p>
+
+          <h2>3. Hébergement</h2>
+          <p>
+            Le site est hébergé sur un serveur privé virtuel (VPS) auto-géré. Aucune donnée n'est
+            transmise à un hébergeur tiers pour des finalités commerciales.
+          </p>
+
+          <h2>4. Cookies et stockage local</h2>
+          <p>
+            Ce site n'utilise <strong>pas de cookies de tracking ni de mesure d'audience</strong>.
+          </p>
+          <p>
+            La préférence de thème (clair / sombre) peut être enregistrée localement dans votre
+            navigateur via <code>localStorage</code>. Cette donnée reste sur votre appareil et n'est
+            jamais transmise.
+          </p>
+
+          <h2>5. Aucune cession de données</h2>
+          <p>
+            Aucune donnée personnelle collectée via ce site n'est vendue, louée ou cédée à des tiers
+            à des fins commerciales.
+          </p>
+
+          <h2>6. Vos droits</h2>
+          <p>
+            Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi
+            Informatique et Libertés, vous disposez des droits suivants sur vos données :
+          </p>
+          <ul>
+            <li>Droit d'accès</li>
+            <li>Droit de rectification</li>
+            <li>Droit à l'effacement («&nbsp;droit à l'oubli&nbsp;»)</li>
+            <li>Droit à la limitation du traitement</li>
+            <li>Droit à la portabilité</li>
+            <li>Droit d'opposition</li>
+            <li>Droit de retirer votre consentement à tout moment</li>
+          </ul>
+          <p>
+            Pour exercer ces droits, contactez-moi par e-mail à <a href="mailto:yiromaric@gmail.com"
+              >yiromaric@gmail.com</a
+            >. Je m'engage à répondre dans un délai maximum d'un mois. En cas de litige non résolu,
+            vous pouvez introduire une réclamation auprès de la <a
+              href="https://www.cnil.fr"
+              target="_blank"
+              rel="noopener noreferrer">CNIL</a
+            >.
+          </p>
+
+          <h2>7. Sécurité</h2>
+          <p>
+            Le site est servi exclusivement en HTTPS. L'accès au serveur est restreint et sécurisé.
+            Les sous-traitants sont sélectionnés pour leur sérieux en matière de protection des
+            données.
+          </p>
+        </div>
+
+        <div class="mt-12 border-t border-base-300 pt-6">
+          <a href="/" class="text-sm text-primary hover:underline">← Retour à l'accueil</a>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Layout>
+
+<style>
+  .prose h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-base-content);
+  }
+
+  .prose h3 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-base-content);
+  }
+
+  .prose p,
+  .prose li {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--color-base-content) 75%, transparent);
+  }
+
+  .prose ul {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+    list-style-type: disc;
+  }
+
+  .prose li {
+    margin-bottom: 0.375rem;
+  }
+
+  .prose a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .prose a:hover {
+    opacity: 0.8;
+  }
+
+  .prose code {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.875em;
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    color: var(--color-primary);
+    padding: 0.1em 0.4em;
+    border-radius: 0.25rem;
+  }
+</style>

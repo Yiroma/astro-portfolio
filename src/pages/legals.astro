@@ -1,0 +1,124 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/ui/Container.astro";
+import "../styles/global.css";
+---
+
+<Layout
+  title="Mentions légales — Romaric Yi"
+  description="Mentions légales du site portfolio de Romaric Yi, Développeur Full Stack basé à Châteauneuf-sur-Loire (45)."
+>
+  <section class="py-16 md:py-24">
+    <Container>
+      <div class="mx-auto max-w-3xl">
+        <h1 class="mb-2">Mentions légales</h1>
+        <p class="mb-12 text-sm text-base-content/50">Dernière mise à jour : mai 2026</p>
+
+        <div class="prose-base prose max-w-none">
+          <h2>Éditeur du site</h2>
+          <ul>
+            <li><strong>Nom</strong> : Romaric Yi</li>
+            <li><strong>Adresse</strong> : Châteauneuf-sur-Loire (45110), FRANCE</li>
+            <li>
+              <strong>Contact</strong> : <a href="mailto:yiromaric@gmail.com">yiromaric@gmail.com</a
+              >
+            </li>
+            <li>
+              <strong>Site web</strong> : <a
+                href="https://yiromaric.fr"
+                target="_blank"
+                rel="noopener noreferrer">https://yiromaric.fr</a
+              >
+            </li>
+          </ul>
+
+          <h2>Hébergeur du site</h2>
+          <p>
+            Le site est hébergé sur un serveur privé virtuel (VPS) auto-géré, avec déploiement via
+            Docker et Nginx. Le code source est disponible sur <a
+              href="https://github.com/Yiroma"
+              target="_blank"
+              rel="noopener noreferrer">GitHub</a
+            >.
+          </p>
+
+          <h2>Propriété intellectuelle</h2>
+          <p>
+            L'ensemble des contenus présents sur ce site (textes, images, illustrations, code
+            source) est protégé par le droit d'auteur. Toute reproduction, représentation ou
+            diffusion, totale ou partielle, sans autorisation écrite préalable de l'éditeur est
+            interdite.
+          </p>
+
+          <h2>Données personnelles et cookies</h2>
+          <p>
+            Les informations relatives au traitement des données personnelles et à l'utilisation des
+            cookies sont détaillées dans la <a href="/privacy">Politique de confidentialité</a>.
+          </p>
+
+          <h2>Limitation de responsabilité</h2>
+          <p>
+            L'éditeur s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées
+            sur ce site. Il ne peut toutefois être tenu responsable des erreurs, omissions ou des
+            résultats obtenus par l'usage de ces informations, ni des dommages directs ou indirects
+            pouvant en résulter.
+          </p>
+
+          <h2>Liens hypertextes</h2>
+          <p>
+            Ce site peut contenir des liens vers des sites tiers. L'éditeur n'exerce aucun contrôle
+            sur ces sites et décline toute responsabilité quant à leur contenu ou leur
+            disponibilité.
+          </p>
+
+          <h2>Droit applicable</h2>
+          <p>
+            Les présentes mentions légales sont soumises au droit français. En cas de litige, les
+            tribunaux français seront seuls compétents.
+          </p>
+        </div>
+
+        <div class="mt-12 border-t border-base-300 pt-6">
+          <a href="/" class="text-sm text-primary hover:underline">← Retour à l'accueil</a>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Layout>
+
+<style>
+  .prose h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-base-content);
+  }
+
+  .prose p,
+  .prose li {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--color-base-content) 75%, transparent);
+  }
+
+  .prose ul {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+    list-style-type: disc;
+  }
+
+  .prose li {
+    margin-bottom: 0.375rem;
+  }
+
+  .prose a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .prose a:hover {
+    opacity: 0.8;
+  }
+</style>

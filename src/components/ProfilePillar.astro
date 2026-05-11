@@ -15,12 +15,16 @@ const hasIllustrationSlot = Astro.slots.has("illustration");
 ---
 
 <article class:list={["pillar", alternate && "pillar--alternate"]}>
-  <div class="pillar__frame">
+  <div class:list={["pillar__frame", illustration?.startsWith("/") && "pillar__frame--image"]}>
     {
       hasIllustrationSlot ? (
         <slot name="illustration" />
       ) : illustration ? (
-        <span class="text-xs font-medium tracking-tighter opacity-55">{illustration}</span>
+        illustration.startsWith("/") ? (
+          <img src={illustration} alt="" aria-hidden="true" class="h-full w-full object-contain" />
+        ) : (
+          <span class="text-xs font-medium tracking-tighter opacity-55">{illustration}</span>
+        )
       ) : null
     }
   </div>
@@ -70,6 +74,11 @@ const hasIllustrationSlot = Astro.slots.has("illustration");
     );
     color: color-mix(in oklch, var(--color-primary) 55%, transparent);
     overflow: hidden;
+  }
+
+  .pillar__frame--image {
+    border: none;
+    background: none;
   }
 
   @media (min-width: 768px) {

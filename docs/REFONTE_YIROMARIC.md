@@ -595,28 +595,27 @@ Tu vends sur yiroma.fr l'audit SEO/GEO, donc montre que tu sais le faire sur ton
 ### Phase 1 — Contenu (avant tout code)
 
 - [x] Lister les projets — **fait : CarePlan, Taxi Loire Valley, Budget Management, Hive**
-- [ ] Récupérer / produire les captures d'écran des 4 projets
-- [ ] Capturer le score Lighthouse Taxi Loire Valley pour le mettre en visuel
-- [ ] Compléter les "Résultats" pour Hive et Budget Management
+- [x] Récupérer / produire les captures d'écran des 4 projets
+- [x] Compléter les "Résultats" pour Hive et Budget Management
 - [ ] Vérifier les liens GitHub (rendre les repos publics si besoin)
-- [ ] Préciser la disponibilité (immédiate / X semaines)
-- [ ] Le CV PDF est déjà prêt — bien
+- [x] Préciser la disponibilité (immédiate / X semaines)
+- [x] Le CV PDF est déjà prêt — bien
 
 ### Phase 2 — Design
 
-- [ ] Valider le design system (cf. fichier `DESIGN_SYSTEM.md`)
-- [ ] Maquetter le hero
-- [ ] Choisir / créer les illustrations (style cohérent yiroma.fr)
+- [x] Valider le design system (cf. fichier `DESIGN_SYSTEM.md`)
+- [x] Maquetter le hero
+- [x] Choisir / créer les illustrations (style cohérent yiroma.fr)
 - [ ] Définir l'OG image
 
 ### Phase 3 — Développement
 
-- [ ] Setup base Astro + Tailwind + DaisyUI
-- [ ] Composants atomiques (Button, Badge, Card, Section)
-- [ ] Composants de section (Hero, Pillars, etc.)
+- [x] Setup base Astro + Tailwind + DaisyUI
+- [x] Composants atomiques (Button, Badge, Card, Section)
+- [x] Composants de section (Hero, Pillars, etc.)
 - [ ] Content Collections pour les 4 projets
-- [ ] Theme toggle (React island)
-- [ ] Responsive mobile-first
+- [x] Theme toggle (React island)
+- [x] Responsive mobile-first
 
 ### Phase 4 — Finition
 
