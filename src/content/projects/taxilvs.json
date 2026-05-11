@@ -1,0 +1,23 @@
+{
+  "index": 2,
+  "label": "Mission freelance",
+  "date": "2024",
+  "title": "Taxi Loire Valley Services",
+  "subtitle": "Site vitrine VTC",
+  "tags": ["Vanilla JS", "SEO local", "Schema.org", "Lighthouse 95+"],
+  "resume": "Site vitrine pour un client VTC local, conçu pour capter du trafic organique local sans budget publicitaire, avec un score Lighthouse > 95 sur les 4 piliers.",
+  "context": "Première mission freelance (2024). Client VTC local sans présence en ligne, souhaitant capter des clients via Google sans budget publicité.",
+  "problem": "Concevoir de zéro une identité visuelle et un site rapide, accessible, référencé localement - avec un coût d'acquisition zéro pour le client.",
+  "solution": "Identité visuelle, intégration responsive, SEO local (mots-clés géolocalisés, Schema.org, Google Business Profile). Gestion de bout en bout de la prospection à la maintenance.",
+  "result": "<strong>Score Lighthouse &gt; 95 sur les 4 piliers</strong> (performance, accessibilité, bonnes pratiques, SEO). Site en ligne et opérationnel.",
+  "links": [
+    {
+      "label": "Voir le site",
+      "href": "https://taxiloirevalleyservices.com/",
+      "variant": "primary",
+      "external": true,
+      "icon": "website"
+    }
+  ],
+  "image": "/taxilvs.webp"
+}

@@ -1,34 +1,10 @@
 ---
+import { getCollection } from "astro:content";
 import Container from "@components/ui/Container.astro";
 import Eyebrow from "@components/ui/Eyebrow.astro";
 import ProfilePillar from "@components/ProfilePillar.astro";
 
-const ProfileData = [
-  {
-    eyebrow: "Conception",
-    title: "Un concepteur, pas juste un dev qui exécute",
-    tags: ["UML", "Clean Architecture", "Microservices", "Tests", "RGAA"],
-    description:
-      "Diplômé Concepteur Développeur d'Applications (Bac+4) après un Bac+2 Développeur Web & Web Mobile. Je modélise (UML, Merise), j'architecture (Clean Architecture, microservices, MVC), je documente. Mon projet de fin de cursus — CarePlan, app médicale multi-rôles — combinait microservices, GraphQL, tests E2E Playwright et conformité RGAA stricte.",
-    illustration: "/brainstrom.svg",
-  },
-  {
-    eyebrow: "Communication",
-    title: "10 ans de management, et ça change tout",
-    tags: ["Coaching", "Cadrage", "Priorisation", "Pédagogie"],
-    description:
-      "Avant le code, j'ai dirigé pendant 7 ans un magasin Micromania-Zing (équipe de 4, +135 % d'objectifs commerciaux entre 2019 et 2022) et coaché 4 vendeurs jusqu'au poste de Responsable de Magasin. Je sais cadrer un besoin flou, gérer une priorisation tendue, expliquer une décision technique à un PO non-tech, et désamorcer un conflit avant qu'il ne ralentisse un sprint.",
-    illustration: "/checking.svg",
-  },
-  {
-    eyebrow: "Ingénierie & Accessibilité",
-    title: "Une stack moderne, des sites qui marchent pour tout le monde",
-    tags: ["Full Stack", "RGAA / WCAG", "Docker", "CI/CD"],
-    description:
-      "React, Next.js, TypeScript côté front ; Node.js, Express, Java/Spring Boot côté back ; PostgreSQL, MySQL, MongoDB, Redis côté données ; Docker, CI/CD pour le delivery. Sensibilité forte à l'accessibilité : RGAA, WCAG 2.1, validation NVDA, ARIA sur composants custom. L'a11y, c'est de la qualité technique, pas de la cosmétique.",
-    illustration: "/setup.svg",
-  },
-];
+const pillars = (await getCollection("profile")).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <section id="profil" class="profile-section relative z-10 py-16 md:py-24">
@@ -42,15 +18,15 @@ const ProfileData = [
 
     <div class="profile-grid">
       {
-        ProfileData.map((pillar, index) => (
+        pillars.map((pillar, index) => (
           <ProfilePillar
-            eyebrow={pillar.eyebrow}
-            title={pillar.title}
-            tags={pillar.tags}
-            illustration={pillar.illustration}
+            eyebrow={pillar.data.eyebrow}
+            title={pillar.data.title}
+            tags={pillar.data.tags}
+            illustration={pillar.data.illustration}
             alternate={index % 2 !== 0}
           >
-            {pillar.description}
+            {pillar.data.description}
           </ProfilePillar>
         ))
       }
