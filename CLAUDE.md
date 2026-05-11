@@ -44,12 +44,11 @@ Le hook `pre-commit` exécute `lint-staged` (ESLint + Prettier sur les fichiers 
 
 Les thèmes sont définis entièrement dans [`src/styles/global.css`](src/styles/global.css) via `@plugin "daisyui/theme"`. Le toggle (`ThemeSwap.tsx`) utilise l'attribut `data-theme` sur le `<html>` via le mécanisme natif DaisyUI (`theme-controller` + `data-toggle-theme`). Ne pas utiliser `localStorage` ni `classList.add('dark')` — DaisyUI gère ça nativement.
 
-### Polices actuelles (V1)
+### Polices
 
-- Corps : `Onest` — variable `--font-sans`
-- Titres : `Cascadia Code` — variable `--font-title`, appliquée sur tous les `h1`–`h6` et `.font-title`
-
-> **V2 en cours** : migration vers `DM Sans` (corps) + `Plus Jakarta Sans` (titres) pour aligner avec yiroma.fr. Voir `docs/DESIGN_SYSTEM.md`.
+- Corps : `DM Sans` — variable `--font-sans`
+- Titres : `Plus Jakarta Sans` — variable `--font-title`, appliquée sur tous les `h1`–`h6` et `.font-title`
+- Mono : `JetBrains Mono` — variable `--font-mono`
 
 ### Aliases de chemins
 
@@ -64,6 +63,7 @@ Configurés dans `astro.config.mjs` :
 | `@styles`     | `src/styles/`     |
 | `@types`      | `src/types/`      |
 | `@utils`      | `src/utils/`      |
+| `@data`       | `src/data/`       |
 
 ### Composants React (Islands)
 
@@ -71,9 +71,8 @@ Les composants interactifs sont dans `src/components/react/`. Ils sont montés a
 
 - `Nav.tsx` — navigation flottante, détection de section active par IntersectionObserver
 - `ThemeSwap.tsx` — toggle dark/light via DaisyUI `theme-controller`
-- `SkillsBar.tsx` — barre de compétences animée (marquée pour suppression en V2)
-- `AnimatedSkillsRow.tsx` — ligne animée de compétences (marquée pour suppression en V2)
-- `LetterGlitch.tsx` — effet visuel glitch (marqué pour suppression en V2)
+- `ProjectsGrid.tsx` — grille de projets avec modal de détail
+- `TimelineFrise.tsx` / `TimelineEntry.tsx` — timeline animée du parcours
 
 ### Icônes
 
@@ -92,22 +91,38 @@ Le CI/CD (`deploy.yaml`) se déclenche sur `push` vers `main` :
 
 Le `docker-compose.prod.yml` est copié via SCP puis exécuté sur le serveur. Les secrets nécessaires : `SERVER_HOST`, `SERVER_PORT`, `SERVER_USER`, `SERVER_SSH_KEY`.
 
-## Contenu V1 actuel
+## Contenu et données
 
-Tout le contenu est en dur dans les composants Astro (pas de Content Collections) :
+Le contenu éditorial est séparé des composants via deux mécanismes :
 
-- `Projects.astro` — tableau `projects[]` avec titre, description, image, liens
-- `Home.astro` — liens sociaux hardcodés
-- `SkillsSection.astro` / `AnimatedSkillsRow.tsx` — compétences en dur
+### Astro Content Collections (`src/content/`)
 
-> **V2** : migration vers Astro Content Collections pour les projets. Voir `docs/REFONTE_YIROMARIC.md` pour le plan complet et `docs/home.html` pour le prototype HTML de référence.
+Géré via `src/content.config.ts` (API Astro 5 avec loaders `glob`, schémas Zod importés depuis `zod`).
 
-## Contexte V2 (refonte en cours)
+| Collection | Dossier                 | Fichiers                                                               | Consommé par     |
+| ---------- | ----------------------- | ---------------------------------------------------------------------- | ---------------- |
+| `projects` | `src/content/projects/` | `careplan.json`, `taxilvs.json`, `budget-management.json`, `hive.json` | `Projects.astro` |
+| `timeline` | `src/content/timeline/` | `01-micromania.json` … `05-current.json`                               | `Parcours.astro` |
+| `profile`  | `src/content/profile/`  | `01-conception.json` … `03-ingenierie.json`                            | `Profile.astro`  |
 
-Les documents de référence pour la V2 sont dans `docs/` :
+Les fichiers JSON sont ordonnés via un champ `order: number` et triés par `getCollection()` + `.sort()` dans chaque composant.
 
-- `DESIGN_SYSTEM.md` — palette de couleurs (tokens oklch), typographie, composants
-- `REFONTE_YIROMARIC.md` — plan de refonte complet, contenu rédigé section par section
-- `home.html` — prototype HTML statique du rendu final (référence visuelle)
+### Données statiques (`src/data/`)
 
-L'objectif de la V2 est de moderniser et d'aligner yiromaric.fr avec l'identité visuelle de yiroma.fr (même palette bleue oklch, mêmes polices DM Sans + Plus Jakarta Sans, même structure de sections avec blobs de fond), corriger l'incohérence avec mon profile (Le site actuel me fait paraître pour un dev junior, ce qui est sous ma valeur réelle vu mon profil (Bac+4 CDA + 10 ans de management + stack full-stack large incluant Java/Spring))
+Pour les données couplées à du code non-sérialisable (icônes Lucide, composants Astro) :
+
+| Fichier     | Contenu                                  | Consommé par                                                |
+| ----------- | ---------------------------------------- | ----------------------------------------------------------- |
+| `nav.ts`    | `navItems[]`, `socialLinks[]`            | `Nav.tsx`, `Hero.astro`, `ContactCTA.astro`, `Footer.astro` |
+| `skills.ts` | `skillCategories[]` (avec icônes Lucide) | `SkillsSection.astro`                                       |
+
+### SEO & meta
+
+- **JSON-LD `Person`** dynamique dans `Layout.astro` via `set:html={JSON.stringify(jsonLd)}` avec `is:inline`
+- **OG image** par défaut : `public/og.png` (1200×630)
+- Open Graph enrichi : `og:site_name`, `og:image:alt`, dimensions explicites
+- Twitter corrigé : balises `name` (pas `property`)
+
+### Document de référence
+
+`docs/DESIGN_SYSTEM.md` — palette oklch, typographie, composants UI.

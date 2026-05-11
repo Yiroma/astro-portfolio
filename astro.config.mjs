@@ -21,6 +21,7 @@ export default defineConfig({
         "@assets": path.resolve("./src/assets"),
         "@styles": path.resolve("./src/styles"),
         "@types": path.resolve("./src/types"),
+        "@data": path.resolve("./src/data"),
       },
     },
   },
