@@ -70,12 +70,12 @@ import { navItems } from "@/data/nav";
     if (window.innerWidth >= 768) closeMenu();
   });
 
-  const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-link[href^="#"]');
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-link[href^="/#"]');
   navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       const href = link.getAttribute("href");
-      if (!href?.startsWith("#")) return;
-      const target = document.getElementById(href.slice(1));
+      if (!href?.startsWith("/#")) return;
+      const target = document.getElementById(href.slice(2));
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: "smooth", block: "start" });

@@ -6,7 +6,9 @@ import Container from "@components/ui/Container.astro";
 import Eyebrow from "@components/ui/Eyebrow.astro";
 import GradientText from "@components/ui/GradientText.astro";
 import { socialLinks } from "@data/nav";
-import { ChevronDown, Download, Image } from "@lucide/astro";
+import { ChevronDown, Download } from "@lucide/astro";
+import { Image } from "astro:assets";
+import profilePhoto from "@assets/romaric-yi.png";
 ---
 
 <section id="hero" class="hero-section relative z-0 overflow-hidden py-20 md:py-32">
@@ -77,12 +79,16 @@ import { ChevronDown, Download, Image } from "@lucide/astro";
       </div>
 
       <div class="hero-anim-image flex items-center justify-center">
-        <div
-          class="hero-illustration flex aspect-[5/4] w-full max-w-md items-center justify-center rounded-2xl"
-        >
-          <div class="flex flex-col items-center gap-4 text-primary/50">
-            <Image size={48} />
-          </div>
+        <div class="hero-photo-wrapper">
+          <Image
+            src={profilePhoto}
+            alt="Romaric Yi — Développeur Full Stack"
+            class="hero-photo"
+            width={400}
+            height={533}
+            format="webp"
+            quality={85}
+          />
         </div>
       </div>
     </div>
@@ -94,19 +100,27 @@ import { ChevronDown, Download, Image } from "@lucide/astro";
     background: color-mix(in srgb, var(--color-primary) 4%, var(--color-base-100));
   }
 
-  .hero-illustration {
-    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
-    background: linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--color-primary) 15%, transparent),
-      color-mix(in srgb, var(--color-primary) 8%, transparent),
-      transparent
-    );
+  .hero-photo-wrapper {
+    width: min(360px, 80vw);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--color-primary);
+    box-shadow: 0 0 48px color-mix(in oklch, var(--color-primary) 40%, transparent);
   }
 
-  [data-theme="light"] .hero-illustration {
-    background: var(--color-base-200);
-    border-color: var(--color-base-300);
+  .hero-photo {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: center 85%;
+  }
+
+  @media (max-width: 767px) {
+    .hero-photo-wrapper {
+      width: min(240px, 70vw);
+    }
   }
 
   /* Entrées animées */
