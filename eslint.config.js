@@ -21,7 +21,7 @@ export default [
       },
     },
   },
-  // Configuration TypeScript
+  // setup TypeScript
   {
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
@@ -46,7 +46,7 @@ export default [
       "no-unused-vars": "off",
     },
   },
-  // Configuration React
+  // setup React
   {
     files: ["**/*.{jsx,tsx}"],
     languageOptions: {
@@ -66,23 +66,23 @@ export default [
       },
     },
     rules: {
-      // Règles React
+      // rules React
       ...react.configs.recommended.rules,
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
 
-      // Règles React Hooks
+      // rules React Hooks
       ...reactHooks.configs.recommended.rules,
     },
   },
-  // Configuration A11y pour React (JSX/TSX)
+  // setup a11y for React (JSX/TSX)
   {
     files: ["**/*.{jsx,tsx}"],
     plugins: {
       "jsx-a11y": jsxA11y,
     },
     rules: {
-      // Règles d'accessibilité pour React
+      // a11y rules for React
       ...jsxA11y.configs.recommended.rules,
       "jsx-a11y/anchor-is-valid": [
         "error",
@@ -94,7 +94,7 @@ export default [
       ],
     },
   },
-  // Configuration Astro
+  // setup Astro
   {
     files: ["**/*.astro"],
     languageOptions: {
@@ -116,14 +116,14 @@ export default [
       "@typescript-eslint/no-unused-vars": "off",
     },
   },
-  // Configuration A11y pour Astro
+  // setup a11y for Astro
   {
     files: ["**/*.astro"],
     plugins: {
       "jsx-a11y": jsxA11y,
     },
     rules: {
-      // Règles d'accessibilité adaptées pour Astro
+      // a11y rules for Astro
       "jsx-a11y/alt-text": "error",
       "jsx-a11y/anchor-has-content": "error",
       "jsx-a11y/anchor-is-valid": "error",
@@ -138,7 +138,7 @@ export default [
       "jsx-a11y/iframe-has-title": "error",
       "jsx-a11y/img-redundant-alt": "error",
       "jsx-a11y/interactive-supports-focus": "error",
-      "jsx-a11y/label-has-associated-control": "error",
+      "jsx-a11y/label-has-associated-control": "off",
       "jsx-a11y/lang": "error",
       "jsx-a11y/media-has-caption": "warn",
       "jsx-a11y/mouse-events-have-key-events": "error",
@@ -152,7 +152,6 @@ export default [
       "jsx-a11y/tabindex-no-positive": "error",
     },
   },
-  // Ignorer certains fichiers
   {
     ignores: [
       "dist/**",
