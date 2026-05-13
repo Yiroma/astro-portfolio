@@ -24,6 +24,7 @@ const pillars = (await getCollection("profile")).sort((a, b) => a.data.order - b
             title={pillar.data.title}
             tags={pillar.data.tags}
             illustration={pillar.data.illustration}
+            illustrationAlt={pillar.data.illustrationAlt}
             alternate={index % 2 !== 0}
           >
             {pillar.data.description}
