@@ -163,8 +163,14 @@ const jsonLd = {
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
   </head>
   <body class="flex flex-col bg-base-200">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:rounded focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-content focus:outline-none"
+    >
+      Aller au contenu principal
+    </a>
     <Header />
-    <main class="flex flex-1 flex-col">
+    <main id="main-content" class="flex flex-1 flex-col">
       <slot />
     </main>
     <Footer />
