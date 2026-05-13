@@ -16,17 +16,10 @@ export function ProjectCard({ project, onClick, phase }: ProjectCardProps) {
   const { cardRef, animStyle, trigger } = useCardAnimation(phase, onClick);
 
   return (
-    <div
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
+    <article
       ref={cardRef}
-      role="button"
-      tabIndex={0}
       onClick={trigger}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          trigger();
-        }
-      }}
       className="flex cursor-pointer flex-col gap-[1.125rem] rounded-2xl border border-base-300 bg-base-100 p-7 select-none hover:-translate-y-[3px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.09)]"
       style={animStyle ?? { transition: "box-shadow 200ms ease, transform 200ms ease" }}
     >
@@ -66,7 +59,9 @@ export function ProjectCard({ project, onClick, phase }: ProjectCardProps) {
           </span>
         </div>
         {project.inProgress ? (
-          <Badge variant="warning">En cours</Badge>
+          <Badge variant="warning" aria-label="Projet en cours de développement">
+            En cours
+          </Badge>
         ) : project.date ? (
           <span className="shrink-0 text-xs font-semibold text-base-content/40">
             {project.date}
@@ -115,10 +110,18 @@ export function ProjectCard({ project, onClick, phase }: ProjectCardProps) {
             </Btn>
           ))}
         </div>
-        <Btn variant="ghost" size="sm" onClick={trigger}>
+        <Btn
+          variant="ghost"
+          size="sm"
+          onClick={(e) => {
+            e.stopPropagation();
+            trigger();
+          }}
+          aria-label={`Voir les détails de ${project.title}`}
+        >
           Voir les détails →
         </Btn>
       </div>
-    </div>
+    </article>
   );
 }

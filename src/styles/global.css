@@ -10,10 +10,9 @@
   --color-base-200: oklch(0.968 0.007 247.896);
   --color-base-300: oklch(0.929 0.013 255.508);
   --color-base-content: oklch(0.208 0.042 264.695);
-  --color-base-content-muted: oklch(0.48 0.046 257.417);
+  --color-base-content-muted: oklch(0.38 0.046 257.417);
   --color-primary: oklch(54% 0.245 262.881);
   --color-primary-content: oklch(97% 0.014 254.604);
-  --color-primary-soft: oklch(0.94 0.04 262);
   --color-secondary: oklch(0.929 0.013 255.508);
   --color-secondary-content: oklch(0.208 0.042 264.695);
   --color-accent: oklch(54% 0.245 262.881);
@@ -28,6 +27,7 @@
   --color-warning-content: oklch(0.208 0.042 264.695);
   --color-error: oklch(57% 0.245 27.325);
   --color-error-content: oklch(97% 0.013 17.38);
+  --color-focus: oklch(0.4 0.24 263);
   --radius-selector: 1rem;
   --radius-selector: 1rem;
   --radius-field: 0.25rem;
@@ -48,10 +48,9 @@
   --color-base-200: oklch(0.279 0.041 260.031);
   --color-base-300: oklch(0.372 0.044 257.287);
   --color-base-content: oklch(0.984 0.003 247.858);
-  --color-base-content-muted: oklch(0.704 0.04 256.788);
+  --color-base-content-muted: oklch(0.78 0.04 256.788);
   --color-primary: oklch(54% 0.245 262.881);
   --color-primary-content: oklch(97% 0.014 254.604);
-  --color-primary-soft: oklch(0.32 0.041 260.031);
   --color-secondary: oklch(0.929 0.013 255.508);
   --color-secondary-content: oklch(0.208 0.042 264.695);
   --color-accent: oklch(54% 0.245 262.881);
@@ -66,6 +65,7 @@
   --color-warning-content: oklch(0.208 0.042 264.695);
   --color-error: oklch(57% 0.245 27.325);
   --color-error-content: oklch(97% 0.013 17.38);
+  --color-focus: oklch(54% 0.245 262.881);
   --radius-selector: 1rem;
   --radius-field: 0.25rem;
   --radius-box: 0.5rem;
@@ -76,13 +76,6 @@
   --noise: 0;
 }
 
-/* Fond soft primary : impose base-content comme couleur de texte (conformité WCAG AA).
-   Ne jamais combiner bg-primary-soft avec text-primary — le contraste est insuffisant. */
-.bg-primary-soft {
-  background-color: var(--color-primary-soft);
-  color: var(--color-base-content);
-}
-
 :root {
   --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
   --font-title: "Plus Jakarta Sans", system-ui, sans-serif;
@@ -91,7 +84,12 @@
 
 html {
   font-family: var(--font-sans);
-  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer base {
@@ -145,7 +143,7 @@ html {
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid var(--color-focus, var(--color-primary));
     outline-offset: 2px;
     border-radius: 4px;
   }

@@ -11,25 +11,59 @@ interface ProjectModalProps {
   isClosing?: boolean;
 }
 
+const FOCUSABLE =
+  'a[href],button:not([disabled]),input,textarea,select,[tabindex]:not([tabindex="-1"])';
+
 export function ProjectModal({ project, onClose, isClosing = false }: ProjectModalProps) {
   const panelRef = useRef<React.ElementRef<"div">>(null);
+  const triggerRef = useRef<Element | null>(null);
 
   useEffect(() => {
-    const onKey: Parameters<typeof document.addEventListener<"keydown">>[1] = (e) => {
-      if (e.key === "Escape") onClose();
+    triggerRef.current = document.activeElement;
+
+    const focusable = () =>
+      Array.from(panelRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE) ?? []).filter(
+        (el) => !el.closest("[aria-hidden]")
+      );
+
+    const firstFocusable = focusable()[0];
+    (firstFocusable ?? panelRef.current)?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const items = focusable();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
+
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
-    panelRef.current?.focus();
+
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      (triggerRef.current as HTMLElement | null)?.focus();
     };
   }, [onClose]);
 
   return createPortal(
     <div
-      aria-hidden="true"
       className={`fixed inset-0 z-[9999] flex items-center justify-center bg-black/55 p-4 backdrop-blur-sm ${isClosing ? "animate-[modal-backdrop-out_300ms_ease_both]" : "animate-[modal-backdrop-in_200ms_ease_both]"}`}
     >
       <button
@@ -39,8 +73,9 @@ export function ProjectModal({ project, onClose, isClosing = false }: ProjectMod
         className="absolute inset-0 h-full w-full cursor-default border-none bg-transparent"
       />
       <div
-        role="document"
-        aria-label={project.title}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-project-title"
         ref={panelRef}
         tabIndex={-1}
         className={`relative z-[1] flex max-h-[90dvh] w-full max-w-[52rem] flex-col rounded-2xl border border-base-300 bg-base-100 outline-none ${isClosing ? "animate-[modal-panel-out_280ms_ease_both]" : "animate-[modal-panel-in_220ms_ease_both]"}`}
@@ -97,7 +132,9 @@ export function ProjectModal({ project, onClose, isClosing = false }: ProjectMod
                 </span>
               </div>
               {project.inProgress ? (
-                <Badge variant="warning">En cours</Badge>
+                <Badge variant="warning" aria-label="Projet en cours de développement">
+                  En cours
+                </Badge>
               ) : project.date ? (
                 <span className="shrink-0 text-xs font-semibold text-base-content/40">
                   {project.date}
@@ -105,7 +142,10 @@ export function ProjectModal({ project, onClose, isClosing = false }: ProjectMod
               ) : null}
             </div>
 
-            <h3 className="m-0 text-[clamp(1.125rem,2vw,1.375rem)] leading-[1.25] font-bold text-base-content">
+            <h3
+              id="modal-project-title"
+              className="m-0 text-[clamp(1.125rem,2vw,1.375rem)] leading-[1.25] font-bold text-base-content"
+            >
               {project.title}
             </h3>
 

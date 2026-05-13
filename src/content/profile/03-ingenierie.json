@@ -4,5 +4,6 @@
   "title": "Une stack moderne, des sites qui marchent pour tout le monde",
   "tags": ["Full Stack", "RGAA / WCAG", "Docker", "CI/CD"],
   "description": "React, Next.js, TypeScript côté front ; Node.js, Express, Java/Spring Boot côté back ; PostgreSQL, MySQL, MongoDB, Redis côté données ; Docker, CI/CD pour le delivery. Sensibilité forte à l'accessibilité : RGAA, WCAG 2.1, validation NVDA, ARIA sur composants custom. L'a11y, c'est de la qualité technique, pas de la cosmétique.",
-  "illustration": "/setup.svg"
+  "illustration": "/setup.svg",
+  "illustrationAlt": "Environnement de développement avec écrans et outils, symbolisant la stack technique full stack"
 }
