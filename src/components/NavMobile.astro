@@ -78,7 +78,8 @@ import { navItems } from "@/data/nav";
       const target = document.getElementById(href.slice(2));
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        target.scrollIntoView({ behavior: reduced ? "instant" : "smooth", block: "start" });
         closeMenu();
       }
     });
