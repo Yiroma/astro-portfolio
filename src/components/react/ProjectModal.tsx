@@ -11,19 +11,54 @@ interface ProjectModalProps {
   isClosing?: boolean;
 }
 
+const FOCUSABLE =
+  'a[href],button:not([disabled]),input,textarea,select,[tabindex]:not([tabindex="-1"])';
+
 export function ProjectModal({ project, onClose, isClosing = false }: ProjectModalProps) {
   const panelRef = useRef<React.ElementRef<"div">>(null);
+  const triggerRef = useRef<Element | null>(null);
 
   useEffect(() => {
-    const onKey: Parameters<typeof document.addEventListener<"keydown">>[1] = (e) => {
-      if (e.key === "Escape") onClose();
+    triggerRef.current = document.activeElement;
+
+    const focusable = () =>
+      Array.from(panelRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE) ?? []).filter(
+        (el) => !el.closest("[aria-hidden]")
+      );
+
+    const firstFocusable = focusable()[0];
+    (firstFocusable ?? panelRef.current)?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const items = focusable();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
+
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
-    panelRef.current?.focus();
+
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      (triggerRef.current as HTMLElement | null)?.focus();
     };
   }, [onClose]);
 
