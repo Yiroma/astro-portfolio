@@ -8,9 +8,10 @@ interface Props {
   tags?: string[];
   alternate?: boolean;
   illustration?: string;
+  illustrationAlt?: string;
 }
 
-const { eyebrow, title, tags = [], alternate = false, illustration } = Astro.props;
+const { eyebrow, title, tags = [], alternate = false, illustration, illustrationAlt } = Astro.props;
 const hasIllustrationSlot = Astro.slots.has("illustration");
 ---
 
@@ -21,7 +22,11 @@ const hasIllustrationSlot = Astro.slots.has("illustration");
         <slot name="illustration" />
       ) : illustration ? (
         illustration.startsWith("/") ? (
-          <img src={illustration} alt="" aria-hidden="true" class="h-full w-full object-contain" />
+          <img
+            src={illustration}
+            alt={illustrationAlt ?? ""}
+            class="h-full w-full object-contain"
+          />
         ) : (
           <span class="text-xs font-medium tracking-tighter opacity-55">{illustration}</span>
         )
@@ -31,7 +36,8 @@ const hasIllustrationSlot = Astro.slots.has("illustration");
 
   <div class="pillar__content">
     <div class="flex flex-col gap-2">
-      <Eyebrow class="mb-2">{eyebrow}</Eyebrow>
+      <span aria-hidden="true"><Eyebrow class="mb-2">{eyebrow}</Eyebrow></span>
+      <h2 class="sr-only">{eyebrow}</h2>
       <h3>{title}</h3>
     </div>
 

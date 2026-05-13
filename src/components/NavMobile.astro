@@ -36,6 +36,13 @@ import { navItems } from "@/data/nav";
   </nav>
 </div>
 
+<style>
+  .nav-link[aria-current="page"] {
+    color: var(--color-base-content);
+    font-weight: 700;
+  }
+</style>
+
 <script>
   const burger = document.getElementById("nav-burger");
   const mobileMenu = document.getElementById("mobile-nav");
@@ -78,9 +85,38 @@ import { navItems } from "@/data/nav";
       const target = document.getElementById(href.slice(2));
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        target.scrollIntoView({ behavior: reduced ? "instant" : "smooth", block: "start" });
         closeMenu();
       }
     });
   });
+
+  const sectionIds = [
+    ...new Set(Array.from(navLinks).map((l) => l.getAttribute("href")!.slice(2))),
+  ];
+  const sections = sectionIds
+    .map((id) => document.getElementById(id))
+    .filter(Boolean) as HTMLElement[];
+
+  if (sections.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const activeHref = `/#${entry.target.id}`;
+            navLinks.forEach((link) => {
+              if (link.getAttribute("href") === activeHref) {
+                link.setAttribute("aria-current", "page");
+              } else {
+                link.removeAttribute("aria-current");
+              }
+            });
+          }
+        });
+      },
+      { rootMargin: "-20% 0px -60% 0px", threshold: 0 }
+    );
+    sections.forEach((el) => observer.observe(el));
+  }
 </script>

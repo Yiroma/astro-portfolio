@@ -51,6 +51,7 @@ const profile = defineCollection({
     tags: z.array(z.string()),
     description: z.string(),
     illustration: z.string(),
+    illustrationAlt: z.string().optional(),
   }),
 });
 
