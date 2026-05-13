@@ -29,8 +29,12 @@ import { MailCheck } from "@lucide/astro";
             placeholder="Prénom Nom"
             required
             autocomplete="name"
+            aria-describedby="contact-name-error"
+            aria-invalid="false"
             class="field-input"
           />
+          <span id="contact-name-error" class="field-error sr-only" role="alert" aria-atomic="true"
+          ></span>
         </div>
         <div class="flex flex-col gap-1.5">
           <label for="contact-email" class="field-label">E-mail</label>
@@ -41,8 +45,12 @@ import { MailCheck } from "@lucide/astro";
             placeholder="vous@exemple.com"
             required
             autocomplete="email"
+            aria-describedby="contact-email-error"
+            aria-invalid="false"
             class="field-input"
           />
+          <span id="contact-email-error" class="field-error sr-only" role="alert" aria-atomic="true"
+          ></span>
         </div>
       </div>
 
@@ -65,7 +73,11 @@ import { MailCheck } from "@lucide/astro";
           placeholder="Décrivez votre besoin ou votre opportunité…"
           required
           rows="5"
+          aria-describedby="contact-message-error"
+          aria-invalid="false"
           class="field-input field-textarea"></textarea>
+        <span id="contact-message-error" class="field-error sr-only" role="alert" aria-atomic="true"
+        ></span>
       </div>
 
       <!-- Honeypot anti-spam -->
@@ -122,16 +134,26 @@ import { MailCheck } from "@lucide/astro";
     opacity: 0.55;
   }
   .field-input:focus-visible {
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid var(--color-focus, var(--color-primary));
     outline-offset: 2px;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);
+    border-color: var(--color-focus, var(--color-primary));
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--color-focus, var(--color-primary)) 18%, transparent);
   }
 
   .field-textarea {
     resize: vertical;
     min-height: 7.5rem;
     line-height: 1.6;
+  }
+
+  .field-input[aria-invalid="true"] {
+    border-color: var(--color-error);
+  }
+
+  .field-error:not(:empty) {
+    font-size: 0.75rem;
+    color: var(--color-error);
   }
 
   #form-state,
@@ -152,6 +174,38 @@ import { MailCheck } from "@lucide/astro";
   const form = document.getElementById("contact-form") as HTMLFormElement | null;
   const errorMsg = document.getElementById("form-error");
   const submitBtn = document.getElementById("contact-submit") as HTMLButtonElement | null;
+
+  const REQUIRED_FIELDS: { id: string; errorId: string; message: string }[] = [
+    { id: "contact-name", errorId: "contact-name-error", message: "Le nom est requis." },
+    {
+      id: "contact-email",
+      errorId: "contact-email-error",
+      message: "L'adresse e-mail est requise.",
+    },
+    { id: "contact-message", errorId: "contact-message-error", message: "Le message est requis." },
+  ];
+
+  function setFieldError(fieldId: string, errorId: string, message: string) {
+    const field = document.getElementById(fieldId) as HTMLInputElement | HTMLTextAreaElement | null;
+    const error = document.getElementById(errorId);
+    if (field) field.setAttribute("aria-invalid", "true");
+    if (error) {
+      error.textContent = message;
+      error.classList.remove("sr-only");
+    }
+  }
+
+  function clearFieldErrors() {
+    REQUIRED_FIELDS.forEach(({ id, errorId }) => {
+      const field = document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement | null;
+      const error = document.getElementById(errorId);
+      if (field) field.setAttribute("aria-invalid", "false");
+      if (error) {
+        error.textContent = "";
+        error.classList.add("sr-only");
+      }
+    });
+  }
 
   const TRANSITION_MS = 350;
   const SUCCESS_DISPLAY_MS = 4000;
@@ -182,6 +236,18 @@ import { MailCheck } from "@lucide/astro";
     e.preventDefault();
     if (!submitBtn || !formState || !successState) return;
 
+    clearFieldErrors();
+
+    let hasError = false;
+    REQUIRED_FIELDS.forEach(({ id, errorId, message }) => {
+      const field = document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement | null;
+      if (field && !field.value.trim()) {
+        setFieldError(id, errorId, message);
+        hasError = true;
+      }
+    });
+    if (hasError) return;
+
     const originalLabel = submitBtn.textContent ?? "Envoyer le message";
     submitBtn.disabled = true;
     submitBtn.textContent = "Envoi en cours…";
@@ -196,6 +262,7 @@ import { MailCheck } from "@lucide/astro";
 
       if (response.ok) {
         form.reset();
+        clearFieldErrors();
         await fadeOut(formState);
         fadeIn(successState);
 
