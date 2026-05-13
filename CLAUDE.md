@@ -126,3 +126,25 @@ Pour les données couplées à du code non-sérialisable (icônes Lucide, compos
 ### Document de référence
 
 `docs/DESIGN_SYSTEM.md` — palette oklch, typographie, composants UI.
+
+## Accessibilité (WCAG 2.1 AA / RGAA 4.1)
+
+Audit complet effectué et 15/18 problèmes corrigés en 3 phases. Voir `docs/AUDIT_ACCESSIBILITE_RGAA_WCAG.md` pour le détail. Points critiques à ne pas régresser :
+
+### Patterns en place
+
+- **Focus trap** dans `ProjectModal.tsx` — Tab/Shift+Tab cyclent dans la modale, focus restitué au déclencheur à la fermeture via `triggerRef`
+- **Skip link** dans `Layout.astro` — `<a href="#main-content">` sr-only visible au focus, `<main id="main-content">`
+- **`aria-current="page"`** dynamique via `IntersectionObserver` dans `Nav.astro` ET `NavMobile.astro`
+- **`aria-invalid` + `aria-describedby`** par champ dans `ContactForm.astro` — mis à jour par le script JS à la soumission
+- **Variable `--color-focus`** dans `global.css` — `oklch(0.40 0.24 263)` en light (~5.5:1 sur blanc), `oklch(0.54 0.245 263)` en dark. À utiliser dans tout nouveau `:focus-visible`
+- **Focus blanc sur fond primary** via `.contact-cta :global(:focus-visible) { outline-color: white }` dans `ContactCTA.astro` — pattern à reproduire sur tout composant avec fond coloré
+- **`prefers-reduced-motion`** : `scroll-behavior` conditionné dans `global.css`, `scrollIntoView` conditionné dans `NavMobile.astro`. Vérifier systématiquement sur toute nouvelle animation déclenchée par interaction
+
+### Règles ESLint
+
+- `jsx-a11y/label-has-associated-control` désactivé pour les fichiers `.astro` dans `eslint.config.js` — le plugin ne reconnaît pas l'attribut HTML natif `for`, uniquement `htmlFor` JSX. Ne pas réactiver.
+
+### Décisions acceptées (ne pas "corriger")
+
+- `m5` — placeholders dans ContactForm : les labels `for`/`id` existent, risque faible
