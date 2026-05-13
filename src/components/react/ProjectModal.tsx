@@ -29,7 +29,6 @@ export function ProjectModal({ project, onClose, isClosing = false }: ProjectMod
 
   return createPortal(
     <div
-      aria-hidden="true"
       className={`fixed inset-0 z-[9999] flex items-center justify-center bg-black/55 p-4 backdrop-blur-sm ${isClosing ? "animate-[modal-backdrop-out_300ms_ease_both]" : "animate-[modal-backdrop-in_200ms_ease_both]"}`}
     >
       <button
@@ -39,8 +38,9 @@ export function ProjectModal({ project, onClose, isClosing = false }: ProjectMod
         className="absolute inset-0 h-full w-full cursor-default border-none bg-transparent"
       />
       <div
-        role="document"
-        aria-label={project.title}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-project-title"
         ref={panelRef}
         tabIndex={-1}
         className={`relative z-[1] flex max-h-[90dvh] w-full max-w-[52rem] flex-col rounded-2xl border border-base-300 bg-base-100 outline-none ${isClosing ? "animate-[modal-panel-out_280ms_ease_both]" : "animate-[modal-panel-in_220ms_ease_both]"}`}
@@ -105,7 +105,10 @@ export function ProjectModal({ project, onClose, isClosing = false }: ProjectMod
               ) : null}
             </div>
 
-            <h3 className="m-0 text-[clamp(1.125rem,2vw,1.375rem)] leading-[1.25] font-bold text-base-content">
+            <h3
+              id="modal-project-title"
+              className="m-0 text-[clamp(1.125rem,2vw,1.375rem)] leading-[1.25] font-bold text-base-content"
+            >
               {project.title}
             </h3>
 

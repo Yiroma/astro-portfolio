@@ -20,6 +20,7 @@ export function ProjectCard({ project, onClick, phase }: ProjectCardProps) {
       ref={cardRef}
       role="button"
       tabIndex={0}
+      aria-label={`Voir les détails de ${project.title}`}
       onClick={trigger}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {

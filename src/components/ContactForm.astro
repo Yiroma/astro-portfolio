@@ -20,9 +20,10 @@ import { MailCheck } from "@lucide/astro";
       class="flex flex-col gap-5"
     >
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        <label class="flex flex-col gap-1.5">
-          <span class="field-label">Nom</span>
+        <div class="flex flex-col gap-1.5">
+          <label for="contact-name" class="field-label">Nom</label>
           <input
+            id="contact-name"
             type="text"
             name="name"
             placeholder="Prénom Nom"
@@ -30,10 +31,11 @@ import { MailCheck } from "@lucide/astro";
             autocomplete="name"
             class="field-input"
           />
-        </label>
-        <label class="flex flex-col gap-1.5">
-          <span class="field-label">E-mail</span>
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label for="contact-email" class="field-label">E-mail</label>
           <input
+            id="contact-email"
             type="email"
             name="email"
             placeholder="vous@exemple.com"
@@ -41,28 +43,30 @@ import { MailCheck } from "@lucide/astro";
             autocomplete="email"
             class="field-input"
           />
-        </label>
+        </div>
       </div>
 
-      <label class="flex flex-col gap-1.5">
-        <span class="field-label">Sujet</span>
+      <div class="flex flex-col gap-1.5">
+        <label for="contact-subject" class="field-label">Sujet</label>
         <input
+          id="contact-subject"
           type="text"
           name="subject"
           placeholder="CDI, mission, freelance…"
           class="field-input"
         />
-      </label>
+      </div>
 
-      <label class="flex flex-col gap-1.5">
-        <span class="field-label">Message</span>
+      <div class="flex flex-col gap-1.5">
+        <label for="contact-message" class="field-label">Message</label>
         <textarea
+          id="contact-message"
           name="message"
           placeholder="Décrivez votre besoin ou votre opportunité…"
           required
           rows="5"
           class="field-input field-textarea"></textarea>
-      </label>
+      </div>
 
       <!-- Honeypot anti-spam -->
       <input type="text" name="_gotcha" class="hidden" aria-hidden="true" tabindex="-1" />
@@ -108,7 +112,6 @@ import { MailCheck } from "@lucide/astro";
     background: var(--color-base-200);
     border: 1px solid var(--color-base-300);
     border-radius: 0.375rem;
-    outline: none;
     appearance: none;
     transition:
       border-color 150ms,
@@ -118,7 +121,9 @@ import { MailCheck } from "@lucide/astro";
     color: var(--color-base-content-muted);
     opacity: 0.55;
   }
-  .field-input:focus {
+  .field-input:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);
   }
