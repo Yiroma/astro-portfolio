@@ -132,7 +132,9 @@ export function ProjectModal({ project, onClose, isClosing = false }: ProjectMod
                 </span>
               </div>
               {project.inProgress ? (
-                <Badge variant="warning">En cours</Badge>
+                <Badge variant="warning" aria-label="Projet en cours de développement">
+                  En cours
+                </Badge>
               ) : project.date ? (
                 <span className="shrink-0 text-xs font-semibold text-base-content/40">
                   {project.date}

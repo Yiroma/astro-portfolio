@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import type { Phase } from "@components/react/hooks/useModalPhase";
 
 export function useCardAnimation(phase: Phase, onOpen: () => void) {
-  const cardRef = useRef<React.ElementRef<"div">>(null);
+  const cardRef = useRef<HTMLElement>(null);
   const [animStyle, setAnimStyle] = useState<CSSProperties | undefined>(undefined);
   const animating = useRef(false);
   const offsetRef = useRef<{ dx: number; dy: number } | null>(null);
