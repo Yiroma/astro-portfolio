@@ -118,10 +118,12 @@ Pour les données couplées à du code non-sérialisable (icônes Lucide, compos
 
 ### SEO & meta
 
-- **JSON-LD `Person`** dynamique dans `Layout.astro` via `set:html={JSON.stringify(jsonLd)}` avec `is:inline`
+- **JSON-LD** dans `Layout.astro` via `set:html={JSON.stringify(...)}` avec `is:inline` — trois blocs : `Person`, `WebSite` (avec `dateModified`), `FAQPage`
 - **OG image** par défaut : `public/og.png` (1200×630)
 - Open Graph enrichi : `og:site_name`, `og:image:alt`, dimensions explicites
 - Twitter corrigé : balises `name` (pas `property`)
+- **`/public/llms.txt`** — fichier d'identité pour les LLMs (analogue robots.txt)
+- **`meta-keywords` supprimée** — ignorée par Google, potentiellement pénalisante
 
 ### Document de référence
 
