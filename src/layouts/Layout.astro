@@ -19,6 +19,50 @@ const {
 const siteUrl = "https://yiromaric.fr";
 const fullImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
 
+const dateModified = "2026-05-16";
+
+const jsonLdWebSite = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Romaric Yi — Portfolio",
+  url: siteUrl,
+  description:
+    "Portfolio de Romaric Yi, Développeur Full Stack JS/TS basé à Châteauneuf-sur-Loire.",
+  author: { "@type": "Person", name: "Romaric Yi" },
+  dateModified,
+};
+
+const jsonLdFaq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Qui est Romaric Yi ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Romaric Yi est un développeur Full Stack diplômé Concepteur Développeur d'Applications (Bac+4, RNCP 37873), spécialisé en React, TypeScript, Next.js, Node.js et Java/Spring Boot. Basé à Châteauneuf-sur-Loire, il est disponible en CDI, CDD, mission courte, mission longue ou freelance, en présentiel sur Orléans et sa région ou distanciel dans toute la France.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Quelles sont les compétences de Romaric Yi ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Front-end : React, Next.js, TypeScript, Tailwind CSS, accessibilité RGAA/WCAG 2.1. Back-end : Node.js, Express, Java, Spring Boot, GraphQL. DevOps : Docker, CI/CD. Bases de données : PostgreSQL, MySQL, SQLite, Redis.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Romaric Yi est-il disponible en freelance ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Oui, Romaric Yi est disponible pour des missions freelance, des CDD, des CDI, des missions courtes et des missions longues en remote sur toute la France.",
+      },
+    },
+  ],
+};
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -134,10 +178,6 @@ const jsonLd = {
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="author" content="Romaric Yi" />
-    <meta
-      name="keywords"
-      content="Romaric Yi, Développeur Full Stack, Concepteur Développeur Applications, React, TypeScript, Next.js, Node.js, Java, Spring Boot, GraphQL, PostgreSQL, Docker, Tailwind CSS, RGAA, Accessibilité, Orléans, Châteauneuf-sur-Loire, CDI, Freelance, Remote"
-    />
     <link rel="canonical" href={canonical} />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -161,6 +201,8 @@ const jsonLd = {
     <title>{title}</title>
     <!-- Structured Data JSON-LD -->
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLdWebSite)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLdFaq)} />
   </head>
   <body class="flex flex-col bg-base-200">
     <a

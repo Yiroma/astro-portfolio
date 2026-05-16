@@ -3,7 +3,7 @@
   "eyebrow": "Conception",
   "title": "Un concepteur, pas juste un dev qui exécute",
   "tags": ["UML", "Clean Architecture", "Microservices", "Tests", "RGAA"],
-  "description": "Diplômé Concepteur Développeur d'Applications (Bac+4) après un Bac+2 Développeur Web & Web Mobile. Je modélise (UML, Merise), j'architecture (Clean Architecture, microservices, MVC), je documente. Mon projet de fin de cursus — CarePlan, app médicale multi-rôles — combinait microservices, GraphQL, tests E2E Playwright et conformité RGAA stricte.",
+  "description": "Diplômé Concepteur Développeur d'Applications (Bac+4) après un Bac+2 Développeur Web & Web Mobile. Je modélise (UML, Merise), j'architecture (Clean Architecture, microservices, MVC), je documente. Mon projet de fin de cursus, CarePlan (app médicale multi-rôles), combinait microservices, GraphQL, tests E2E Playwright et conformité RGAA stricte.",
   "illustration": "/brainstrom.svg",
   "illustrationAlt": "Schéma de conception avec post-its et diagrammes, symbolisant la phase de réflexion et de modélisation"
 }
