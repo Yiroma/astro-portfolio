@@ -1,0 +1,26 @@
+# Romaric Yi — Développeur Full Stack
+
+> Portfolio de Romaric Yi, développeur Full Stack JS/TS basé à Châteauneuf-sur-Loire (45), France.
+
+## Identité
+- Nom : Romaric Yi
+- Rôle : Développeur Full Stack (React, TypeScript, Node.js, Java/Spring Boot)
+- Diplôme : Concepteur Développeur d'Applications Bac+4, RNCP 37873 (Wild Code School, 2025)
+- Localisation : Châteauneuf-sur-Loire, Loiret — Remote France
+- Disponibilité : CDI · CDD · Mission courte · Mission longue · Freelance
+
+## Compétences principales
+Front-end : React, Next.js, TypeScript, Tailwind CSS, Accessibilité RGAA/WCAG 2.1
+Back-end : Node.js, Express, Java, Spring Boot, GraphQL, API REST
+Données : PostgreSQL, MySQL, SQLite, Redis
+DevOps : Docker, CI/CD, GitHub Actions
+Architecture : Clean Architecture, Microservices, MVC
+
+## Projets notables
+- CarePlan : application médicale multi-rôles (microservices, GraphQL, Docker, RGAA 4.1)
+- Taxi Loire Valley Services : site vitrine VTC, Lighthouse > 95, SEO local
+
+## Contact
+- GitHub : https://github.com/Yiroma
+- LinkedIn : https://www.linkedin.com/in/yiromaric/
+- Email : yiromaric@gmail.com
