@@ -17,7 +17,7 @@
     "Playwright",
     "RGAA"
   ],
-  "resume": "Application de gestion de plannings pour cabinets médicaux, avec trois rôles (Secrétaire, Médecin, Administrateur) et une accessibilité RGAA 4.1 effective.",
+  "resume": "Application de gestion de plannings médicaux (React, GraphQL, microservices Docker), trois rôles, tests Playwright E2E et conformité RGAA 4.1 effective.",
   "context": "Projet de fin de cursus CDA. Application de gestion de plannings pour cabinets médicaux avec trois rôles : Secrétaire, Médecin, Administrateur.",
   "problem": "Séparer clairement les responsabilités entre rôles, garantir une accessibilité réelle (pas cosmétique), et industrialiser le delivery sur une stack microservices avec tests à plusieurs niveaux.",
   "solution": "Architecture microservices modélisée UML, API GraphQL Apollo, tests Jest + Playwright E2E, Docker complet, CI/CD. Accessibilité dès la conception : navigation 100 % clavier, focus trap, validation NVDA, ARIA sur tous composants custom.",

@@ -18,7 +18,7 @@
   "context": "Application permettant de suivre ses dépenses, catégoriser des transactions et visualiser ses flux financiers.",
   "problem": "Approfondir la stack Java/Spring Boot tout en gardant un front Next.js moderne. Pratiquer une architecture en couches stricte avec une API REST disciplinée.",
   "solution": "Architecture en couches, API REST stricte, Docker + Makefile pour faciliter l'onboarding, documentation interne. Accessibilité RGAA visée dès la conception.",
-  "result": "Projet en cours — à compléter à livraison.",
+  "result": "Projet en cours, à compléter à livraison.",
   "links": [
     {
       "label": "Code GitHub",
