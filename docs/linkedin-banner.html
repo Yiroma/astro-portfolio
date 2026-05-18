@@ -77,52 +77,13 @@
         z-index: 10;
         display: flex;
         align-items: center;
+        justify-content: flex-end;
         height: 100%;
-        padding: 0 100px 0 420px;
-        gap: 80px;
-      }
-
-      /* Séparateur vertical */
-      .divider {
-        width: 1px;
-        height: 120px;
-        background: linear-gradient(
-          to bottom,
-          transparent,
-          oklch(0.372 0.044 257.287 / 0.8) 40%,
-          oklch(0.372 0.044 257.287 / 0.8) 60%,
-          transparent
-        );
-        flex-shrink: 0;
-      }
-
-      /* Bloc gauche : nom + titre */
-      .col-identity {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        flex-shrink: 0;
-      }
-
-      .name {
-        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-        font-weight: 800;
-        font-size: 52px;
-        line-height: 1;
-        letter-spacing: -0.02em;
-        color: oklch(0.984 0.003 247.858);
-      }
-
-      .title {
-        font-size: 17px;
-        font-weight: 500;
-        color: oklch(0.704 0.04 256.788);
-        letter-spacing: 0.01em;
+        padding-right: 160px;
       }
 
       /* Bloc centre : accroche */
       .col-tagline {
-        flex: 1;
         display: flex;
         flex-direction: column;
         gap: 16px;
@@ -131,7 +92,7 @@
       h2 {
         font-family: "Plus Jakarta Sans", system-ui, sans-serif;
         font-weight: 800;
-        font-size: 36px;
+        font-size: 56px;
         line-height: 1.1;
         letter-spacing: -0.02em;
         color: oklch(0.984 0.003 247.858);
@@ -179,14 +140,6 @@
     <div class="grid-overlay"></div>
 
     <div class="content">
-      <!-- Identité -->
-      <div class="col-identity">
-        <div class="name">Romaric Yi</div>
-        <div class="title">Développeur Full Stack · Orléans &amp; Remote</div>
-      </div>
-
-      <div class="divider"></div>
-
       <!-- Accroche -->
       <div class="col-tagline">
         <h2>
