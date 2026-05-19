@@ -11,12 +11,12 @@ import { Image } from "astro:assets";
 import profilePhoto from "@assets/romaric-yi.png";
 ---
 
-<section id="hero" class="hero-section relative z-0 overflow-hidden py-20 md:py-32">
+<section id="hero" class="hero-section relative z-0 overflow-hidden py-16 md:py-20">
   <BlobBackground />
 
   <Container class="relative z-10">
-    <div class="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-      <div class="flex flex-col items-start">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+      <div class="hero-text-col flex flex-col items-start justify-center">
         <AvailabilityBadge
           label="Disponible — CDI · Mission · Freelance"
           class="hero-anim-badge mb-6"
@@ -78,22 +78,21 @@ import profilePhoto from "@assets/romaric-yi.png";
         </div>
       </div>
 
-      <div class="hero-anim-image flex items-center justify-center">
-        <div class="hero-photo-wrapper">
-          <Image
-            src={profilePhoto}
-            alt="Romaric Yi — Développeur Full Stack"
-            class="h-full w-full object-cover"
-            style="object-position: center 85%"
-            width={400}
-            height={533}
-            format="webp"
-            quality={85}
-          />
-        </div>
-      </div>
+      <div class="hero-photo-spacer hidden md:block" aria-hidden="true"></div>
     </div>
   </Container>
+
+  <div class="hero-anim-image hero-photo-col" aria-hidden="true">
+    <Image
+      src={profilePhoto}
+      alt=""
+      class="hero-photo"
+      width={640}
+      height={853}
+      format="webp"
+      quality={85}
+    />
+  </div>
 </section>
 
 <style>
@@ -101,23 +100,43 @@ import profilePhoto from "@assets/romaric-yi.png";
     background: color-mix(in srgb, var(--color-primary) 4%, var(--color-base-100));
   }
 
-  .hero-photo-wrapper {
-    position: relative;
-    width: min(380px, 80vw);
-    aspect-ratio: 1;
-    border-radius: 50%;
-    overflow: hidden;
-    background: radial-gradient(
-      circle at 60% 40%,
-      color-mix(in oklch, var(--color-primary) 90%, oklch(0.7 0.15 200)),
-      color-mix(in oklch, var(--color-primary) 60%, oklch(0.2 0.05 280)) 100%
-    );
-    box-shadow: 0 0 64px color-mix(in oklch, var(--color-primary) 45%, transparent);
+  .hero-photo-col {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .hero-photo {
+    display: block;
+    width: auto;
+    height: 110%;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+    filter: drop-shadow(-16px 0 40px color-mix(in oklch, var(--color-primary) 25%, transparent));
   }
 
   @media (max-width: 767px) {
-    .hero-photo-wrapper {
-      width: min(260px, 70vw);
+    .hero-photo-col {
+      width: 80%;
+      right: -10%;
+    }
+
+    .hero-photo {
+      opacity: 0.45;
+    }
+
+    .hero-text-col p,
+    .hero-text-col :global(.eyebrow) {
+      text-shadow:
+        0 2px 8px var(--color-base-100),
+        0 4px 20px var(--color-base-100);
     }
   }
 
@@ -150,6 +169,16 @@ import profilePhoto from "@assets/romaric-yi.png";
       opacity: 1;
     }
   }
+  @keyframes hero-photo-in {
+    from {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
   .hero-anim-badge {
     animation: hero-scale-in 0.35s ease-out both;
@@ -164,7 +193,7 @@ import profilePhoto from "@assets/romaric-yi.png";
     animation: hero-fade-up 0.5s ease-out 0.24s both;
   }
   .hero-anim-image {
-    animation: hero-fade-in 0.6s ease-out 0.4s both;
+    animation: hero-photo-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
   }
 
   @media (prefers-reduced-motion: reduce) {

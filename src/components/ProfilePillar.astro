@@ -26,6 +26,8 @@ const hasIllustrationSlot = Astro.slots.has("illustration");
             src={illustration}
             alt={illustrationAlt ?? ""}
             class="h-full w-full object-contain"
+            loading="lazy"
+            decoding="async"
           />
         ) : (
           <span class="text-xs font-medium tracking-tighter opacity-55">{illustration}</span>
