@@ -150,30 +150,24 @@
 
       /* Colonne photo */
       .col-photo {
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .photo-wrapper {
-        width: 280px;
-        height: 280px;
-        border-radius: 50%;
-        overflow: hidden;
-        background: oklch(54% 0.245 262.881);
-        box-shadow:
-          0 0 80px oklch(54% 0.245 262.881 / 0.4),
-          0 0 160px oklch(54% 0.245 262.881 / 0.18);
-        border: 2px solid oklch(54% 0.245 262.881 / 0.3);
-      }
-
-      .photo-wrapper img {
-        width: 100%;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 320px;
         height: 100%;
-        object-fit: cover;
-        object-position: center 85%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        pointer-events: none;
+      }
+
+      .col-photo img {
         display: block;
+        height: 110%;
+        width: auto;
+        object-fit: contain;
+        object-position: bottom center;
+        filter: drop-shadow(-16px 0 48px oklch(54% 0.245 262.881 / 0.3));
       }
     </style>
   </head>
@@ -199,9 +193,7 @@
       </div>
 
       <div class="col-photo">
-        <div class="photo-wrapper">
-          <img src="../src/assets/romaric-yi.png" alt="Romaric Yi" />
-        </div>
+        <img src="../src/assets/romaric-yi.png" alt="Romaric Yi" />
       </div>
     </div>
   </body>
