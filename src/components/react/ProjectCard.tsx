@@ -30,6 +30,8 @@ export function ProjectCard({ project, onClick, phase }: ProjectCardProps) {
             src={project.image}
             alt={`Capture d'écran — ${project.title}`}
             className="block h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         ) : (
           <div className="flex h-full w-full flex-col items-center justify-center gap-2 text-primary/40">
