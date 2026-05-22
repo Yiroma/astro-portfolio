@@ -57,9 +57,52 @@ import "../styles/global.css";
           </p>
 
           <h2>4. Cookies et stockage local</h2>
+
+          <h3>4.1 Cookie de consentement</h3>
           <p>
-            Ce site n'utilise <strong>pas de cookies de tracking ni de mesure d'audience</strong>.
+            Un cookie nommé <code>ga_consent</code> est déposé sur votre appareil uniquement après que
+            vous ayez exprimé votre choix (accepter ou refuser) dans le bandeau de consentement. Il mémorise
+            votre décision pendant <strong>13 mois</strong> (durée recommandée par la CNIL), afin de
+            ne pas vous redemander à chaque visite. Aucune donnée personnelle n'est contenue dans ce
+            cookie.
           </p>
+
+          <h3>4.2 Mesure d'audience (Google Analytics 4)</h3>
+          <p>
+            Ce site utilise <strong>Google Analytics 4</strong> (Google Ireland Ltd) pour mesurer son
+            audience, <strong>uniquement si vous avez donné votre consentement</strong>. Par défaut,
+            aucune collecte n'a lieu.
+          </p>
+          <ul>
+            <li>
+              <strong>Données collectées</strong> : pages visitées, durée de session, type d'appareil
+              et de navigateur, pays (via IP anonymisée)
+            </li>
+            <li>
+              <strong>Finalité</strong> : statistiques de fréquentation anonymes
+            </li>
+            <li>
+              <strong>Base légale</strong> : consentement (article 6.1.a RGPD)
+            </li>
+            <li><strong>Conservation</strong> : 14 mois (paramétrage Google Analytics)</li>
+            <li>
+              <strong>Transfert hors UE</strong> : les données peuvent être traitées aux États-Unis par
+              Google, encadré par les clauses contractuelles types de la Commission européenne
+            </li>
+          </ul>
+          <p>
+            Vous pouvez retirer votre consentement à tout moment en cliquant sur « Refuser » dans le
+            bandeau, ou en installant le{" "}
+            <a
+              href="https://tools.google.com/dlpage/gaoptout"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              module de désactivation Google Analytics
+            </a>.
+          </p>
+
+          <h3>4.3 Préférence de thème</h3>
           <p>
             La préférence de thème (clair / sombre) peut être enregistrée localement dans votre
             navigateur via <code>localStorage</code>. Cette donnée reste sur votre appareil et n'est
