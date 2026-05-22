@@ -1,12 +1,16 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import CookieBanner from "@components/react/CookieBanner";
+
+const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID as string | undefined;
 
 type Props = {
   title: string;
   description: string;
   image?: string;
   canonical?: string;
+  noindex?: boolean;
 };
 
 const {
@@ -14,6 +18,7 @@ const {
   description,
   image = "/og.png",
   canonical = "https://yiromaric.fr/",
+  noindex = false,
 } = Astro.props as Props;
 
 const siteUrl = "https://yiromaric.fr";
@@ -178,6 +183,7 @@ const jsonLd = {
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="author" content="Romaric Yi" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -203,6 +209,18 @@ const jsonLd = {
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLdWebSite)} />
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLdFaq)} />
+    <!-- Google Consent Mode v2 — désactivé par défaut (RGPD) -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      gtag("consent", "default", {
+        analytics_storage: "denied",
+        ad_storage: "denied",
+        wait_for_update: 500,
+      });
+    </script>
   </head>
   <body class="flex flex-col bg-base-200">
     <a
@@ -216,5 +234,6 @@ const jsonLd = {
       <slot />
     </main>
     <Footer />
+    {GA_ID && <CookieBanner measurementId={GA_ID} client:load />}
   </body>
 </html>
