@@ -10,6 +10,7 @@ type Props = {
   description: string;
   image?: string;
   canonical?: string;
+  noindex?: boolean;
 };
 
 const {
@@ -17,6 +18,7 @@ const {
   description,
   image = "/og.png",
   canonical = "https://yiromaric.fr/",
+  noindex = false,
 } = Astro.props as Props;
 
 const siteUrl = "https://yiromaric.fr";
@@ -181,6 +183,7 @@ const jsonLd = {
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="author" content="Romaric Yi" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
