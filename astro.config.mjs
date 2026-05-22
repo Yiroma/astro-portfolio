@@ -8,7 +8,12 @@ import path from "path";
 // https://astro.build/config
 export default defineConfig({
   site: "https://yiromaric.fr",
-  integrations: [react(), sitemap()],
+  integrations: [
+    react(),
+    sitemap({
+      filter: (page) => !page.includes("/legals/") && !page.includes("/privacy/"),
+    }),
+  ],
   vite: {
     plugins: [/** @type {any} */ (tailwindcss())],
     resolve: {
