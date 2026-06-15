@@ -5,6 +5,8 @@ import Container from "@components/ui/Container.astro";
 import Eyebrow from "@components/ui/Eyebrow.astro";
 import ProjectsGrid from "@components/react/ProjectsGrid";
 import type { Project } from "@components/react/ProjectsGrid";
+import Button from "@components/ui/Button.astro";
+import GithubIcon from "@components/ui/icons/GithubIcon.astro";
 
 const entries = await getCollection("projects");
 const projects: Project[] = entries
@@ -22,6 +24,13 @@ const projects: Project[] = entries
     </div>
 
     <ProjectsGrid projects={projects} client:visible />
+
+    <div class="mt-10">
+      <Button href="https://github.com/Yiroma" variant="outline" target="_blank" class="w-full">
+        Voir plus de projets sur GitHub
+        <GithubIcon aria-hidden="true" />
+      </Button>
+    </div>
   </Container>
 </section>
 
