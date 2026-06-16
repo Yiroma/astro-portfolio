@@ -53,30 +53,49 @@ astro-portfolio/
 │   └── site.webmanifest     # PWA manifest
 │
 ├── src/
-│   ├── assets/icons/        # SVG technologies (tech/) + icônes UI (ui/)
+│   ├── assets/
+│   │   └── romaric-yi.png   # Photo de profil (hero)
 │   │
 │   ├── components/
 │   │   ├── react/           # Composants interactifs (Astro Islands)
-│   │   │   ├── Nav.tsx          # Navigation flottante + IntersectionObserver
-│   │   │   ├── ThemeSwap.tsx    # Toggle dark/light (DaisyUI natif)
 │   │   │   ├── ProjectsGrid.tsx # Grille projets + modal
-│   │   │   ├── ProjectCard.tsx  # Carte projet
+│   │   │   ├── ProjectCard.tsx  # Carte projet avec animation
 │   │   │   ├── ProjectModal.tsx # Modal détail (focus trap, ARIA)
+│   │   │   ├── CookieBanner.tsx # Bandeau consentement GA4
 │   │   │   ├── TimelineFrise.tsx# Timeline animée
-│   │   │   └── TimelineEntry.tsx# Entrée de timeline
+│   │   │   ├── TimelineEntry.tsx# Entrée de timeline
+│   │   │   └── hooks/
+│   │   │       ├── useModalPhase.ts   # Gestion des phases d'animation modale
+│   │   │       ├── useCardAnimation.ts# Animations des cartes projet
+│   │   │       └── useScrollReveal.ts # Révélation au scroll
 │   │   │
-│   │   ├── Hero.astro       # Section hero
-│   │   ├── Profile.astro    # Section profil (3 piliers)
-│   │   ├── Projects.astro   # Section réalisations
-│   │   ├── SkillsSection.astro # Section compétences
-│   │   ├── Parcours.astro   # Section parcours
-│   │   ├── Contact.astro    # Wrapper contact
-│   │   ├── ContactCTA.astro # Bloc CTA de contact
-│   │   ├── ContactForm.astro# Formulaire (Formspree)
-│   │   ├── Header.astro     # En-tête + navigation
-│   │   ├── Footer.astro     # Pied de page
-│   │   ├── Nav.astro        # Navigation desktop
-│   │   └── NavMobile.astro  # Navigation mobile
+│   │   ├── ui/              # Composants UI réutilisables
+│   │   │   ├── icons/           # Icônes (Astro + React)
+│   │   │   ├── AvailabilityBadge.astro
+│   │   │   ├── Badge.astro / Badge.tsx
+│   │   │   ├── BlobBackground.astro
+│   │   │   ├── Btn.tsx
+│   │   │   ├── Button.astro
+│   │   │   ├── Container.astro
+│   │   │   ├── Eyebrow.astro
+│   │   │   └── GradientText.astro
+│   │   │
+│   │   ├── Hero.astro           # Section hero
+│   │   ├── Profile.astro        # Section profil (3 piliers)
+│   │   ├── ProfilePillar.astro  # Pilier individuel (profil)
+│   │   ├── Projects.astro       # Section réalisations
+│   │   ├── SkillsSection.astro  # Section compétences
+│   │   ├── SkillCard.astro      # Carte de compétence
+│   │   ├── FormattedSkillItem.astro # Item compétence formaté
+│   │   ├── Parcours.astro       # Section parcours
+│   │   ├── Contact.astro        # Wrapper contact
+│   │   ├── ContactCTA.astro     # Bloc CTA de contact
+│   │   ├── ContactForm.astro    # Formulaire (Formspree)
+│   │   ├── Header.astro         # En-tête + navigation
+│   │   ├── ThemeSwap.astro      # Toggle dark/light (View Transition)
+│   │   ├── Footer.astro         # Pied de page
+│   │   ├── Nav.astro            # Navigation desktop
+│   │   └── NavMobile.astro      # Navigation mobile
 │   │
 │   ├── content/             # Astro Content Collections (source de vérité éditoriale)
 │   │   ├── projects/        # careplan.json, taxilvs.json, budget-management.json, hive.json
@@ -97,10 +116,13 @@ astro-portfolio/
 │   │   └── 404.astro        # Page d'erreur
 │   │
 │   ├── styles/
-│   │   └── global.css       # Thèmes DaisyUI (night/winter), variables, polices
+│   │   ├── global.css           # Thèmes DaisyUI (night/winter), variables, polices
+│   │   └── projectAnimations.css# Animations des cartes et modales projet
 │   │
-│   ├── types/               # Définitions TypeScript
-│   └── utils/               # Utilitaires (ex. parseRichText.tsx)
+│   ├── types/               # Définitions TypeScript (project, nav, icon, timeline)
+│   └── utils/
+│       ├── parseRichText.tsx    # Rendu texte enrichi
+│       └── analytics.ts         # Helpers GA4 (consentement, init, gtag)
 │
 ├── docs/
 │   ├── DESIGN_SYSTEM.md         # Palette oklch, typographie, composants UI
@@ -132,7 +154,7 @@ Le contenu est séparé du code via deux mécanismes :
 | `timeline` | `01-micromania.json` … `05-current.json`                               | `Parcours.astro` |
 | `profile`  | `01-conception.json` … `03-ingenierie.json`                            | `Profile.astro`  |
 
-Les fichiers JSON sont ordonnés via un champ `order` ou `index` et triés dans chaque composant.
+Les fichiers JSON sont ordonnés via un champ `index` (projects) ou `order` (timeline, profile) et triés dans chaque composant via `getCollection()` + `.sort()`.
 
 ### Données statiques (`src/data/`)
 

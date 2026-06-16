@@ -18,12 +18,7 @@
 
 ## Récapitulatif par priorité
 
-| Priorité              | Tâche                                                 |
-| --------------------- | ----------------------------------------------------- |
-| ✅ Fait               | Astro Content Collections (projets, timeline, profil) |
-| ✅ Fait               | OG Image dédiée + meta tags enrichis                  |
-| ✅ Fait               | JSON-LD Person complet et dynamique                   |
-| ✅ Fait               | Alias `@data` déclaré dans Vite                       |
-| ✅ Fait               | Pages légales et 404                                  |
-| 🟠 Moyenne            | Image Budget Management                               |
-| 🔵 Après finalisation | Lighthouse > 95 + tests navigateurs + tests NVDA      |
+| Priorité              | Tâche                                            |
+| --------------------- | ------------------------------------------------ |
+| 🟠 Moyenne            | Image Budget Management                          |
+| 🔵 Après finalisation | Lighthouse > 95 + tests navigateurs + tests NVDA |
