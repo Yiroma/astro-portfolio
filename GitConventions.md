@@ -49,14 +49,14 @@ modèle: `<type>-<description-courte>`
 
 | Type       | Description                         | Exemple                         |
 | ---------- | ----------------------------------- | ------------------------------- |
-| `feature`  | ✨ Nouvelle fonctionnalité          | `feature/carrousel-temoignages` |
-| `bugfix`   | 🐛 Correction de bug                | `bugfix/erreur-login`           |
-| `hotfix`   | 🚨 Correction urgente en production | `hotfix/securite-auth`          |
-| `chore`    | 🔩 Tâches de maintenance            | `chore/mise-a-jour-deps`        |
-| `docs`     | 📚 Documentation                    | `docs/guide-installation`       |
-| `refactor` | 🔧 Refactorisation                  | `refactor/composant-header`     |
-| `test`     | 🧪 Ajout/modification de tests      | `test/validation-formulaire`    |
-| `style`    | 💄 Changements cosmétiques          | `style/responsive-header`       |
+| `feature`  | ✨ Nouvelle fonctionnalité          | `feature-carrousel-temoignages` |
+| `bugfix`   | 🐛 Correction de bug                | `bugfix-erreur-login`           |
+| `hotfix`   | 🚨 Correction urgente en production | `hotfix-securite-auth`          |
+| `chore`    | 🔩 Tâches de maintenance            | `chore-mise-a-jour-deps`        |
+| `docs`     | 📚 Documentation                    | `docs-guide-installation`       |
+| `refactor` | 🔧 Refactorisation                  | `refactor-composant-header`     |
+| `test`     | 🧪 Ajout/modification de tests      | `test-validation-formulaire`    |
+| `style`    | 💄 Changements cosmétiques          | `style-responsive-header`       |
 
 ## 🔹 Règles de nommage
 
@@ -72,15 +72,15 @@ modèle: `<type>-<description-courte>`
 # Créer une nouvelle branche feature
 git checkout dev
 git pull origin dev
-git checkout -b feature/nom-de-la-feature
+git checkout -b feature-nom-de-la-feature
 
 # Après développement, merger dans dev
 git checkout dev
-git merge feature/nom-de-la-feature
+git merge feature-nom-de-la-feature
 git push origin dev
 
 # Supprimer la branche feature locale
-git branch -d feature/nom-de-la-feature
+git branch -d feature-nom-de-la-feature
 ```
 
 ## 🔹 Exemples de bonnes branches

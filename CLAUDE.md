@@ -69,17 +69,28 @@ Configurés dans `astro.config.mjs` :
 
 Les composants interactifs sont dans `src/components/react/`. Ils sont montés avec des directives Astro (`client:load`, `client:visible`). Actuellement :
 
-- `Nav.tsx` — navigation flottante, détection de section active par IntersectionObserver
-- `ThemeSwap.tsx` — toggle dark/light via DaisyUI `theme-controller`
 - `ProjectsGrid.tsx` — grille de projets avec modal de détail
+- `ProjectCard.tsx` — carte projet avec animation d'entrée
+- `ProjectModal.tsx` — modal de détail (focus trap, ARIA, portal)
+- `CookieBanner.tsx` — bandeau de consentement GA4 (`client:load`)
 - `TimelineFrise.tsx` / `TimelineEntry.tsx` — timeline animée du parcours
+- `hooks/useModalPhase.ts` — machine à états pour l'animation modale (idle → opening → open → closing)
+- `hooks/useCardAnimation.ts` — animation de la carte lors de l'ouverture de la modale
+- `hooks/useScrollReveal.ts` — révélation des éléments au scroll (IntersectionObserver)
+
+### ThemeSwap
+
+`ThemeSwap.astro` (composant Astro, pas React) gère le toggle dark/light via DaisyUI `theme-controller` et `document.startViewTransition` (animation cercle). Ne pas migrer en composant React — la View Transition API nécessite un accès direct au DOM.
 
 ### Icônes
 
-Deux systèmes coexistent dans `src/assets/icons/` :
+Les icônes sont dans `src/components/ui/icons/` :
 
-- `tech/` — SVG des logos de technologies, importés directement comme assets
-- `ui/` — composants Astro et React pour les icônes d'UI, exportés via `index.js`
+- Fichiers `.astro` — pour les composants Astro (ex. `GithubIcon.astro`, `LogoIcon.astro`)
+- Fichiers `.tsx` — pour les composants React (ex. `GithubIcon.tsx`, `WebIcon.tsx`)
+- `index.js` — exporte les variantes React (`GithubReactIcon`, `WebReactIcon`)
+
+`src/assets/` contient uniquement la photo de profil (`romaric-yi.png`).
 
 ### Déploiement
 
@@ -105,7 +116,7 @@ Géré via `src/content.config.ts` (API Astro 5 avec loaders `glob`, schémas Zo
 | `timeline` | `src/content/timeline/` | `01-micromania.json` … `05-current.json`                               | `Parcours.astro` |
 | `profile`  | `src/content/profile/`  | `01-conception.json` … `03-ingenierie.json`                            | `Profile.astro`  |
 
-Les fichiers JSON sont ordonnés via un champ `order: number` et triés par `getCollection()` + `.sort()` dans chaque composant.
+Les fichiers JSON sont ordonnés via un champ `index: number` (collection `projects`) ou `order: number` (collections `timeline` et `profile`), et triés par `getCollection()` + `.sort()` dans chaque composant.
 
 ### Données statiques (`src/data/`)
 
@@ -124,6 +135,16 @@ Pour les données couplées à du code non-sérialisable (icônes Lucide, compos
 - Twitter corrigé : balises `name` (pas `property`)
 - **`/public/llms.txt`** — fichier d'identité pour les LLMs (analogue robots.txt)
 - **`meta-keywords` supprimée** — ignorée par Google, potentiellement pénalisante
+
+### Analytics (GA4)
+
+`src/utils/analytics.ts` centralise toute la logique GA4 :
+
+- `getConsent()` / `setConsent()` — lecture/écriture du consentement en `localStorage`
+- `initGA(measurementId)` — injecte le script gtag.js dans le DOM
+- `updateGAConsent(state)` — met à jour `gtag('consent', 'update', ...)`
+
+`CookieBanner.tsx` orchestre le consentement utilisateur avant tout chargement GA4. Le `measurementId` est passé depuis `Layout.astro` en props.
 
 ### Document de référence
 
