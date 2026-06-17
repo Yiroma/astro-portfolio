@@ -28,13 +28,12 @@ export function initGA(measurementId: string): void {
   }
 
   window.dataLayer = window.dataLayer ?? [];
-  function gtag(...args: unknown[]) {
-    window.dataLayer.push(args);
-  }
-  window.gtag = gtag;
+  window.gtag = function () {
+    window.dataLayer.push(arguments);
+  };
 
-  gtag("js", new Date());
-  gtag("config", measurementId, { anonymize_ip: true });
+  window.gtag("js", new Date());
+  window.gtag("config", measurementId, { anonymize_ip: true });
 }
 
 export function updateGAConsent(value: ConsentValue): void {
@@ -47,7 +46,7 @@ export function updateGAConsent(value: ConsentValue): void {
 // Déclarations globales pour TypeScript
 declare global {
   interface Window {
-    dataLayer: unknown[];
+    dataLayer: IArguments[];
     gtag: (...args: unknown[]) => void;
   }
 }
