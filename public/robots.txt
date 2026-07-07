@@ -1,5 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /legals/
-Disallow: /privacy/
 Sitemap: https://yiromaric.fr/sitemap-index.xml
